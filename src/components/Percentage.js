@@ -1,7 +1,6 @@
 import ReactApexChart from 'react-apexcharts'
 
 const Percentage = ({done, pending}) => {
-    //const { pending } = useContext(PendingContext)
     const series = [done, pending]
     const options = {
         chart: {

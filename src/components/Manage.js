@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Item from './Item'
 import axios from 'axios'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 export const ReloadContext = React.createContext()
 
@@ -10,6 +11,7 @@ const Manage = () => {
     const [ reload, setReload ] = useState(false)
     const [search, setSearch] = useState('');
     const [filtered, setFiltered] = useState([])
+    const [ loading, setLoading] = useState(true)
 
     const getItems = () => {
         axios.get(`http://localhost:3005/allequipment`).then((response)=>{
@@ -20,7 +22,7 @@ const Manage = () => {
 
     useEffect(()=>{
         const searchedVal = items.filter(val => {
-            if(search == ''){
+            if(search === ''){
                 return val
             }else if(val.name.toLowerCase().includes(search.toLowerCase()) || val.serial.toLowerCase().includes(search.toLowerCase())){
                 return val
@@ -31,6 +33,7 @@ const Manage = () => {
     useEffect(()=>{
         setTimeout(()=>{
             getItems()
+            setLoading(false)
           },500)
     },[reload])
 
@@ -53,6 +56,15 @@ const Manage = () => {
                 </div>       
             </div>
             </div>
+            <div className="container-item-header">
+                <div className="item-details">
+                    <p className="item-header">NAME</p>
+                    <p className="item-header">SERIAL NUMBER</p>
+                    <p className="item-header">TYPE</p>
+                    <p className="item-header">DESCRIPTION</p>
+                </div>
+            </div>
+            {loading === true ? <CircularProgress color="inherit"/> : null}
             {filtered.map(item =>{
                     return  <Item item={item} />
                 })}

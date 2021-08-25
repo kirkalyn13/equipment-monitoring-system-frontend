@@ -109,14 +109,28 @@ body{
   justify-content: space-evenly;
   color: #FFF;
   width: 95%;
-  height: 100px;
+  height: 50px;
   font-weight: bold;
   background-color: #757575;
   margin: 10px 20px;
   border-radius: 10px;
   box-shadow: 2px 5px 5px  #888888;
-  padding: 10px;
+  padding: 5px;
 }
+.container-item-header{
+  display: flex;
+  justify-content: flex-start;
+  color: #FFF;
+  width: 95%;
+  height: 20px;
+  font-weight: bold;
+  background-color: #757575;
+  margin: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 2px 5px 5px  #888888;
+  padding: 10px 5px;
+}
+
 .container-filter{
   background-color: #757575;
   font-size: large;
@@ -145,7 +159,7 @@ body{
 .container-logout{
   display: flex;
   width: auto;
-  margin: 20px 5px; ;
+  margin: 20px 5px;
   justify-content: space-around;
 }
 .login-page{
@@ -187,8 +201,9 @@ body{
 }
 .buttons-manage{
   display: flex;
-  flex-direction: column;
-  width:12%
+  margin: 0px 20px;
+  width:5%;
+  justify-content: space-around;
 }
 .section-head{
   display: flex;
@@ -205,7 +220,6 @@ body{
   color: #757575;
   align-items: center;
 }
-
 input{
   border-radius: 5px;
   border: solid 2px #212121;
@@ -305,18 +319,26 @@ a:hover, a:active {
   padding-bottom: 20px;
   border-bottom: 1px solid #F5F5F5;
 }
-.item-detail{
-  color: #FFF;
-  flex-direction: column;
-  width: 22%;
-  margin: 5px 2px;
+.item-details{
+  width: 95%;
+  display: flex;
+  flex-direction: row;
 }
 .item-info{
+  width: 25%;
+  margin: 5px 2px;
   color: #000;
   background-color: #FFF;
   border-radius: 5px;
-  padding: 8px 0px;
+  padding: 10px 0px;
 }
+.item-header{
+  width: 24%;
+  margin: 2px 2px;
+  color: #FFF;
+  font-weight: bold;
+}
+
 .label-info{
   font-size: large;
   font-weight: bold;
@@ -440,9 +462,14 @@ td{
   }
   .container-item{
     flex-direction: column;
-    height: 65vh;
+    height: 100px;
+    padding: 10px 0px;
   }
-  .section-title{
+  .container-item-header{
+    width: 100%;
+    margin: 10px 0px;
+  }
+  .section-title, th, td, .item-header{
     font-size: small;
   }
   .detail-title{
@@ -469,19 +496,16 @@ td{
     margin: 20px 0px;
   }
   .buttons-manage{
+    margin: 2px 20px;
     flex-direction: row;
     justify-content: space-evenly;
   }
-  .item-detail, .buttons-manage{
+  .item-details, .buttons-manage{
     width: 100%;
   }
-  .item-detail{
-    margin: 2px;
-  }
   .item-info{
-    padding: 2px 0px;
-  }
-  th, td{
     font-size: small;
+    width: 25%;
+    padding: 2px 0px;
   }
 }

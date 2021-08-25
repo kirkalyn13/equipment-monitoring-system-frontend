@@ -31,10 +31,12 @@ const Item = ({item}) => {
     return (
         <EditContext.Provider value={{setShowEdit}}>
             <div className="container-item">
-                <div className="item-detail"><p>NAME: </p><p className="item-info">{item.name}</p></div>
-                <div className="item-detail"><p>SERIAL: </p><p className="item-info">{item.serial}</p></div>
-                <div className="item-detail"><p>TYPE: </p><p className="item-info">{item.type}</p></div>
-                <div className="item-detail"><p>DESCRIPTION: </p><p className="item-info">{item.description}</p></div>  
+                <div className="item-details">
+                    <p className="item-info">{item.name}</p>
+                    <p className="item-info">{item.serial}</p>
+                    <p className="item-info">{item.type}</p>
+                    <p className="item-info">{item.description}</p>
+                </div>
                 <div className="buttons-manage">
                     <IconButton aria-label="edit" color="inherit">
                         <EditIcon onClick={toggleEdit} />

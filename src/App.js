@@ -10,31 +10,36 @@ import View from './components/View'
 import Add from './components/Add'
 import Manage from './components/Manage'
 import Login from './components/Login';
+import Users from './components/Users';
+
 
 export const LoginContext = React.createContext()
 
 function App() {
-  const [ user, setUser ] = useState({
-    username: "",
-    password: ""
-  })
+  const [ isAuth, setIsAuth ] = useState(false)
+  const [ user, setUser ] = useState({})
   
   useEffect(() => {
     const data = localStorage.getItem("ems-user")
     if(data){
-      setUser(JSON.parse(data))
+      setUser(JSON.parse(data))  
+      setIsAuth(true) 
     }
   },[])
+
+  useEffect(()=>{
+    console.log(isAuth)
+  },[isAuth])
 
   useEffect(() => {
     localStorage.setItem("ems-user", JSON.stringify(user))
   })
 
   return (
-    <LoginContext.Provider value={{user, setUser}}>
+    <LoginContext.Provider value={{user, setUser, setIsAuth, isAuth}}>
       <Router>
       <div className="App">
-        {(user.username !== "") ? (
+        {(isAuth === true && user.username !== "" && user.login === true) ? (
           <>
           <Header />
           <div className="container-body">
@@ -51,6 +56,9 @@ function App() {
             </Route>
             <Route path="/manage">
               <Manage />
+            </Route>
+            <Route path="/users">
+              <Users />
             </Route>
           </Switch>
           </div>

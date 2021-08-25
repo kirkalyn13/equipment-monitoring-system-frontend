@@ -4,13 +4,13 @@ import Button from '@material-ui/core/Button'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const Header = () => {
-    const {user, setUser} =  useContext(LoginContext)
+    const {user, setUser, setIsAuth} =  useContext(LoginContext)
 
     const logout = () => {
         setUser({
-            username: "",
-            password: ""
           })
+        setIsAuth(false)
+        localStorage.removeItem("ems-user")
     }
 
     return (

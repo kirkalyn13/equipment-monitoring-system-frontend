@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div>
-                Copyright © 2021 Equipment Monitoring System.
+                Copyright © 2021 Equipment Monitoring System. Powered by Metro Eagle Solutions.
             </div>
       </footer>
     )
