@@ -14,6 +14,7 @@ import Users from './components/Users';
 
 
 export const LoginContext = React.createContext()
+const DEPT = "Physics Lab"
 
 function App() {
   const [ isAuth, setIsAuth ] = useState(false)
@@ -46,7 +47,7 @@ function App() {
             <Sidebar />
           <Switch>
             <Route exact path="/">
-              <Dashboard />
+              <Dashboard dept={DEPT}/>
             </Route>
             <Route path="/view">
               <View />

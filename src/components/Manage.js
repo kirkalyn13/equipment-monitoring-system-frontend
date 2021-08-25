@@ -9,9 +9,9 @@ export const ReloadContext = React.createContext()
 const Manage = () => {
     const [ items, setItems ] = useState([])
     const [ reload, setReload ] = useState(false)
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState('')
     const [filtered, setFiltered] = useState([])
-    const [ loading, setLoading] = useState(true)
+    const [ loading, setLoading ] = useState(true)
 
     const getItems = () => {
         axios.get(`http://localhost:3005/allequipment`).then((response)=>{

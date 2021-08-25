@@ -130,7 +130,6 @@ body{
   box-shadow: 2px 5px 5px  #888888;
   padding: 10px 5px;
 }
-
 .container-filter{
   background-color: #757575;
   font-size: large;
@@ -143,7 +142,7 @@ body{
 .container-metrics{
   display: flex;
 }
-.container-search{
+.container-search, .container-add-user{
   padding-bottom: 15px;
   width: 98%;
   display: flex;
@@ -155,6 +154,10 @@ body{
   background-color: #757575;
   border-radius: 10px;
   box-shadow: 2px 5px 5px  #888888;
+}
+.container-credentials{
+  width: 100%;
+  display: flex;
 }
 .container-logout{
   display: flex;
@@ -220,10 +223,41 @@ body{
   color: #757575;
   align-items: center;
 }
+.user-form{
+  display: flex;
+  justify-content: flex-start;
+  color: #FFF;
+  width: 95%;
+  height: 40px;
+  font-weight: bold;
+  background-color: #757575;
+  margin: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 2px 5px 5px  #888888;
+  padding: 5px;
+}
 input{
   border-radius: 5px;
   border: solid 2px #212121;
   padding: 5px 0px 5px 10px;
+  font-size: medium;
+}
+.user-info-input{
+  color: #000;
+  width: 30%;
+  margin: 5px 2px;
+}
+.user-credentials{
+  border-radius: 5px;
+  padding: 5px 0px 5px 10px;
+  font-size: medium;
+}
+.container-radio-label{
+  display: flex;
+  justify-content: center;
+  margin: 8px 2px;
+}
+.radio-label{
   font-size: medium;
 }
 .input-login{
@@ -338,7 +372,17 @@ a:hover, a:active {
   color: #FFF;
   font-weight: bold;
 }
-
+.item-user-header{
+  width: 26%;
+  margin: 2px 15px;
+  color: #FFF;
+  font-weight: bold;
+}
+.user-info-header{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
 .label-info{
   font-size: large;
   font-weight: bold;
@@ -407,7 +451,7 @@ td{
     margin: 20px 0px;
     font-size: small;
   }
-  .container-search{
+  .container-search, .container-add-user{
     width: 100%;
     flex-direction: column;
     margin: 10px 0;
@@ -462,12 +506,21 @@ td{
   }
   .container-item{
     flex-direction: column;
+    width: 100%;
     height: 100px;
     padding: 10px 0px;
-  }
-  .container-item-header{
-    width: 100%;
     margin: 10px 0px;
+  }
+  .user-form{
+    flex-direction: column;
+    width: 100%;
+    height: 120px;
+    padding: 10px 0px;
+    margin: 10px 0px;
+  }
+  .container-item-header, .user-info-header{
+    width: 100%;
+    margin: 0px;
   }
   .section-title, th, td, .item-header{
     font-size: small;
@@ -507,5 +560,26 @@ td{
     font-size: small;
     width: 25%;
     padding: 2px 0px;
+  }
+  .item-user-header{
+    width: 33%;
+  }
+  .container-radio-label{
+    flex-direction: column;
+    align-items: right;
+    margin: 0px;
+  }
+  .container-credentials{
+    width: 100%;
+    margin: 5px;
+  }
+  .radio-label{
+    font-size: small;
+  }
+  .user-info-input{
+    width:33%
+  }
+  .user-credentials{
+    width:90%;
   }
 }

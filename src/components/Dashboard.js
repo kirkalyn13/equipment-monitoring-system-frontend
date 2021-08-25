@@ -6,7 +6,7 @@ import Alert from '@material-ui/lab/Alert'
 import Button from '@material-ui/core/Button'
 
 
-const Dashboard = () => {
+const Dashboard = ({dept}) => {
     const [pending, setPending] = useState([])
     const [total, setTotal] = useState([])
     const [alertTrigger, setAlertTrigger] = useState(false)
@@ -79,7 +79,7 @@ const Dashboard = () => {
 
     return (
         <div className="container-dashboard">
-            <h1 className="dashboard-title">Physics Lab Equipment Dashboard</h1>
+            <h1 className="dashboard-title">{dept} Equipment Dashboard</h1>
             {showAlert === true ? <Alert
                 severity="warning"
                 variant="filled"

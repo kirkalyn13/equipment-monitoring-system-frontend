@@ -17,6 +17,9 @@ const Sidebar = () => {
                 <Link to="/manage">
                     MANAGE EQUIPMENT
                 </Link>
+                <Link to="/users">
+                    MANAGE USERS
+                </Link>
             </nav>
         </div>
     )
