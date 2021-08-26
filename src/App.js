@@ -11,6 +11,7 @@ import Add from './components/Add'
 import Manage from './components/Manage'
 import Login from './components/Login';
 import Users from './components/Users';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 export const LoginContext = React.createContext()
@@ -28,10 +29,6 @@ function App() {
     }
   },[])
 
-  useEffect(()=>{
-    console.log(isAuth)
-  },[isAuth])
-
   useEffect(() => {
     localStorage.setItem("ems-user", JSON.stringify(user))
   })
@@ -44,7 +41,7 @@ function App() {
           <>
           <Header />
           <div className="container-body">
-            <Sidebar />
+            <Sidebar role={user.role}/>
           <Switch>
             <Route exact path="/">
               <Dashboard dept={DEPT}/>
@@ -52,15 +49,15 @@ function App() {
             <Route path="/view">
               <View />
             </Route>
-            <Route path="/add">
-              <Add />
-            </Route>
-            <Route path="/manage">
-              <Manage />
-            </Route>
-            <Route path="/users">
-              <Users />
-            </Route>
+            <ProtectedRoute path="/add" 
+            allowedRoles={["admin","super"]} userRole={user.role}
+            component={Add} isAuth={isAuth}/>
+            <ProtectedRoute path="/manage" 
+            allowedRoles={["admin","super"]} userRole={user.role}
+            component={Manage} isAuth={isAuth}/>
+            <ProtectedRoute path="/users" 
+            allowedRoles={["super"]} userRole={user.role}
+            component={Users} isAuth={isAuth}/>
           </Switch>
           </div>
           <Footer />

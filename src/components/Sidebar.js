@@ -1,7 +1,12 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const Sidebar = () => {
+const Sidebar = ({role}) => {
+    const editors = [ "admin", "super" ]
+    useEffect(()=>{
+        console.log(role)
+    },[])
     return (
         <div className="container-nav">
             <nav>
@@ -11,15 +16,15 @@ const Sidebar = () => {
                 <Link to="/view">
                     VIEW EQUIPMENT
                 </Link>
-                <Link to="/add">
+                {editors.includes(role) ? (<Link to="/add">
                     ADD EQUIPMENT
-                </Link>
-                <Link to="/manage">
+                </Link>) : null}
+                {editors.includes(role) ? (<Link to="/manage">
                     MANAGE EQUIPMENT
-                </Link>
-                <Link to="/users">
+                </Link>) : null}
+                {role === "super" ? (<Link to="/users">
                     MANAGE USERS
-                </Link>
+                </Link>) : null}
             </nav>
         </div>
     )

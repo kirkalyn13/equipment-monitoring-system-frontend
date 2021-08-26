@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { withRouter } from 'react-router'
 import User from './User'
 import AddUser from './AddUser'
 import axios from 'axios'
@@ -52,4 +53,4 @@ const Users = () => {
     )
 }
 
-export default Users
+export default withRouter(Users)
