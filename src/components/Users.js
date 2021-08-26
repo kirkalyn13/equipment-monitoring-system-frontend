@@ -42,7 +42,7 @@ const Users = () => {
                     <p className="item-user-header">PRIVILEGES</p>
                 </div>
             </div>
-            <AddUser />
+            <AddUser users={users}/>
             {loading === true ? <CircularProgress color="inherit"/> : null}
             {users.map(user =>{
                     return  <User user={user} />

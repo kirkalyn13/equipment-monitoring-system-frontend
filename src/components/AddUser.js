@@ -5,9 +5,9 @@ import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import AddCircleIcon from "@material-ui/icons/AddCircle"
 
-const AddUser = () => {
+const AddUser = ({users}) => {
     const {reload, setReload} = useContext(UsersReloadContext)
-
+    const existingUsers = users.map(user => user.username)
     const initialFieldValues = {
         username: '',
         password: '',
@@ -38,9 +38,15 @@ const AddUser = () => {
 
     const handleFormSubmit = e => {
         e.preventDefault()
-        addUser()
-        setSubmitState(!submitState)
+        if(existingUsers.includes(values.username)){
+            alert(`Username ${values.username} is already taken.`)
+            setSubmitState(!submitState)
         setReload(!reload)
+        }else{
+            addUser()
+            setSubmitState(!submitState)
+            setReload(!reload)
+        }
         }
 
     useEffect(()=>{
@@ -61,7 +67,7 @@ const AddUser = () => {
                     <div className="user-info-input">
                         <input 
                             className="user-credentials"
-                            type="text"
+                            type="password"
                             onChange={handleInputChange}
                             name="password" value={values.password}
                             required placeholder="Password"/>

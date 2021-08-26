@@ -1,12 +1,8 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Sidebar = ({role}) => {
     const editors = [ "admin", "super" ]
-    useEffect(()=>{
-        console.log(role)
-    },[])
     return (
         <div className="container-nav">
             <nav>

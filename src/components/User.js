@@ -10,7 +10,7 @@ export const UsersContext = React.createContext()
 
 const  User = ({user}) => {
     const {reload, setReload} = useContext(UsersReloadContext)
-    const [ values, setValues ] = useState({...user})
+    const [ values, setValues ] = useState({...user, password: ""})
     const [submitState, setSubmitState] = useState(false)
 
     const deleteUser = () => {
@@ -26,14 +26,21 @@ const  User = ({user}) => {
       }
 
     const editUser = () => {
-        axios.put(`http://localhost:3005/edituser/${values.id}`,{
-          username: values.username,
-          password: values.password,
-          role: values.role,
+        console.log(values.id)
+        const r = window.confirm(`Are you sure you want to edit ${values.username}?`)
+        if(r === true){
+            axios.put(`http://localhost:3005/edituser/${values.id}`,{
+            username: values.username,
+            password: values.password,
+            role: values.role,
         }).then(()=>{
           setSubmitState(!submitState)
           alert(`Updated User: ${values.username}.`)
         })
+        }else{
+            setSubmitState(!submitState)
+            alert("No changes applied.")
+        }
       }
 
     const handleInputChange = e => {
@@ -64,10 +71,10 @@ const  User = ({user}) => {
                     <div className="user-info-input">
                         <input 
                             className="user-credentials"
-                            type="text"
+                            type="password"
                             onChange={handleInputChange}
                             name="password" value={values.password}
-                            required placeholder="Password"/>
+                            required placeholder="Re-enter Password"/>
                     </div>
                     <div className="user-info-input">
                         <div className="container-radio-label">
