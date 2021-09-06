@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import Item from './Item'
+import ItemHistory from './ItemHistory'
 import axios from 'axios'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 export const ReloadContext = React.createContext()
 
-const Manage = () => {
+const History = () => {
     const [ items, setItems ] = useState([])
     const [ reload, setReload ] = useState(false)
     const [search, setSearch] = useState('')
@@ -40,14 +40,14 @@ const Manage = () => {
     useEffect(()=>{
         setFiltered(items)
     },[items])
-
+    
     return (
         <ReloadContext.Provider value={{reload, setReload}}>
             <div className="container-manage">  
             <div className="container-search">
             <div className="section-title">
-                <img className="section-logo" src="/img/manage.png" alt="" height="50px" width="50px" />
-                <h2 color="#FFFFFF">Manage Equipment</h2>
+                <img className="section-logo" src="/img/history.png" alt="" height="50px" width="50px" />
+                <h2 color="#FFFFFF">Equipment History</h2>
             </div>
             <div className="search">
                 <div className="search-bar">
@@ -66,11 +66,11 @@ const Manage = () => {
             </div>
             {loading === true ? <CircularProgress color="inherit"/> : null}
             {filtered.map(item =>{
-                    return  <Item item={item} />
+                    return  <ItemHistory item={item} />
                 })}
             </div>
         </ReloadContext.Provider>
     )
 }
 
-export default Manage
+export default History

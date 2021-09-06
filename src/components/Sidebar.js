@@ -12,6 +12,9 @@ const Sidebar = ({role}) => {
                 <Link to="/view">
                     VIEW EQUIPMENT
                 </Link>
+                <Link to="/history">
+                    EQUIPMENT HISTORY
+                </Link>
                 {editors.includes(role) ? (<Link to="/add">
                     ADD EQUIPMENT
                 </Link>) : null}

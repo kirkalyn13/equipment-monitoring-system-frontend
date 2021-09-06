@@ -16,7 +16,7 @@ const Item = ({item}) => {
     const deleteEquipment = () => {
         const r = window.confirm(`Are you sure you want to delete ${item.name} (${item.serial})?`)
         if(r === true){
-            axios.delete(`http://localhost:3005/delete/${item.indexNum}`).then(()=>{
+            axios.delete(`http://localhost:3005/delete/${item.id}`).then(()=>{
             alert(`${item.name} (${item.serial}) successfully deleted.`)
             setReload(!reload)
         })
@@ -35,7 +35,7 @@ const Item = ({item}) => {
                     <p className="item-info">{item.name}</p>
                     <p className="item-info">{item.serial}</p>
                     <p className="item-info">{item.type}</p>
-                    <p className="item-info">{item.description}</p>
+                    <p className="item-info">{item.brand}</p>
                 </div>
                 <div className="buttons-manage">
                     <IconButton aria-label="edit" color="inherit">

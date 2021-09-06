@@ -45,11 +45,41 @@ const Add = () => {
           eqpIssuedBy: values.eqpIssuedBy,
           eqpIssuedTo: values.eqpIssuedTo,
           eqpRemarks: values.eqpRemarks,
+          eqpStatus: values.eqpStatus,
+          eqpCertificate: values.eqpCertificate,
         }).then(()=>{
           alert(`Added ${values.eqpName} (${values.eqpSerial}).`)
           setSubmitState(!submitState)
         })
       }
+
+      /*const logChanges = () => {
+        axios.post('http://localhost:3005/create/changelog',{
+          eqpName: values.eqpName,
+          eqpType: values.eqpType,
+          eqpModel: values.eqpModel,
+          eqpSerial: values.eqpSerial,
+          eqpDesc: values.eqpDesc,
+          eqpBrand: values.eqpBrand,
+          eqpPrice: values.eqpPrice,
+          eqpManufacturer: values.eqpManufacturer,
+          eqpExp: values.eqpExp,
+          eqpPurchaseDate: values.eqpPurchaseDate,
+          eqpCalibDate: values.eqpCalibDate,
+          eqpNextCalib: values.eqpNextCalib,
+          eqpCalibMethod: values.eqpCalibMethod,
+          eqpLoc : values.eqpLoc,
+          eqpIssuedBy: values.eqpIssuedBy,
+          eqpIssuedTo: values.eqpIssuedTo,
+          eqpRemarks: values.eqpRemarks,
+          eqpStatus: values.eqpStatus,
+          eqpCertificate: values.eqpCertificate,
+        }).then(()=>{
+          alert(`Added ${values.eqpName} (${values.eqpSerial}).`)
+          setSubmitState(!submitState)
+        })
+      }*/
+
       const handleInputChange = e => {
         var { name, value } = e.target
         setValues({
@@ -156,21 +186,31 @@ const Add = () => {
                     <h2 color="#FFFFFF">Calibration Details</h2>
                 </div>
                 <div className="details">
-                    <label>Calibration Date: </label>
-                    <input type="date"
-                    onChange={handleInputChange}
-                    name="eqpCalibDate" value={values.eqpCalibDate}
-                        placeholder="Calibraton Date"/>
-                    <label>Next Calibration Date: </label>
-                    <input type="date"
-                    onChange={handleInputChange}
-                    name="eqpNextCalib" value={values.eqpNextCalib}
-                        placeholder="Next Calibration Date"/>
-                    <label>Calibration Method: </label>
-                    <input type="text"
-                    onChange={handleInputChange}
-                    name="eqpCalibMethod" value={values.eqpCalibMethod}
-                        placeholder="Method of Calibration"/>
+                    <div className="details-column">
+                        <label>Calibration Date: </label>
+                        <input type="date"
+                        onChange={handleInputChange}
+                        name="eqpCalibDate" value={values.eqpCalibDate}
+                            placeholder="Calibraton Date"/>
+                        <label>Next Calibration Date: </label>
+                        <input type="date"
+                        onChange={handleInputChange}
+                        name="eqpNextCalib" value={values.eqpNextCalib}
+                            placeholder="Next Calibration Date"/>
+                    </div>
+                    <div className="details-column">
+                        <label>Calibration Method: </label>
+                        <input type="text"
+                        onChange={handleInputChange}
+                        name="eqpCalibMethod" value={values.eqpCalibMethod}
+                            placeholder="Method of Calibration"/>
+                        <label>Certificate: </label>
+                        <input type="file"
+                        onChange={handleInputChange}
+                        name="eqpCertificate" value={values.eqpCertificate}
+                            placeholder="Latest Calibration Certificate"
+                            style={{border:"inherit"}}/>
+                    </div>
                 </div>   
                 </div>
                 <div className="container-details">
@@ -190,13 +230,18 @@ const Add = () => {
                             onChange={handleInputChange}
                             name="eqpIssuedTo" value={values.eqpIssuedTo}
                                 placeholder="Issued To"/>
-                        </div>
-                        <div className="details-column">
                             <label>Location: </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpLoc" value={values.eqpLoc}
-                                placeholder="Equipment Location"/>     
+                                placeholder="Equipment Location"/> 
+                        </div>
+                        <div className="details-column">
+                            <label>Status: </label>
+                            <input type="text"
+                            onChange={handleInputChange}
+                            name="eqpStatus" value={values.eqpStatus}
+                                placeholder="Equipment Status"/>    
                             <label>Remarks: </label>
                             <input type="text"
                             onChange={handleInputChange}

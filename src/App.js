@@ -11,6 +11,7 @@ import Add from './components/Add'
 import Manage from './components/Manage'
 import Login from './components/Login';
 import Users from './components/Users';
+import HistoryTab from './components/HistoryTab';
 import ProtectedRoute from './components/ProtectedRoute';
 
 
@@ -48,6 +49,9 @@ function App() {
             </Route>
             <Route path="/view">
               <View />
+            </Route>
+            <Route path="/history">
+              <HistoryTab />
             </Route>
             <ProtectedRoute path="/add" 
             allowedRoles={["admin","super"]} userRole={user.role}

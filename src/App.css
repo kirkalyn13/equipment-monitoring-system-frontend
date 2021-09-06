@@ -413,6 +413,13 @@ th{
 td{
   background-color: #FFF;
 }
+.history{
+  width: 95%;
+  margin: 2px 20px;
+  font-size: small;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
@@ -581,5 +588,14 @@ td{
   }
   .user-credentials{
     width:90%;
+  }
+  .history{
+    width: 100%;
+    margin: 2px 0px;
+  }
+  .container-history{
+    width: 100%;
+    overflow-x: scroll;
+    white-space: nowrap;
   }
 }

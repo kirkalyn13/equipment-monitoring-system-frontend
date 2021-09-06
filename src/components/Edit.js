@@ -27,12 +27,13 @@ const Edit = ({info}) => {
         eqpIssuedBy: info.issuedBy,
         eqpIssuedTo: info.issuedTo,
         eqpRemarks: info.remarks,
+        eqpStatus: info.status, 
     }
     const [ values, setValues ] = useState(fieldValues)
     const [submitState, setSubmitState] = useState(false)
 
     const editEquipment = () => {
-        axios.put(`http://localhost:3005/edit/${info.indexNum}`,{
+        axios.put(`http://localhost:3005/edit/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,
@@ -50,29 +51,59 @@ const Edit = ({info}) => {
           eqpIssuedBy: values.eqpIssuedBy,
           eqpIssuedTo: values.eqpIssuedTo,
           eqpRemarks: values.eqpRemarks,
+          eqpStatus: values.eqpStatus,
+          eqpCertificate: values.eqpCertificate,
         }).then(()=>{
           alert(`Updated ${values.eqpName} (${values.eqpSerial}).`)
-          setSubmitState(!submitState)
+          //setSubmitState(!submitState)
         })
       }
-      const handleInputChange = e => {
+    const logChanges = () =>{
+        axios.post(`http://localhost:3005/changelog/${info.id}`,{
+          eqpName: values.eqpName,
+          eqpType: values.eqpType,
+          eqpModel: values.eqpModel,
+          eqpSerial: values.eqpSerial,
+          eqpDesc: values.eqpDesc,
+          eqpBrand: values.eqpBrand,
+          eqpPrice: values.eqpPrice,
+          eqpManufacturer: values.eqpManufacturer,
+          eqpExp: values.eqpExp,
+          eqpPurchaseDate: values.eqpPurchaseDate,
+          eqpCalibDate: values.eqpCalibDate,
+          eqpNextCalib: values.eqpNextCalib,
+          eqpCalibMethod: values.eqpCalibMethod,
+          eqpLoc : values.eqpLoc,
+          eqpIssuedBy: values.eqpIssuedBy,
+          eqpIssuedTo: values.eqpIssuedTo,
+          eqpRemarks: values.eqpRemarks,
+          eqpStatus: values.eqpStatus,
+          eqpCertificate: values.eqpCertificate,
+        }).then(()=>{
+            console.log("Updated change logs.")
+          //setSubmitState(!submitState)
+        })
+    }
+    const handleInputChange = e => {
         var { name, value } = e.target
         setValues({
             ...values,
             [name]: value,
         })
     }
-      const handleFormSubmit = e => {
+    const handleFormSubmit = e => {
         e.preventDefault()
+        logChanges()
         editEquipment()
         setSubmitState(!submitState)
         setShowEdit(false)
         setReload(!reload)
         }
 
-      useEffect(()=>{
+    useEffect(()=>{
         setValues(fieldValues)
     },[submitState])
+
     return (
         <div className="container-edit">
             <div className="section-head">
@@ -170,6 +201,12 @@ const Edit = ({info}) => {
                             onChange={handleInputChange}
                             name="eqpCalibMethod" value={values.eqpCalibMethod}
                                 placeholder="Method of Calibration"/>
+                            <label>Certificate: </label>
+                            <input type="file"
+                            onChange={handleInputChange}
+                            name="eqpCertificate" value={values.eqpCertificate}
+                                placeholder="Latest Calibration Certificate"
+                                style={{border:"inherit"}}/>
                         </div>
                         <div className="details-column">
                             <div className="detail-title">
@@ -190,7 +227,12 @@ const Edit = ({info}) => {
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpLoc" value={values.eqpLoc}
-                                placeholder="Equipment Location"/>     
+                                placeholder="Equipment Location"/>
+                            <label>Status: </label>
+                            <input type="text"
+                            onChange={handleInputChange}
+                            name="eqpStatus" value={values.eqpStatus}
+                                placeholder="Equipment Status"/>   
                             <label>Remarks: </label>
                             <input type="text"
                             onChange={handleInputChange}
