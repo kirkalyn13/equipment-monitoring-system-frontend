@@ -1,7 +1,27 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Select from 'react-select'
 import Button from '@material-ui/core/Button'
 import AddCircleIcon from "@material-ui/icons/AddCircle"
+
+const statusOptions = [
+    {
+      label: "Online",
+      value: "Online",
+    },
+    {
+      label: "Offline",
+      value: "Offline",
+    },
+    {
+      label: "Obsolete",
+      value: "Obsolete",
+    },
+    {
+      label: "Decommissioned",
+      value: "Decommissioned",
+    },
+  ]
 
 const Add = () => {
     const initialFieldValues = {
@@ -22,6 +42,8 @@ const Add = () => {
         eqpIssuedBy: '',
         eqpIssuedTo: '',
         eqpRemarks: '',
+        eqpStatus: 'Offline',
+        eqpCertificate: null,
     }
     const [ values, setValues ] = useState(initialFieldValues)
     const [submitState, setSubmitState] = useState(false)
@@ -92,6 +114,10 @@ const Add = () => {
         addEquipment()
         setSubmitState(!submitState)
         }
+
+    const handleSelectChange = e => {
+        setValues([...values, {eqpStatus: e.target.value}])
+    }
 
       useEffect(()=>{
         setValues(initialFieldValues)
@@ -238,10 +264,11 @@ const Add = () => {
                         </div>
                         <div className="details-column">
                             <label>Status: </label>
-                            <input type="text"
-                            onChange={handleInputChange}
-                            name="eqpStatus" value={values.eqpStatus}
-                                placeholder="Equipment Status"/>    
+                                <select name="eqpStatus" value={values.eqpStatus} onChange={e => setValues({...values, eqpStatus: e.target.value})}>
+                                {statusOptions.map((option) => (
+                                    <option value={option.value}>{option.label}</option>
+                                    ))}
+                                </select> 
                             <label>Remarks: </label>
                             <input type="text"
                             onChange={handleInputChange}

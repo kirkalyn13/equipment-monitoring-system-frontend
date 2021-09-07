@@ -3,7 +3,7 @@ import { LoginContext } from '../App'
 import Button from '@material-ui/core/Button'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const Header = () => {
+const Header = ({school}) => {
     const {user, setUser, setIsAuth} =  useContext(LoginContext)
 
     const logout = () => {
@@ -17,12 +17,15 @@ const Header = () => {
         <header className="header">
             <div className="container-title">
             <div className="img">
-            <img className="logo" src="logo.png" width="50" height="50" alt="logo" margin="20px"/>
+            <img className="logo" src="logo.png" width="80" height="80" alt="logo" margin="10px"/>
             </div>
-            <h1 className='title'>Equipment Monitoring System</h1>
+            <div className="title">
+                <h3 className="title-text-head">{school}</h3>
+                <h4 className="title-text">Equipment Monitoring System</h4>
+            </div>
             </div>
             <div className="container-logout">
-                <img className="logo" src="/img/user.png" width="40" height="40" alt="logo" margin="20px"/>
+                <img className="logo" src="/img/user.png" width="50" height="50" alt="logo" margin="20px"/>
                 <h3 className="username"> {user.username} </h3>
                 <Button
                     onClick={logout} 

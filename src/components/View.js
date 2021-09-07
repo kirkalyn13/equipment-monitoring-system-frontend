@@ -30,7 +30,7 @@ const View = () => {
             <div className="container-filter">
                 <div className="section-head">
                     <div className="section-title">
-                        <img className="section-logo" src="/img/filter.png" alt="" height="50px" width="50px" />
+                        <img className="section-logo" src="/img/view.png" alt="" height="50px" width="50px" />
                         <h2 color="#FFFFFF">View Equipment</h2>
                     </div>
                     <div className="buttons">

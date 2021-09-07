@@ -3,7 +3,7 @@ import { LoginContext } from '../App'
 import Alert from '@material-ui/lab/Alert'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({school}) => {
     const [ invalid, setInvalid ] = useState(false)
     const { user, setUser, setIsAuth} = useContext(LoginContext)
     const initialFieldValues = {
@@ -66,10 +66,14 @@ const Login = () => {
 
     return (
         <div className="login-page">
-            <img className="logo" src="logo.png" width="200" height="200" alt="logo" margin="20px"/>
-            <h1 className="login-title">Equipment Monitoring System </h1>
+            <img className="logo" src="logo.png" width="300" height="300" alt="logo" margin="20px"/>
+            {/*<h1 className="login-title">Equipment Monitoring System </h1>*/}
+            <div className="title">
+                <h1 className="title-text-head">{school}</h1>
+                <h2 className="title-text">Equipment Monitoring System</h2>
+            </div>
             <div className="login">
-                <form className="input-info" autoComplete="off" onSubmit={handleFormSubmit}>
+                <form className="input-info-login" autoComplete="off" onSubmit={handleFormSubmit}>
                 {invalid === true ? 
                 <Alert 
                     severity="error" width="200px" variant="outlined"

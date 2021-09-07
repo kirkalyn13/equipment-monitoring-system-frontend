@@ -61,7 +61,7 @@ const Manage = () => {
                     <p className="item-header">NAME</p>
                     <p className="item-header">SERIAL NUMBER</p>
                     <p className="item-header">TYPE</p>
-                    <p className="item-header">BRAND</p>
+                    <p className="item-header">STATUS</p>
                 </div>
             </div>
             {loading === true ? <CircularProgress color="inherit"/> : null}

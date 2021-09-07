@@ -16,6 +16,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 
 export const LoginContext = React.createContext()
+
+const SCHOOL = "School of Engineering and Architecture"
 const DEPT = "Physics Lab"
 
 function App() {
@@ -40,7 +42,7 @@ function App() {
       <div className="App">
         {(isAuth === true && user.username !== "" && user.login === true) ? (
           <>
-          <Header />
+          <Header school={SCHOOL} />
           <div className="container-body">
             <Sidebar role={user.role}/>
           <Switch>
@@ -67,7 +69,7 @@ function App() {
           <Footer />
           </>
         ) : 
-        <Login />
+        <Login school={SCHOOL}/>
         }
         
       </div>

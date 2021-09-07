@@ -5,6 +5,25 @@ import { ReloadContext } from './Manage'
 import Button from '@material-ui/core/Button'
 import EditIcon from "@material-ui/icons/Edit"
 
+const statusOptions = [
+    {
+      label: "Online",
+      value: "Online",
+    },
+    {
+      label: "Offline",
+      value: "Offline",
+    },
+    {
+      label: "Obsolete",
+      value: "Obsolete",
+    },
+    {
+      label: "Decommissioned",
+      value: "Decommissioned",
+    },
+  ]
+
 const Edit = ({info}) => {
     const { setShowEdit } = useContext(EditContext)
     const {reload, setReload} = useContext(ReloadContext)
@@ -229,10 +248,11 @@ const Edit = ({info}) => {
                             name="eqpLoc" value={values.eqpLoc}
                                 placeholder="Equipment Location"/>
                             <label>Status: </label>
-                            <input type="text"
-                            onChange={handleInputChange}
-                            name="eqpStatus" value={values.eqpStatus}
-                                placeholder="Equipment Status"/>   
+                                <select name="eqpStatus" value={values.eqpStatus} onChange={e => setValues({...values, eqpStatus: e.target.value})}>
+                                {statusOptions.map((option) => (
+                                    <option value={option.value}>{option.label}</option>
+                                    ))}
+                                </select>   
                             <label>Remarks: </label>
                             <input type="text"
                             onChange={handleInputChange}

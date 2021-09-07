@@ -4,6 +4,7 @@ import Pending from './Pending'
 import axios from 'axios'
 import Alert from '@material-ui/lab/Alert'
 import Button from '@material-ui/core/Button'
+import moment from 'moment'
 
 
 const Dashboard = ({dept}) => {
@@ -12,51 +13,14 @@ const Dashboard = ({dept}) => {
     const [alertTrigger, setAlertTrigger] = useState(false)
     const [ showAlert, setShowAlert] = useState(true)
 
-    const parseYear = dtnow => {
-        var d = new Date(dtnow);
-        var y = d.getFullYear()
-        return y
-    }
-
-    const parseMonth = dtnow => {
-        var d = new Date(dtnow)
-        var m = d.getMonth() + 1
-        return m
-    }
-    const parseDay = dtnow => {
-        var d = new Date(dtnow)
-        var n = d.getDate()
-        return n
-    }
-
-    /*const alertPending = () => {
-        setTimeout(()=>{
-            alert(`You have ${pending.length} Pending Calibrations.`)
-          },1000)
-    }*/
-
     const getPending = () => {
-        axios.get(`http://localhost:3005/allequipment`).then((response)=>{
-            var today = new Date()
-            var ytoday = today.getFullYear()
-            var mtoday = today.getMonth() + 1
-            var ntoday = today.getDate()
+        axios.get(`http://localhost:3005/allequipment`).then((response)=>{ 
             setTotal(response.data.length)
-            const filteredYear = response.data.filter(val => {
-                return parseYear(val.nextCalibration) <= ytoday
+            const filtered = response.data.filter(val => {
+                return -(moment().diff(val.nextCalibration, "days")) <= 30
             }
             )
-            const filteredPastMonths = filteredYear.filter(val => {
-                return parseMonth(val.nextCalibration) < mtoday
-            })
-
-            const thisMonth = filteredYear.filter(val => {
-                return parseMonth(val.nextCalibration) === mtoday
-            })
-            const filteredThisMonth = thisMonth.filter(val => {
-                return parseDay(val.nextCalibration) <= ntoday
-            })
-            setPending([...filteredPastMonths, ...filteredThisMonth])
+            setPending([...filtered])
             setAlertTrigger(!alertTrigger)
         })
     }
@@ -70,12 +34,6 @@ const Dashboard = ({dept}) => {
           getPending()
         },200)
       },[])
-
-    /*useEffect(()=>{
-        if(pending.length > 0){
-            alertPending()
-        }
-    },[alertTrigger])*/
 
     return (
         <div className="container-dashboard">

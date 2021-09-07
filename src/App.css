@@ -20,12 +20,12 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: x-large;
-  margin-left: 20px;
-  padding:5px;
+  font-size: small;
+  margin-left: 2px;
+  padding:2px;
 }
 .logo{
-  margin: 10px 10px 10px 20px;
+  margin: 10px;
 }
 .footer {
   display: flex;
@@ -37,6 +37,13 @@ body{
   min-height: 8vh;
   background: #800000;
   color: white;
+}
+.title-text, .title-text-head{
+  margin: 2px;
+  padding: 2px;
+}
+.title-text-head{
+  border-bottom: 1px solid #F5F5F5;
 }
 .container-title{
   display: flex;
@@ -223,6 +230,15 @@ body{
   color: #757575;
   align-items: center;
 }
+.input-info-login{
+  margin: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  color: #757575;
+  align-items: center;
+}
 .user-form{
   display: flex;
   justify-content: flex-start;
@@ -236,7 +252,7 @@ body{
   box-shadow: 2px 5px 5px  #888888;
   padding: 5px;
 }
-input{
+input, select{
   border-radius: 5px;
   border: solid 2px #212121;
   padding: 5px 0px 5px 10px;
@@ -263,11 +279,12 @@ input{
 .input-login{
   border-radius: 5px;
   border: solid 2px #212121;
-  padding: 5px 0px 5px 10px;
+  padding: 5px 10px 5px 10px;
   font-size: medium;
   width: 300px;
 }
-input:hover, input:active{
+
+input:hover, input:active, select:hover{
   border: solid 2px #FFA000;
 }
 .btn{
@@ -411,6 +428,8 @@ th{
   font-weight: bold;
 }
 td{
+  height: 20px;
+  overflow-y: hidden;
   background-color: #FFF;
 }
 .history{
@@ -537,7 +556,7 @@ td{
     margin: 0px 20px;
     font-size: medium;
   }
-  .input-info{
+  .input-info, .input-info-login{
     margin: 10px 0px;
   }
   .section-head{
