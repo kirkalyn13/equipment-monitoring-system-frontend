@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Item from './Item'
 import axios from 'axios'
 import CircularProgress from '@material-ui/core/CircularProgress'

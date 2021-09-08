@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect,useContext } from 'react'
+import React, { useState, useEffect,useContext } from 'react'
 import { UsersReloadContext } from './Users'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'

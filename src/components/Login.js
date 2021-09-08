@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const Login = ({school}) => {
     const [ invalid, setInvalid ] = useState(false)
-    const { user, setUser, setIsAuth} = useContext(LoginContext)
+    const { setUser, setIsAuth} = useContext(LoginContext)
     const initialFieldValues = {
         username: '',
         password: '',

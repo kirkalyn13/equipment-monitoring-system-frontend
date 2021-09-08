@@ -1,8 +1,5 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import History from './History';
-import axios from 'axios'
-import { ReloadContext } from './Manage'
 import IconButton from "@material-ui/core/IconButton"
 import HistoryIcon from '@material-ui/icons/History'
 
