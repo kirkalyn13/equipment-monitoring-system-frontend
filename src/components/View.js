@@ -3,10 +3,12 @@ import List from './List'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import IconButton from "@material-ui/core/IconButton"
-import SearchIcon from "@material-ui/icons/Search"
 import SaveAltIcon from '@material-ui/icons/SaveAlt'
-import FilterListIcon from '@material-ui/icons/FilterList';
+import FilterListIcon from '@material-ui/icons/FilterList'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
 import Filter from './Filter'
+import Equipment from './Equipment'
 
 export const EquipmentContext = React.createContext()
 
@@ -14,6 +16,9 @@ const View = () => {
     const [equip, setEquip] = useState([])
     const [showFilter, setShowFilter] = useState(false)
     const [showAll, setShowAll] = useState(true)
+    const [ loading, setLoading ] = useState(true)
+    const [ showEquipment, setShowEquipment] = useState(false)
+    const [ eqpID, setEqpID ] = useState()
     const [shown, setShown] = useState({
         showName: false,
         showType: false,
@@ -101,12 +106,17 @@ const View = () => {
         }
     },[showAll])
 
+    const toggleEquipment = () => {
+        setShowEquipment(!showEquipment)
+    }
+
     useEffect(() => {
-        console.log(shown)
-    },[shown])
+        getEquip()
+        setLoading(false)
+    },[])
 
     return (
-        <EquipmentContext.Provider value={{equip, showAll, setShowAll, shown, setShown}}>
+        <EquipmentContext.Provider value={{equip, showAll, setShowAll, shown, setShown, showEquipment, setShowEquipment, setEqpID }}>
             <div className="container-view">
             <div className="container-filter">
                 <div className="section-head">
@@ -115,6 +125,8 @@ const View = () => {
                         <h2 color="#FFFFFF">View Equipment</h2>
                     </div>
                     <div className="buttons">
+                        {showEquipment === false ?
+                        <>
                         <Button
                         onClick={toggleShowFilter} 
                         variant="contained"
@@ -124,14 +136,6 @@ const View = () => {
                         FILTER
                         </Button>
                         <Button
-                        onClick={getEquip} 
-                        variant="contained"
-                        style={{backgroundColor: '#FFA000', color: '#000', fontWeight:"bold", margin:"10px"}}
-                        startIcon={<SearchIcon />}
-                        >
-                        QUERY
-                        </Button>
-                        <Button
                         onClick={extractEquip}
                         variant="contained"
                         style={{backgroundColor: '#FFA000', color: '#000', fontWeight:"bold", margin:"10px"}}
@@ -139,12 +143,22 @@ const View = () => {
                         >
                         EXTRACT
                         </Button>
+                        </> : 
+                        <Button
+                        onClick={toggleEquipment}
+                        variant="contained"
+                        style={{backgroundColor: '#FFA000', color: '#000', fontWeight:"bold", margin:"10px"}}
+                        startIcon={<KeyboardReturnIcon />}
+                        >
+                        RETURN
+                        </Button>}
                     </div>
                 </div>
             {showFilter === true ? <Filter /> : null}
             </div>
                 <div className="container-equipment-list">
-                <table className="information">
+                    <table className="information">
+                    {showEquipment === false ?
                     <tr>
                         <th>
                         <IconButton aria-label="edit" color="inherit">
@@ -170,9 +184,11 @@ const View = () => {
                         {shown.showRemarks === true ? <th>REMARKS</th> : null}
                         {shown.showStatus === true ? <th>STATUS</th> : null}
                         {shown.showCertificate === true ? <th>CERTIFICATE</th> : null}
-                    </tr>
-                    {equip.map(item => <List item={item} />)}
+                    </tr> : null}
+                    {loading === true ? <CircularProgress color="inherit"/> : null}
+                    {equip.map(item => (<List item={item} />))}
                     </table>
+                    {showEquipment === true ? <Equipment id={eqpID}/> : null}
                 </div>
             </div>
         </EquipmentContext.Provider>

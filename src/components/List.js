@@ -2,23 +2,25 @@ import React, { useState, useContext } from 'react'
 import Equipment from './Equipment'
 import { EquipmentContext } from './View'
 import IconButton from "@material-ui/core/IconButton"
-import ViewListIcon from '@material-ui/icons/ViewList';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
+import AttachmentIcon from '@material-ui/icons/Attachment'
 
 const List = ({item}) => {
-    const { shown } = useContext(EquipmentContext)
-    const [ showEquipment, setShowEquipment] = useState(false)
+    const { shown, showEquipment, setShowEquipment, setEqpID } = useContext(EquipmentContext)
 
-    const toggleEquipment = () => {
+    const toggleEquipment = (id) => {
         setShowEquipment(!showEquipment)
+        setEqpID(id)
     }
 
     return (
         <>
+            {showEquipment === false ?
             <tr>
                 <td width="200">
-                    <IconButton aria-label="edit" color="inherit">
-                        <ViewListIcon onClick={toggleEquipment} />
-                    </IconButton>
+                <IconButton aria-label="edit" color="inherit">
+                    <OpenInNewIcon onClick={() => toggleEquipment(item.id)} />
+                </IconButton>
                 </td>
                 {shown.showName === true ? <td width="200">{item.name}</td> : null}
                 {shown.showType === true ? <td width="200">{item.type}</td> : null}
@@ -38,8 +40,12 @@ const List = ({item}) => {
                 {shown.showIssuedTo === true ? <td width="200">{item.issuedTo}</td> : null}
                 {shown.showRemarks === true ? <td width="200">{item.remarks}</td> : null}
                 {shown.showStatus === true ? <td width="200">{item.status}</td> : null}
-                {shown.showCertificate === true ? <td width="200">View</td> : null}
-            </tr>
+                {shown.showCertificate === true ? <td width="200">
+                    <IconButton aria-label="edit" color="inherit">
+                        <AttachmentIcon onClick={toggleEquipment} />
+                    </IconButton>
+                </td> : null}
+            </tr> : null}
         </>
     )
 }

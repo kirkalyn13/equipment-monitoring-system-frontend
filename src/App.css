@@ -93,6 +93,19 @@ body{
   border-radius: 10px;
   box-shadow: 2px 5px 5px  #888888;
 }
+.container-equipment-info{
+  color: #FFF;
+  width: 95%;
+  height: 80vh;
+  overflow-y: scroll;
+  background-color: #757575;
+  font-size: large;
+  font-weight: bold;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 5px 5px  #888888;
+}
 .container-edit{
   color: #FFF;
   width: 90%;
@@ -256,6 +269,9 @@ body{
   background-color: #F5F5F5;
   overflow-y: scroll;
   align-items: center;
+}
+.buttons{
+  margin-top: 10px;
 }
 .buttons-manage{
   display: flex;
@@ -505,6 +521,20 @@ td{
   font-size: smaller;
   overflow-y: scroll;
   overflow-x: scroll;
+}
+input[type='checkbox'] {
+  cursor: pointer;
+}
+input[type=checkbox]:after{
+  left: 8px;
+  bottom: 5px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 /* width */
 ::-webkit-scrollbar {
