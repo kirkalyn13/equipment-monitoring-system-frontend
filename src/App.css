@@ -27,16 +27,16 @@ body{
 .logo{
   margin: 10px;
 }
+
 .footer {
-  display: flex;
   position: fixed;
+  padding: 15px 0px;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  bottom: 0px;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 8vh;
-  background: #800000;
+  background-color: #800000;
   color: white;
+  text-align: center;
 }
 .title-text, .title-text-head{
   margin: 2px;
@@ -200,6 +200,7 @@ body{
 }
 .container-equipment-list{
   overflow-x: scroll;
+  height: 90vh;
 }
 .container-list-item-header{
   width: auto;
@@ -409,6 +410,12 @@ a:link, a:visited {
   width: 50%;
   margin: 10px 80px;
 }
+.details-column-info{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 10px 50px;
+}
 .detail-title{
   display: flex;
   width: 100%;
@@ -505,7 +512,7 @@ td{
   font-size: smaller;
   width: 200px;
   background: #FFF;
-  border-bottom: solid 2px #757575;
+  border-bottom: solid 1px #757575;
   overflow: hidden;
 }
 .history{
@@ -521,6 +528,11 @@ td{
   font-size: smaller;
   overflow-y: scroll;
   overflow-x: scroll;
+}
+.view-info-label{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 input[type='checkbox'] {
   cursor: pointer;
@@ -592,9 +604,8 @@ input[type=checkbox]:after{
     padding: 2px 4px;
   }
   .footer{
-    min-height: 6vh;
+    min-height: 2vh;
     font-size: x-small;
-    padding-top: 5px;
   }
   a:link, a:visited {
     width: auto;
@@ -609,6 +620,7 @@ input[type=checkbox]:after{
     background: #FFA000;
     color: #212121;
   }
+  
   .details{
     flex-direction: column;
     width: 100%;
@@ -720,5 +732,15 @@ input[type=checkbox]:after{
   }
   .checkbox-label{
     width: 100%;
+  }
+  .container-equipment-info{
+    width: 100%;
+    margin: 0;
+  }
+  .container-equipment-list{
+    width: 100%;
+  }
+  .details-column-info{
+    width: 90%;
   }
 }
