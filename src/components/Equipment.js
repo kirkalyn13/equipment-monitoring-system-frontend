@@ -2,6 +2,7 @@ import { useState, useEffect,useContext } from 'react'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
+import SaveAltIcon from '@material-ui/icons/SaveAlt'
 import { EquipmentContext } from './View'
 
 const Equipment = ({id}) => {
@@ -64,7 +65,16 @@ const Equipment = ({id}) => {
                         <div className="view-info-label"><p>Calibration Date: </p><p>{equipment.calibrationDate}</p></div>
                         <div className="view-info-label"><p>Next Calibration Date: </p><p>{equipment.nextCalibration}</p></div>
                         <div className="view-info-label"><p>Calibration Method: </p><p>{equipment.calibrationMethod}</p></div>
-                        <div className="view-info-label"><p>Certificate: </p></div>
+                        <div className="view-info-label">
+                            <p>Certificate: </p>
+                            <Button 
+                            style={{ color: '#FFF', fontWeight:"bold"}}
+                            startIcon={<SaveAltIcon />}
+                            //onClick={returnToView}
+                            >
+                            Download
+                            </Button>
+                        </div>
                     </div>
                     <div className="details-column-info">
                         <div className="detail-title">

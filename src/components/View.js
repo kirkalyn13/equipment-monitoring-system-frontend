@@ -7,6 +7,7 @@ import SaveAltIcon from '@material-ui/icons/SaveAlt'
 import FilterListIcon from '@material-ui/icons/FilterList'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import Filter from './Filter'
 import Equipment from './Equipment'
 
@@ -19,6 +20,8 @@ const View = () => {
     const [ loading, setLoading ] = useState(true)
     const [ showEquipment, setShowEquipment] = useState(false)
     const [ eqpID, setEqpID ] = useState()
+    const [search, setSearch] = useState('')
+    const [filtered, setFiltered] = useState([])
     const [shown, setShown] = useState({
         showName: false,
         showType: false,
@@ -56,6 +59,16 @@ const View = () => {
     const toggleShowFilter = () => {
         setShowFilter(!showFilter)
     }
+
+    useEffect(()=>{
+        const searchedVal = equip.filter(val => {
+            if(search === ''){
+                return val
+            }else if(val.name.toLowerCase().includes(search.toLowerCase()) || val.serial.toLowerCase().includes(search.toLowerCase())){
+                return val
+            }})
+        setFiltered(searchedVal)
+    },[search])
 
     useEffect(()=>{
         if(showAll === true){
@@ -115,6 +128,10 @@ const View = () => {
         setLoading(false)
     },[])
 
+    useEffect(()=>{
+        setFiltered(equip)
+    },[equip])
+
     return (
         <EquipmentContext.Provider value={{equip, showAll, setShowAll, shown, setShown, showEquipment, setShowEquipment, setEqpID }}>
             <div className="container-view">
@@ -123,6 +140,12 @@ const View = () => {
                     <div className="section-title">
                         <img className="section-logo" src="/img/view.png" alt="" height="50px" width="50px" />
                         <h2 color="#FFFFFF">View Equipment</h2>
+                    </div>
+                    <div className="search">
+                        <div className="search-bar">
+                        <label>Search Equipment: </label>
+                        <input type="text" placeholder="Enter Name or Serial" onChange={event => {setSearch(event.target.value)}}/>
+                        </div>       
                     </div>
                     <div className="buttons">
                         {showEquipment === false ?
@@ -139,7 +162,7 @@ const View = () => {
                         onClick={extractEquip}
                         variant="contained"
                         style={{backgroundColor: '#FFA000', color: '#000', fontWeight:"bold", margin:"10px"}}
-                        startIcon={<SaveAltIcon />}
+                        startIcon={<CloudDownloadIcon />}
                         >
                         EXTRACT
                         </Button>
@@ -186,7 +209,7 @@ const View = () => {
                         {shown.showCertificate === true ? <th>CERTIFICATE</th> : null}
                     </tr> : null}
                     {loading === true ? <CircularProgress color="inherit"/> : null}
-                    {equip.map(item => (<List item={item} />))}
+                    {filtered.map(item => (<List item={item} />))}
                     </table>
                     {showEquipment === true ? <Equipment id={eqpID}/> : null}
                 </div>

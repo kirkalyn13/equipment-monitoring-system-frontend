@@ -246,7 +246,7 @@ body{
 }
 .search{
   display: flex;
-  margin: 20px;
+  margin: 25px 20px;
   justify-content: space-between;
 }
 .search-bar{
@@ -518,14 +518,14 @@ td{
 .history{
   width: 95%;
   margin: 2px 20px;
-  font-size: small;
+  font-size: medium;
   overflow-y: scroll;
   overflow-x: scroll;
 }
 .information{
   width: 95%;
   margin: 2px 20px;
-  font-size: smaller;
+  font-size: medium;
   overflow-y: scroll;
   overflow-x: scroll;
 }

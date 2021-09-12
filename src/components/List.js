@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react'
-import Equipment from './Equipment'
+import { useContext } from 'react'
 import { EquipmentContext } from './View'
 import IconButton from "@material-ui/core/IconButton"
 import OpenInNewIcon from '@material-ui/icons/OpenInNew'
-import AttachmentIcon from '@material-ui/icons/Attachment'
+import SaveAltIcon from '@material-ui/icons/SaveAlt'
 
 const List = ({item}) => {
     const { shown, showEquipment, setShowEquipment, setEqpID } = useContext(EquipmentContext)
@@ -42,7 +41,7 @@ const List = ({item}) => {
                 {shown.showStatus === true ? <td width="200">{item.status}</td> : null}
                 {shown.showCertificate === true ? <td width="200">
                     <IconButton aria-label="edit" color="inherit">
-                        <AttachmentIcon onClick={toggleEquipment} />
+                        <SaveAltIcon /*onClick={toggleEquipment}*/ />
                     </IconButton>
                 </td> : null}
             </tr> : null}
