@@ -78,7 +78,6 @@ body{
   width: 100%;
   height: 90vh;
   overflow-y: scroll;
-  overflow-x: scroll;
 }
 .container-add{
   color: #FFF;
@@ -507,10 +506,11 @@ th{
   font-size: smaller;
   color: #FFFFFF;
   font-weight: bold;
+  padding: 2px 20px;
 }
 td{
   font-size: smaller;
-  width: 200px;
+  padding: 2px 20px;
   background: #FFF;
   border-bottom: solid 1px #757575;
   overflow: hidden;
@@ -528,6 +528,7 @@ td{
   font-size: medium;
   overflow-y: scroll;
   overflow-x: scroll;
+  white-space: nowrap;
 }
 .view-info-label{
   display: flex;

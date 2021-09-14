@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 
-import { EquipmentContext } from './View'
+import { EquipmentContext } from '../routes/View'
 
 const Filter = () => {
     const { showAll, setShowAll, shown, setShown } = useContext(EquipmentContext)

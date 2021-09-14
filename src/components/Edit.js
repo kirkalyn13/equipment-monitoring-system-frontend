@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { EditContext } from './Item'
-import { ReloadContext } from './Manage'
+import { ReloadContext } from '../routes/Manage'
 import Button from '@material-ui/core/Button'
 import EditIcon from "@material-ui/icons/Edit"
 

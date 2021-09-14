@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import Percentage from './Percentage'
-import Pending from './Pending'
+import Percentage from '../components/Percentage'
+import Pending from '../components/Pending'
 import axios from 'axios'
 import Alert from '@material-ui/lab/Alert'
 import Button from '@material-ui/core/Button'

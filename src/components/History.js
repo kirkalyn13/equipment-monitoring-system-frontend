@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import IconButton from "@material-ui/core/IconButton"
+import SaveAltIcon from '@material-ui/icons/SaveAlt'
 
 const History = ({itemID}) => {
     const [logs, setLogs ] = useState([])
@@ -40,6 +42,7 @@ const History = ({itemID}) => {
                 <th>ISSUED TO</th>
                 <th>STATUS</th>
                 <th>REMARKS</th>
+                <th>CERTIFICATE</th>
             </tr>
             {logs.map(entry => {
                 return(
@@ -63,6 +66,11 @@ const History = ({itemID}) => {
                         <td>{entry.issuedTo}</td>
                         <td>{entry.status}</td>
                         <td>{entry.remarks}</td>
+                        <td>
+                            <IconButton aria-label="edit" color="inherit">
+                                <SaveAltIcon /*onClick={toggleEquipment}*/ />
+                            </IconButton>
+                        </td>
                     </tr>
                 )
             })}

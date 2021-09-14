@@ -4,14 +4,14 @@ import React, { useState, useEffect } from 'react'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
-import Dashboard  from './components/Dashboard'
-import View from './components/View'
-import Add from './components/Add'
-import Manage from './components/Manage'
-import Login from './components/Login';
-import Users from './components/Users';
-import HistoryTab from './components/HistoryTab';
-import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard  from './routes/Dashboard'
+import View from './routes/View'
+import Add from './routes/Add'
+import Manage from './routes/Manage'
+import Login from './routes/Login';
+import Users from './routes/Users';
+import HistoryTab from './routes/HistoryTab';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 
 export const LoginContext = React.createContext()

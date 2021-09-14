@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ItemHistory from './ItemHistory'
+import ItemHistory from '../components/ItemHistory'
 import axios from 'axios'
 import CircularProgress from '@material-ui/core/CircularProgress'
 

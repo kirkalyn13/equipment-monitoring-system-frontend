@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import List from './List'
+import List from '../components/List'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import IconButton from "@material-ui/core/IconButton"
@@ -8,8 +8,8 @@ import FilterListIcon from '@material-ui/icons/FilterList'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import Filter from './Filter'
-import Equipment from './Equipment'
+import Filter from '../components/Filter'
+import Equipment from '../components/Equipment'
 
 export const EquipmentContext = React.createContext()
 
@@ -46,6 +46,7 @@ const View = () => {
 
     const getEquip = () => {
         axios.get(`http://localhost:3005/allequipment`).then((response)=>{
+            console.log(response.data)
             setEquip(response.data)
         })
     }

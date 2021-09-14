@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
-import User from './User'
-import AddUser from './AddUser'
+import User from '../components/User'
+import AddUser from '../components/AddUser'
 import axios from 'axios'
 import CircularProgress from '@material-ui/core/CircularProgress'
 

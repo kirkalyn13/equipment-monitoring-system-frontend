@@ -3,7 +3,7 @@ import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
 import SaveAltIcon from '@material-ui/icons/SaveAlt'
-import { EquipmentContext } from './View'
+import { EquipmentContext } from '../routes/View'
 
 const Equipment = ({id}) => {
     const { setShowEquipment, setEqpID } = useContext(EquipmentContext)
