@@ -5,6 +5,7 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 import SaveAltIcon from '@material-ui/icons/SaveAlt'
 import axios from 'axios'
 
+
 const List = ({item}) => {
     const { shown, showEquipment, setShowEquipment, setEqpID } = useContext(EquipmentContext)
 
@@ -12,12 +13,28 @@ const List = ({item}) => {
         setShowEquipment(!showEquipment)
         setEqpID(id)
     }
+
+    function toBase64(arr) {
+        arr = new Uint8Array(arr)
+        return btoa(
+           arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
+        );
+     }
+
     const downloadCertificate = (id) => {
-        axios.get(`http://localhost:3005/certificate/${id}`).then((response)=>{
-            console.log(typeof(response.data))
-            alert("Calibration Certificate Downloaded.")
-            //setEquip(response.data)
+        axios.get(`http://localhost:3005/certificate/${id}`)
+        .then((response) => {   
+            const file = response.data[0].certificate.data
+            console.log(file)
+            console.log(toBase64(file))
+            const filename = `calibration_certificate_${id}`
+            const source = `data:application/pdf;base64,${toBase64(file)}`
+            const link = document.createElement("a")
+            link.href = source
+            link.download = `${filename}.pdf`
+            link.click()
         })
+        .catch((error) => console.log(error))
     }
 
     return (

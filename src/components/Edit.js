@@ -225,6 +225,7 @@ const Edit = ({info}) => {
                             onChange={handleInputChange}
                             name="eqpCertificate" value={values.eqpCertificate}
                                 placeholder="Latest Calibration Certificate"
+                                accept="application/pdf"
                                 style={{border:"inherit"}}/>
                         </div>
                         <div className="details-column">

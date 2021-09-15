@@ -229,8 +229,9 @@ const Add = () => {
                         <input type="file"
                         onChange={handleInputChange}
                         name="eqpCertificate" value={values.eqpCertificate}
-                            placeholder="Latest Calibration Certificate"
-                            style={{border:"inherit"}}/>
+                        accept="application/pdf"
+                        placeholder="Latest Calibration Certificate"
+                        style={{border:"inherit"}}/>
                     </div>
                 </div>   
                 </div>

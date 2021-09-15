@@ -1,18 +1,17 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Sidebar from './components/Sidebar';
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Sidebar from './components/Sidebar'
 import Dashboard  from './routes/Dashboard'
 import View from './routes/View'
 import Add from './routes/Add'
 import Manage from './routes/Manage'
-import Login from './routes/Login';
-import Users from './routes/Users';
+import Login from './routes/Login'
+import Users from './routes/Users'
 import HistoryTab from './routes/HistoryTab';
-import ProtectedRoute from './routes/ProtectedRoute';
-
+import ProtectedRoute from './routes/ProtectedRoute'
 
 export const LoginContext = React.createContext()
 
