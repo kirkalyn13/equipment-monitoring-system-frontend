@@ -8,11 +8,26 @@ import { EquipmentContext } from '../routes/View'
 const Equipment = ({id}) => {
     const { setShowEquipment, setEqpID } = useContext(EquipmentContext)
     const [ equipment, setEquipment ] = useState({})
+
     const getEquipData = () => {
-    axios.get(`http://localhost:3005/equipment/${id}`).then((response)=>{
+        axios.get(`http://localhost:3005/equipment/${id}`).then((response)=>{
         setEquipment(response.data[0])
         })
     }
+
+    const downloadCertificate = (id) => {
+        axios.get(`http://localhost:3005/certificate/${id}`)
+        .then((response) => {   
+            const file = response.data[0].certificate
+            const filename = `calibration_certificate_${id}`
+            const link = document.createElement("a")
+            link.href = file
+            link.download = `${filename}.pdf`
+            link.click()
+        })
+        .catch((error) => console.log(error))
+    }
+
     const returnToView = () => {
         setShowEquipment(false)
         setEqpID()
@@ -70,7 +85,7 @@ const Equipment = ({id}) => {
                             <Button 
                             style={{ color: '#FFF', fontWeight:"bold"}}
                             startIcon={<SaveAltIcon />}
-                            //onClick={returnToView}
+                            onClick={() => downloadCertificate(id)}
                             >
                             Download
                             </Button>

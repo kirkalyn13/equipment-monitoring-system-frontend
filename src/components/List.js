@@ -14,23 +14,13 @@ const List = ({item}) => {
         setEqpID(id)
     }
 
-    function toBase64(arr) {
-        arr = new Uint8Array(arr)
-        return btoa(
-           arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
-        );
-     }
-
     const downloadCertificate = (id) => {
         axios.get(`http://localhost:3005/certificate/${id}`)
         .then((response) => {   
-            const file = response.data[0].certificate.data
-            console.log(file)
-            console.log(toBase64(file))
+            const file = response.data[0].certificate
             const filename = `calibration_certificate_${id}`
-            const source = `data:application/pdf;base64,${toBase64(file)}`
             const link = document.createElement("a")
-            link.href = source
+            link.href = file
             link.download = `${filename}.pdf`
             link.click()
         })
@@ -42,8 +32,8 @@ const List = ({item}) => {
             {showEquipment === false ?
             <tr>
                 <td>
-                <IconButton aria-label="edit" color="inherit">
-                    <OpenInNewIcon onClick={() => toggleEquipment(item.id)} />
+                <IconButton aria-label="edit" color="inherit" onClick={() => toggleEquipment(item.id)}>
+                    <OpenInNewIcon  />
                 </IconButton>
                 </td>
                 {shown.showName === true ? <td>{item.name}</td> : null}
@@ -65,8 +55,8 @@ const List = ({item}) => {
                 {shown.showRemarks === true ? <td>{item.remarks}</td> : null}
                 {shown.showStatus === true ? <td>{item.status}</td> : null}
                 {shown.showCertificate === true ? <td>
-                    <IconButton aria-label="edit" color="inherit">
-                        <SaveAltIcon onClick={() => downloadCertificate(item.id)} />
+                    <IconButton aria-label="edit" color="inherit" onClick={() => downloadCertificate(item.id)}>
+                        <SaveAltIcon />
                     </IconButton>
                 </td> : null}
             </tr> : null}

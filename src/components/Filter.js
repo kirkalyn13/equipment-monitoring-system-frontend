@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 
 import { EquipmentContext } from '../routes/View'
 

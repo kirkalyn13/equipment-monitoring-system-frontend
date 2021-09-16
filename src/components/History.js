@@ -10,24 +10,14 @@ const History = ({itemID}) => {
             setLogs(response.data)
         }
         )}
-
-    function toBase64(arr) {
-            arr = new Uint8Array(arr)
-            return btoa(
-               arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
-            );
-         }
     
     const downloadCertificate = (id, timestamp) => {
             axios.get(`http://localhost:3005/changelog/certificate/${id}/${timestamp}`)
             .then((response) => {   
-                const file = response.data[0].certificate.data
-                console.log(file)
-                console.log(toBase64(file))
+                const file = response.data[0].certificate
                 const filename = `calibration_certificate_${id}`
-                const source = `data:application/pdf;base64,${toBase64(file)}`
                 const link = document.createElement("a")
-                link.href = source
+                link.href = file
                 link.download = `${filename}.pdf`
                 link.click()
             })

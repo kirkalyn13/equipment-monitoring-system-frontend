@@ -47,9 +47,11 @@ const Edit = ({info}) => {
         eqpIssuedTo: info.issuedTo,
         eqpRemarks: info.remarks,
         eqpStatus: info.status, 
+        eqpCertificate: info.certificate,
     }
     const [ values, setValues ] = useState(fieldValues)
     const [submitState, setSubmitState] = useState(false)
+    const [certificate, setCertificate] = useState(null)
 
     const editEquipment = () => {
         axios.put(`http://localhost:3005/edit/${info.id}`,{
@@ -100,7 +102,6 @@ const Edit = ({info}) => {
           eqpCertificate: values.eqpCertificate,
         }).then(()=>{
             console.log("Updated change logs.")
-          //setSubmitState(!submitState)
         })
     }
     const handleInputChange = e => {
@@ -110,6 +111,15 @@ const Edit = ({info}) => {
             [name]: value,
         })
     }
+
+    const onChangeFileHandler = e =>{
+        var reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload = function(){
+            setValues({...values, eqpCertificate: reader.result})
+        }
+    }
+    
     const handleFormSubmit = e => {
         e.preventDefault()
         logChanges()
@@ -222,8 +232,8 @@ const Edit = ({info}) => {
                                 placeholder="Method of Calibration"/>
                             <label>Certificate: </label>
                             <input type="file"
-                            onChange={handleInputChange}
-                            name="eqpCertificate" value={values.eqpCertificate}
+                            onChange={onChangeFileHandler}
+                            name="eqpCertificate" value={certificate}
                                 placeholder="Latest Calibration Certificate"
                                 accept="application/pdf"
                                 style={{border:"inherit"}}/>

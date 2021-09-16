@@ -23,6 +23,8 @@ const statusOptions = [
   ]
 
 const Add = () => {
+    const [submitState, setSubmitState] = useState(false)
+    const [certificate, setCertificate] = useState(null)
     const initialFieldValues = {
         eqpName: '',
         eqpType: '',
@@ -45,7 +47,6 @@ const Add = () => {
         eqpCertificate: null,
     }
     const [ values, setValues ] = useState(initialFieldValues)
-    const [submitState, setSubmitState] = useState(false)
 
     const addEquipment = () => {
         axios.post('http://localhost:3005/create',{
@@ -101,20 +102,29 @@ const Add = () => {
         })
       }*/
 
-      const handleInputChange = e => {
+    const handleInputChange = e => {
         var { name, value } = e.target
         setValues({
             ...values,
             [name]: value,
         })
     }
-      const handleFormSubmit = e => {
+
+    const onChangeFileHandler = e =>{
+        var reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload = function(){
+            setValues({...values, eqpCertificate: reader.result})
+        }
+    }
+
+    const handleFormSubmit = e => {
         e.preventDefault()
         addEquipment()
-        setSubmitState(!submitState)
+        setSubmitState(!submitState)    
         }
 
-      useEffect(()=>{
+    useEffect(()=>{
         setValues(initialFieldValues)
     },[submitState])
 
@@ -227,8 +237,8 @@ const Add = () => {
                             placeholder="Method of Calibration"/>
                         <label>Certificate: </label>
                         <input type="file"
-                        onChange={handleInputChange}
-                        name="eqpCertificate" value={values.eqpCertificate}
+                        onChange={onChangeFileHandler}
+                        name="eqpCertificate" value={certificate}
                         accept="application/pdf"
                         placeholder="Latest Calibration Certificate"
                         style={{border:"inherit"}}/>

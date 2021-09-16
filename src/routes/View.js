@@ -46,7 +46,6 @@ const View = () => {
 
     const getEquip = () => {
         axios.get(`http://localhost:3005/allequipment`).then((response)=>{
-            console.log(response.data)
             setEquip(response.data)
         })
     }
