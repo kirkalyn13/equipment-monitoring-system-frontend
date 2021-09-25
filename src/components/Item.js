@@ -13,7 +13,7 @@ const Item = ({item}) => {
     const {reload, setReload} = useContext(ReloadContext)
 
     const deleteEquipment = () => {
-        const r = window.confirm(`Are you sure you want to delete ${item.name} (${item.serial})?`)
+        const r = window.confirm(`Are you sure you want to permanently delete ${item.name} (${item.serial}) from the records?`)
         if(r === true){
             axios.delete(`http://localhost:3005/delete/${item.id}`).then(()=>{
             alert(`${item.name} (${item.serial}) successfully deleted.`)

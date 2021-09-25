@@ -49,6 +49,7 @@ const Add = () => {
         eqpImage: null,
     }
     const [ values, setValues ] = useState(initialFieldValues)
+    const [ newID, setNewID ] = useState(null)
 
     const addEquipment = () => {
         axios.post('http://localhost:3005/create',{
@@ -72,14 +73,14 @@ const Add = () => {
           eqpStatus: values.eqpStatus,
           eqpCertificate: values.eqpCertificate,
           eqpImage: values.eqpImage
-        }).then(()=>{
-          alert(`Added ${values.eqpName} (${values.eqpSerial}).`)
-          setSubmitState(!submitState)
+        }).then((response)=>{
+            setNewID(response.data[0].id)
+            alert(`Added ${values.eqpName} (${values.eqpSerial}).`)
         })
       }
 
-      /*const logChanges = () => {
-        axios.post('http://localhost:3005/create/changelog',{
+      const logChanges = () => {
+        axios.post(`http://localhost:3005/changelog/${newID}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,
@@ -100,10 +101,9 @@ const Add = () => {
           eqpStatus: values.eqpStatus,
           eqpCertificate: values.eqpCertificate,
         }).then(()=>{
-          alert(`Added ${values.eqpName} (${values.eqpSerial}).`)
-          setSubmitState(!submitState)
+          console.log("Logged New Equipment.")
         })
-      }*/
+      }
 
     const handleInputChange = e => {
         var { name, value } = e.target
@@ -131,13 +131,20 @@ const Add = () => {
 
     const handleFormSubmit = e => {
         e.preventDefault()
-        addEquipment()
-        setSubmitState(!submitState)    
+        addEquipment()  
         }
 
     useEffect(()=>{
         setValues(initialFieldValues)
     },[submitState])
+
+    useEffect(()=>{
+        if(newID !== null){
+            logChanges()
+            setSubmitState(!submitState)
+            setNewID(null)
+        }
+    },[newID])
 
     return (
         <div className="container-add">

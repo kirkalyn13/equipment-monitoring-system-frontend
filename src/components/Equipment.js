@@ -10,6 +10,7 @@ const Equipment = ({id}) => {
     const { setShowEquipment, setEqpID } = useContext(EquipmentContext)
     const [ equipment, setEquipment ] = useState({})
 
+    console.log(equipment)
     const getEquipData = () => {
         axios.get(`http://localhost:3005/equipment/${id}`).then((response)=>{
         setEquipment(response.data[0])
@@ -86,13 +87,13 @@ const Equipment = ({id}) => {
                         <div className="view-info-label"><p>Calibration Method: </p><p>{equipment.calibrationMethod}</p></div>
                         <div className="view-info-label">
                             <p>Certificate: </p>
-                            <Button 
+                            {equipment.certificate !== "null" ? <Button 
                             style={{ color: '#FFF', fontWeight:"bold"}}
                             startIcon={<SaveAltIcon />}
                             onClick={() => downloadCertificate(id)}
                             >
                             Download
-                            </Button>
+                            </Button> : null}
                         </div>
                     </div>
                     <div className="details-column-info">
