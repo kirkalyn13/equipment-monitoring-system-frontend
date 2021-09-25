@@ -3,11 +3,10 @@ import List from '../components/List'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import IconButton from "@material-ui/core/IconButton"
-import SaveAltIcon from '@material-ui/icons/SaveAlt'
 import FilterListIcon from '@material-ui/icons/FilterList'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 import Filter from '../components/Filter'
 import Equipment from '../components/Equipment'
 

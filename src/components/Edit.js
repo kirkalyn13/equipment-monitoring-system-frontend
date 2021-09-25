@@ -4,6 +4,7 @@ import { EditContext } from './Item'
 import { ReloadContext } from '../routes/Manage'
 import Button from '@material-ui/core/Button'
 import EditIcon from "@material-ui/icons/Edit"
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
 
 const statusOptions = [
     {
@@ -48,10 +49,12 @@ const Edit = ({info}) => {
         eqpRemarks: info.remarks,
         eqpStatus: info.status, 
         eqpCertificate: info.certificate,
+        eqpImage: info.image
     }
     const [ values, setValues ] = useState(fieldValues)
     const [submitState, setSubmitState] = useState(false)
     const [certificate, setCertificate] = useState(null)
+    const [image, setImage] = useState(null)
 
     const editEquipment = () => {
         axios.put(`http://localhost:3005/edit/${info.id}`,{
@@ -74,6 +77,7 @@ const Edit = ({info}) => {
           eqpRemarks: values.eqpRemarks,
           eqpStatus: values.eqpStatus,
           eqpCertificate: values.eqpCertificate,
+          eqpImage: values.eqpImage
         }).then(()=>{
           alert(`Updated ${values.eqpName} (${values.eqpSerial}).`)
           //setSubmitState(!submitState)
@@ -117,6 +121,14 @@ const Edit = ({info}) => {
         reader.readAsDataURL(e.target.files[0])
         reader.onload = function(){
             setValues({...values, eqpCertificate: reader.result})
+        }
+    }
+
+    const onChangeImageHandler = e =>{
+        var reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload = function(){
+            setValues({...values, eqpImage: reader.result})
         }
     }
     
@@ -174,6 +186,13 @@ const Edit = ({info}) => {
                             onChange={handleInputChange}
                             name="eqpDesc" value={values.eqpDesc}
                                 placeholder="Equipment Description"/>
+                            <label>Image: </label>
+                            <input type="file"
+                                onChange={onChangeImageHandler}
+                                name="eqpImage" value={image}
+                                accept="image/*"
+                                placeholder="Equipment Image"
+                                style={{border:"inherit"}}/>
                         </div>
                         <div className="details-column">
                             <div className="detail-title">

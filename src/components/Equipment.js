@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button'
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
 import SaveAltIcon from '@material-ui/icons/SaveAlt'
 import { EquipmentContext } from '../routes/View'
+import Image from './Image'
 
 const Equipment = ({id}) => {
     const { setShowEquipment, setEqpID } = useContext(EquipmentContext)
@@ -44,6 +45,9 @@ const Equipment = ({id}) => {
                 <h2 color="#FFFFFF">Equipment Information</h2>
             </div>
         </div>
+            <div className="container-details">
+                <Image name={equipment.name} image={equipment.image}/>
+            </div>
             <div className="container-details">
                 <div className="details">
                     <div className="details-column-info">

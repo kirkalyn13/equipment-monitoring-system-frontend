@@ -5,6 +5,7 @@ body{
   background-color: #F5F5F5;
   color: #000;
 }
+
 .header {
   display: flex;
   top: 0;
@@ -161,6 +162,9 @@ body{
 }
 .container-metrics{
   display: flex;
+}
+.container-image{
+  
 }
 .container-search, .container-add-user{
   padding-bottom: 15px;

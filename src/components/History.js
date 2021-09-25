@@ -11,6 +11,7 @@ const History = ({itemID}) => {
         }
         )}
     
+    
     const downloadCertificate = (id, timestamp) => {
             axios.get(`http://localhost:3005/changelog/certificate/${id}/${timestamp}`)
             .then((response) => {   
@@ -76,9 +77,9 @@ const History = ({itemID}) => {
                         <td>{entry.status}</td>
                         <td>{entry.remarks}</td>
                         <td>
-                            <IconButton aria-label="edit" color="inherit">
+                            {entry.certificate !== null ?(<IconButton aria-label="edit" color="inherit">
                                 <SaveAltIcon onClick={() => downloadCertificate(entry.id, entry.timestamp)} />
-                            </IconButton>
+                            </IconButton>) : null}
                         </td>
                     </tr>
                 )

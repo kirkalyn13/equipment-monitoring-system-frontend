@@ -8,7 +8,7 @@ import axios from 'axios'
 
 const List = ({item}) => {
     const { shown, showEquipment, setShowEquipment, setEqpID } = useContext(EquipmentContext)
-
+    
     const toggleEquipment = (id) => {
         setShowEquipment(!showEquipment)
         setEqpID(id)
@@ -55,9 +55,9 @@ const List = ({item}) => {
                 {shown.showRemarks === true ? <td>{item.remarks}</td> : null}
                 {shown.showStatus === true ? <td>{item.status}</td> : null}
                 {shown.showCertificate === true ? <td>
-                    <IconButton aria-label="edit" color="inherit" onClick={() => downloadCertificate(item.id)}>
+                    {item.certificate !== null ? (<IconButton aria-label="edit" color="inherit" onClick={() => downloadCertificate(item.id)}>
                         <SaveAltIcon />
-                    </IconButton>
+                    </IconButton>) : null}
                 </td> : null}
             </tr> : null}
         </>

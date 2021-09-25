@@ -45,7 +45,7 @@ const Item = ({item}) => {
                     </IconButton>
                 </div>
             </div>
-            {showEdit === true ? <Edit info={item}/> : false}
+            {showEdit === true ? <Edit info={item}/> : null}
         </EditContext.Provider>
     )
 }

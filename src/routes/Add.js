@@ -25,6 +25,7 @@ const statusOptions = [
 const Add = () => {
     const [submitState, setSubmitState] = useState(false)
     const [certificate, setCertificate] = useState(null)
+    const [image, setImage] = useState(null)
     const initialFieldValues = {
         eqpName: '',
         eqpType: '',
@@ -45,6 +46,7 @@ const Add = () => {
         eqpRemarks: '',
         eqpStatus: 'Offline',
         eqpCertificate: null,
+        eqpImage: null,
     }
     const [ values, setValues ] = useState(initialFieldValues)
 
@@ -69,6 +71,7 @@ const Add = () => {
           eqpRemarks: values.eqpRemarks,
           eqpStatus: values.eqpStatus,
           eqpCertificate: values.eqpCertificate,
+          eqpImage: values.eqpImage
         }).then(()=>{
           alert(`Added ${values.eqpName} (${values.eqpSerial}).`)
           setSubmitState(!submitState)
@@ -115,6 +118,14 @@ const Add = () => {
         reader.readAsDataURL(e.target.files[0])
         reader.onload = function(){
             setValues({...values, eqpCertificate: reader.result})
+        }
+    }
+
+    const onChangeImageHandler = e =>{
+        var reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload = function(){
+            setValues({...values, eqpImage: reader.result})
         }
     }
 
@@ -171,6 +182,13 @@ const Add = () => {
                             onChange={handleInputChange}
                             name="eqpDesc" value={values.eqpDesc}
                                 placeholder="Equipment Description"/>
+                            <label>Image: </label>
+                            <input type="file"
+                                onChange={onChangeImageHandler}
+                                name="eqpImage" value={image}
+                                accept="image/*"
+                                placeholder="Equipment Image"
+                                style={{border:"inherit"}}/>
                         </div>
                     </div>
                 </div>
