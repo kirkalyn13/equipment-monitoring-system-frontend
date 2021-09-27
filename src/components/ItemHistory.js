@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import History from './History';
-import IconButton from "@material-ui/core/IconButton"
-import HistoryIcon from '@material-ui/icons/History'
+import IconButton from '@mui/material/IconButton'
+import HistoryIcon from '@mui/icons-material/History'
 
 const ItemHistory = ({item}) => {
     const [showHistory, setShowHistory] = useState()

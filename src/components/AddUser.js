@@ -1,8 +1,9 @@
 import React, { useState, useEffect,useContext } from 'react'
 import { UsersReloadContext } from '../routes/Users'
+import { SERVER } from '../App'
 import axios from 'axios'
-import Button from '@material-ui/core/Button'
-import AddCircleIcon from "@material-ui/icons/AddCircle"
+import Button from '@mui/material/Button'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 const AddUser = ({users}) => {
     const {reload, setReload} = useContext(UsersReloadContext)
@@ -17,7 +18,7 @@ const AddUser = ({users}) => {
     const [submitState, setSubmitState] = useState(false)
 
     const addUser = () => {
-        axios.post('http://localhost:3005/createuser',{
+        axios.post( `http://${SERVER}/createuser`,{
           username: values.username,
           password: values.password,
           role: values.role

@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import { LoginContext } from '../App'
-import Button from '@material-ui/core/Button'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Button from '@mui/material/Button'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 
 const Header = ({school}) => {
     const {user, setUser, setIsAuth} =  useContext(LoginContext)

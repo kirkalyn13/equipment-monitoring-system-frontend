@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react'
+import { SERVER } from '../App'
 import axios from 'axios'
-import IconButton from "@material-ui/core/IconButton"
-import SaveAltIcon from '@material-ui/icons/SaveAlt'
+import IconButton from '@mui/material/IconButton'
+import SaveAltIcon from '@mui/icons-material/SaveAlt'
 
 const History = ({itemID}) => {
     const [logs, setLogs ] = useState([])
     const fetchLogs = () => {
-        axios.get(`http://localhost:3005/logs/${itemID}`).then((response)=>{
+        axios.get(`http://${SERVER}/logs/${itemID}`).then((response)=>{
             setLogs(response.data)
         }
         )}
     
     
     const downloadCertificate = (id, timestamp) => {
-            axios.get(`http://localhost:3005/changelog/certificate/${id}/${timestamp}`)
+            axios.get(`http://${SERVER}/changelog/certificate/${id}/${timestamp}`)
             .then((response) => {   
                 const file = response.data[0].certificate
                 const filename = `calibration_certificate_${id}`

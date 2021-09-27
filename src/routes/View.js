@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { SERVER } from '../App'
 import List from '../components/List'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
-import IconButton from "@material-ui/core/IconButton"
-import FilterListIcon from '@material-ui/icons/FilterList'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
+import IconButton from '@mui/material/IconButton'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import CircularProgress from '@mui/material/CircularProgress'
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import Filter from '../components/Filter'
 import Equipment from '../components/Equipment'
 
@@ -44,13 +45,13 @@ const View = () => {
     })
 
     const getEquip = () => {
-        axios.get(`http://localhost:3005/allequipment`).then((response)=>{
+        axios.get(`http://${SERVER}/allequipment`).then((response)=>{
             setEquip(response.data)
         })
     }
 
     const extractEquip = () => {
-        axios.get(`http://localhost:3005/extract`).then(() =>{
+        axios.get(`http://${SERVER}/extract`).then(() =>{
             alert(`Extracted Equipment Data.`)
         })
     }

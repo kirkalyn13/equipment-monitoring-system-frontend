@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
+import { SERVER } from '../App'
 import { LoginContext } from '../App'
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@mui/material/Alert'
 import axios from 'axios'
 
 const Login = ({school}) => {
@@ -15,7 +16,7 @@ const Login = ({school}) => {
     const [submitState, setSubmitState] = useState(false)
     
     const submitCredentials = () => {
-        axios.post('http://localhost:3005/login',{
+        axios.post(`http://${SERVER}/login`,{
           username: values.username,
           password: values.password,
         }).then(response =>{

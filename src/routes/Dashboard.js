@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
+import { SERVER } from '../App'
 import Percentage from '../components/Percentage'
 import Pending from '../components/Pending'
 import axios from 'axios'
-import Alert from '@material-ui/lab/Alert'
-import Button from '@material-ui/core/Button'
+import Alert from '@mui/material/Alert'
+import Button from '@mui/material/Button'
 import moment from 'moment'
 
 
@@ -14,7 +15,7 @@ const Dashboard = ({dept}) => {
     const [ showAlert, setShowAlert] = useState(true)
 
     const getPending = () => {
-        axios.get(`http://localhost:3005/allequipment`).then((response)=>{ 
+        axios.get(`http://${SERVER}/allequipment`).then((response)=>{ 
             setTotal(response.data.length)
             const filtered = response.data.filter(val => {
                 return -(moment().diff(val.nextCalibration, "days")) <= 30

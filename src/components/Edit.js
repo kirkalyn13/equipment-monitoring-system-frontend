@@ -2,9 +2,10 @@ import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { EditContext } from './Item'
 import { ReloadContext } from '../routes/Manage'
-import Button from '@material-ui/core/Button'
-import EditIcon from "@material-ui/icons/Edit"
-import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
+import { SERVER } from '../App'
+import Button from '@mui/material/Button'
+import EditIcon from '@mui/icons-material/Edit'
+
 
 const statusOptions = [
     {
@@ -57,7 +58,7 @@ const Edit = ({info}) => {
     const [image, setImage] = useState(null)
 
     const editEquipment = () => {
-        axios.put(`http://localhost:3005/edit/${info.id}`,{
+        axios.put(`http://${SERVER}/edit/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,
@@ -84,7 +85,7 @@ const Edit = ({info}) => {
         })
       }
     const logChanges = () =>{
-        axios.post(`http://localhost:3005/changelog/${info.id}`,{
+        axios.post(`http://${SERVER}/changelog/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,

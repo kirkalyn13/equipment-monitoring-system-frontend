@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
+import { SERVER } from '../App'
 import axios from 'axios'
-import Button from '@material-ui/core/Button'
-import AddCircleIcon from "@material-ui/icons/AddCircle"
+import Button from '@mui/material/Button'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 const statusOptions = [
     {
@@ -52,7 +53,7 @@ const Add = () => {
     const [ newID, setNewID ] = useState(null)
 
     const addEquipment = () => {
-        axios.post('http://localhost:3005/create',{
+        axios.post(`http://${SERVER}/create`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,
@@ -80,7 +81,7 @@ const Add = () => {
       }
 
       const logChanges = () => {
-        axios.post(`http://localhost:3005/changelog/${newID}`,{
+        axios.post(`http://${SERVER}/changelog/${newID}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,

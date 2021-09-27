@@ -1,8 +1,9 @@
 import { useState, useEffect,useContext } from 'react'
+import { SERVER } from '../App'
 import axios from 'axios'
-import Button from '@material-ui/core/Button'
-import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn'
-import SaveAltIcon from '@material-ui/icons/SaveAlt'
+import Button from '@mui/material/Button'
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
+import SaveAltIcon from '@mui/icons-material/SaveAlt'
 import { EquipmentContext } from '../routes/View'
 import Image from './Image'
 
@@ -12,13 +13,13 @@ const Equipment = ({id}) => {
 
     console.log(equipment)
     const getEquipData = () => {
-        axios.get(`http://localhost:3005/equipment/${id}`).then((response)=>{
+        axios.get(`http://${SERVER}/equipment/${id}`).then((response)=>{
         setEquipment(response.data[0])
         })
     }
 
     const downloadCertificate = (id) => {
-        axios.get(`http://localhost:3005/certificate/${id}`)
+        axios.get(`http://${SERVER}/certificate/${id}`)
         .then((response) => {   
             const file = response.data[0].certificate
             const filename = `calibration_certificate_${id}`

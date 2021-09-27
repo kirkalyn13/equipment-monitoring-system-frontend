@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
+import { SERVER } from '../App'
 import User from '../components/User'
 import AddUser from '../components/AddUser'
 import axios from 'axios'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export const UsersReloadContext = React.createContext()
 
@@ -13,7 +14,7 @@ const Users = () => {
     const [ loading, setLoading ] = useState(true)
 
     const getUsers = () => {
-        axios.get(`http://localhost:3005/allusers`).then((response)=>{
+        axios.get(`http://${SERVER}/allusers`).then((response)=>{
             setUsers(response.data)
         })
     } 

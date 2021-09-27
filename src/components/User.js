@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { UsersReloadContext } from '../routes/Users'
-import IconButton from "@material-ui/core/IconButton"
-import DeleteIcon from "@material-ui/icons/Delete"
-import EditIcon from "@material-ui/icons/Edit"
+import { SERVER } from '../App'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
 
 export const UsersContext = React.createContext()
 
@@ -15,7 +16,7 @@ const  User = ({user}) => {
     const deleteUser = () => {
         const r = window.confirm(`Are you sure you want to delete ${values.username}?`)
         if(r === true){
-            axios.delete(`http://localhost:3005/deleteuser/${values.id}`).then(()=>{
+            axios.delete(`http://${SERVER}/deleteuser/${values.id}`).then(()=>{
             alert(`${values.username} successfully deleted.`)
             setReload(!reload)
         })
@@ -28,7 +29,7 @@ const  User = ({user}) => {
         console.log(values.id)
         const r = window.confirm(`Are you sure you want to edit ${values.username}?`)
         if(r === true){
-            axios.put(`http://localhost:3005/edituser/${values.id}`,{
+            axios.put(`http://${SERVER}/edituser/${values.id}`,{
             username: values.username,
             password: values.password,
             role: values.role,

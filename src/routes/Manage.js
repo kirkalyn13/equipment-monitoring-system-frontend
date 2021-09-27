@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { SERVER } from '../App'
 import Item from '../components/Item'
 import axios from 'axios'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export const ReloadContext = React.createContext()
 
@@ -13,7 +14,7 @@ const Manage = () => {
     const [ loading, setLoading ] = useState(true)
 
     const getItems = () => {
-        axios.get(`http://localhost:3005/allequipment`).then((response)=>{
+        axios.get(`http://${SERVER}/allequipment`).then((response)=>{
             setItems(response.data)
             setFiltered(items)
         })

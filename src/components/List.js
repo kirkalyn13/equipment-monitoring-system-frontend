@@ -1,8 +1,9 @@
 import { useContext } from 'react'
 import { EquipmentContext } from '../routes/View'
-import IconButton from "@material-ui/core/IconButton"
-import OpenInNewIcon from '@material-ui/icons/OpenInNew'
-import SaveAltIcon from '@material-ui/icons/SaveAlt'
+import { SERVER } from '../App'
+import IconButton from '@mui/material/IconButton'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
+import SaveAltIcon from '@mui/icons-material/SaveAlt'
 import axios from 'axios'
 
 
@@ -15,7 +16,7 @@ const List = ({item}) => {
     }
 
     const downloadCertificate = (id) => {
-        axios.get(`http://localhost:3005/certificate/${id}`)
+        axios.get(`http://${SERVER}/certificate/${id}`)
         .then((response) => {   
             const file = response.data[0].certificate
             const filename = `calibration_certificate_${id}`

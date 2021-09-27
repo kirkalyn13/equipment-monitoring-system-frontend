@@ -2,9 +2,10 @@ import React, { useState, useContext } from 'react'
 import Edit from './Edit';
 import axios from 'axios'
 import { ReloadContext } from '../routes/Manage'
-import IconButton from "@material-ui/core/IconButton"
-import DeleteIcon from "@material-ui/icons/Delete"
-import EditIcon from "@material-ui/icons/Edit"
+import { SERVER } from '../App';
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
 
 export const EditContext = React.createContext()
 
@@ -15,7 +16,7 @@ const Item = ({item}) => {
     const deleteEquipment = () => {
         const r = window.confirm(`Are you sure you want to permanently delete ${item.name} (${item.serial}) from the records?`)
         if(r === true){
-            axios.delete(`http://localhost:3005/delete/${item.id}`).then(()=>{
+            axios.delete(`http://${SERVER}/delete/${item.id}`).then(()=>{
             alert(`${item.name} (${item.serial}) successfully deleted.`)
             setReload(!reload)
         })
