@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { SERVER } from '../App'
+import { DEPT } from '../App'
 import List from '../components/List'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
@@ -51,9 +52,23 @@ const View = () => {
     }
 
     const extractEquip = () => {
-        axios.get(`http://${SERVER}/extract`).then(() =>{
-            alert(`Extracted Equipment Data.`)
+        axios.get(`http://${SERVER}/extract`).then((response) =>{
+            var dtnow = new Date()
+            var year = dtnow.getFullYear()
+            var month = dtnow.getMonth() + 1
+            var day = dtnow.getDate()
+            var hour = dtnow.getHours()
+            var min = dtnow.getMinutes()
+
+            const dept = DEPT.replace(" ","")
+            const file = response.data
+            const filename = `${dept}Equipment_${year}${month}${day}${hour}${min}.csv`
+            const link = document.createElement("a")
+            link.href = file
+            link.download = `${filename}.csv`
+            link.click()
         })
+        .catch((error) => console.log(error))
     }
 
     const toggleShowFilter = () => {

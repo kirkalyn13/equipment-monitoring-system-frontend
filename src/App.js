@@ -13,11 +13,13 @@ import Users from './routes/Users'
 import HistoryTab from './routes/HistoryTab';
 import ProtectedRoute from './routes/ProtectedRoute'
 
-export const LoginContext = React.createContext()
-export const SERVER = "localhost:3005"  //Edit for deployment
-
 const SCHOOL = "School of Engineering and Architecture"
-const DEPT = "Physics Lab"
+export const DEPT = "Physics Lab"
+export const SERVER = "localhost:3005"  //Edit for deployment
+export const LoginContext = React.createContext()
+
+
+
 
 function App() {
   const [ isAuth, setIsAuth ] = useState(false)
