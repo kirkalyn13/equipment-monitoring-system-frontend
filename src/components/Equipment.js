@@ -88,13 +88,14 @@ const Equipment = ({id}) => {
                         <div className="view-info-label"><p>Calibration Method: </p><p>{equipment.calibrationMethod}</p></div>
                         <div className="view-info-label">
                             <p>Certificate: </p>
-                            {equipment.certificate !== "null" ? <Button 
+                            {equipment.certificate !== null ? 
+                            (<Button 
                             style={{ color: '#FFF', fontWeight:"bold"}}
                             startIcon={<SaveAltIcon />}
                             onClick={() => downloadCertificate(id)}
                             >
                             Download
-                            </Button> : null}
+                            </Button>) : null}
                         </div>
                     </div>
                     <div className="details-column-info">
