@@ -65,8 +65,8 @@ const Manage = () => {
                 </div>
             </div>
             {loading === true ? <CircularProgress color="inherit"/> : null}
-            {filtered.map(item =>{
-                    return  <Item item={item} />
+            {filtered.map((item, key) =>{
+                    return  <Item key={key} item={item} />
                 })}
             </div>
         </ReloadContext.Provider>

@@ -38,11 +38,11 @@ const Item = ({item}) => {
                     <p className="item-info">{item.status}</p>
                 </div>
                 <div className="buttons-manage">
-                    <IconButton aria-label="edit" color="inherit">
-                        <EditIcon onClick={toggleEdit} />
+                    <IconButton aria-label="edit" color="inherit" onClick={toggleEdit}>
+                        <EditIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" color="inherit">
-                        <DeleteIcon onClick={deleteEquipment} />
+                    <IconButton aria-label="delete" color="inherit" onClick={deleteEquipment} >
+                        <DeleteIcon/>
                     </IconButton>
                 </div>
             </div>

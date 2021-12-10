@@ -17,8 +17,8 @@ const ItemHistory = ({item}) => {
                     <p className="item-info">{item.status}</p>
                 </div>
                 <div className="buttons-manage">
-                    <IconButton aria-label="edit" color="inherit">
-                        <HistoryIcon onClick={toggleHistory}/>
+                    <IconButton aria-label="edit" color="inherit" onClick={toggleHistory}>
+                        <HistoryIcon/>
                     </IconButton>
                 </div>
         </div>

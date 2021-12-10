@@ -33,6 +33,7 @@ const History = ({itemID}) => {
     return (
         <div className="container-history">
         <table className="history">
+            <thead>
             <tr>
                 <th>TIMESTAMP</th>
                 <th>NAME</th>
@@ -55,9 +56,11 @@ const History = ({itemID}) => {
                 <th>REMARKS</th>
                 <th>CERTIFICATE</th>
             </tr>
-            {logs.map(entry => {
+            </thead>
+            <tbody>
+            {logs.map((entry, key) => {
                 return(
-                    <tr>
+                    <tr key={key}>
                         <td>{entry.timestamp}</td>
                         <td>{entry.name}</td>
                         <td>{entry.type}</td>
@@ -85,6 +88,7 @@ const History = ({itemID}) => {
                     </tr>
                 )
             })}
+            </tbody>
         </table>
         </div>
     )

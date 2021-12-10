@@ -31,6 +31,7 @@ const List = ({item}) => {
     return (
         <>
             {showEquipment === false ?
+            <tbody>
             <tr>
                 <td>
                 <IconButton aria-label="edit" color="inherit" onClick={() => toggleEquipment(item.id)}>
@@ -60,7 +61,7 @@ const List = ({item}) => {
                         <SaveAltIcon />
                     </IconButton>) : null}
                 </td> : null}
-            </tr> : null}
+            </tr></tbody> : null}
         </>
     )
 }

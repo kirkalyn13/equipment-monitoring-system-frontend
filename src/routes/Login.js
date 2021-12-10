@@ -15,7 +15,7 @@ const Login = ({school}) => {
     const [ values, setValues ] = useState(initialFieldValues)
     const [submitState, setSubmitState] = useState(false)
     
-    const submitCredentials = () => {
+    const submitCredentials = async() => {
         axios.post(`http://${SERVER}/login`,{
           username: values.username,
           password: values.password,
@@ -37,8 +37,8 @@ const Login = ({school}) => {
       }
 
     const login = () =>{
-        setIsAuth(true)
         setInvalid(false)
+        setIsAuth(true)
     }
 
     const invalidUser = () => {
@@ -56,6 +56,15 @@ const Login = ({school}) => {
     useEffect(()=>{
         setValues(initialFieldValues)
     },[submitState])
+
+    //Clean Up
+    useEffect(()=>{
+        return () =>{
+            setInvalid(false)
+            setSubmitState(false)
+            setValues(initialFieldValues)
+        }
+    },[])
 
     const handleInputChange = e => {
         var { name, value } = e.target

@@ -78,19 +78,19 @@ const AddUser = ({users}) => {
                                 <input type="radio" id="basic" name="role" value="basic" color="red" 
                                 checked={values.role === "basic"}
                                 onChange={handleInputChange}/>
-                                <label for="basic">Basic</label>
+                                <label htmlFor="basic">Basic</label>
                             </div>
                             <div className="radio-label">
                                 <input type="radio"  id="admin" name="role" value="admin" 
                                 checked={values.role === "admin"}
                                 onChange={handleInputChange}/>
-                                <label for="admin">Admin</label>
+                                <label htmlFor="admin">Admin</label>
                             </div>
                             <div className="radio-label">
                                 <input type="radio" id="super" name="role" value="super"
                                 checked={values.role === "super"} 
                                 onChange={handleInputChange}/>
-                                <label for="super">Super</label>
+                                <label htmlFor="super">Super</label>
                             </div>
                         </div>
                     </div>

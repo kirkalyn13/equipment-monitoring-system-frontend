@@ -65,8 +65,8 @@ const History = () => {
                 </div>
             </div>
             {loading === true ? <CircularProgress color="inherit"/> : null}
-            {filtered.map(item =>{
-                    return  <ItemHistory item={item} />
+            {filtered.map((item, key) =>{
+                    return  <ItemHistory key={key} item={item} />
                 })}
             </div>
         </ReloadContext.Provider>

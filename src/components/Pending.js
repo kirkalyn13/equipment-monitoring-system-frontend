@@ -6,20 +6,25 @@ const Pending = ({pending}) => {
         <div className="pending">
                 <h2>Pending Calibrations</h2>
                 <table>
+                    <thead>
                     <tr>
                         <th>Name</th>
                         <th>Type</th>
                         <th>Next Calibration</th>
                     </tr>
-                    {pending.map(entry => {
+                    </thead>
+                    <tbody>
+                    {pending.map((entry, key) => {
                     return(
-                        <tr>
+                        
+                        <tr key={key}>
                             <td>{entry.name}</td>
                             <td>{entry.type}</td>
                             <td>{entry.nextCalibration}</td>
                         </tr> 
                     )
                 })}
+                    </tbody>
                 </table>
             </div> 
     )

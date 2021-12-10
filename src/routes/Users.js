@@ -44,8 +44,8 @@ const Users = () => {
             </div>
             <AddUser users={users}/>
             {loading === true ? <CircularProgress color="inherit"/> : null}
-            {users.map(user =>{
-                    return  <User user={user} />
+            {users.map((user) =>{
+                    return  <User key={user.id} user={user} />
                 })}
             
             </div>

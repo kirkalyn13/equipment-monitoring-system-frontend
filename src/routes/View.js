@@ -197,10 +197,11 @@ const View = () => {
                 <div className="container-equipment-list">
                     <table className="information">
                     {showEquipment === false ?
+                    <thead>
                     <tr>
                         <th>
-                        <IconButton aria-label="edit" color="inherit">
-                                <FilterListIcon onClick={toggleShowFilter} />
+                        <IconButton aria-label="edit" color="inherit" onClick={toggleShowFilter}>
+                                <FilterListIcon />
                             </IconButton>
                         </th>
                         {shown.showName === true ? <th>NAME</th> : null}
@@ -222,9 +223,10 @@ const View = () => {
                         {shown.showRemarks === true ? <th>REMARKS</th> : null}
                         {shown.showStatus === true ? <th>STATUS</th> : null}
                         {shown.showCertificate === true ? <th>CERTIFICATE</th> : null}
-                    </tr> : null}
+                    </tr>
+                    </thead> : null}
                     {loading === true ? <CircularProgress color="inherit"/> : null}
-                    {filtered.map(item => (<List item={item} />))}
+                    {filtered.map((item, key) => (<List key={key} item={item} />))}
                     </table>
                     {showEquipment === true ? <Equipment id={eqpID}/> : null}
                 </div>

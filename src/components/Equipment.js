@@ -11,7 +11,6 @@ const Equipment = ({id}) => {
     const { setShowEquipment, setEqpID } = useContext(EquipmentContext)
     const [ equipment, setEquipment ] = useState({})
 
-    console.log(equipment)
     const getEquipData = () => {
         axios.get(`http://${SERVER}/equipment/${id}`).then((response)=>{
         setEquipment(response.data[0])

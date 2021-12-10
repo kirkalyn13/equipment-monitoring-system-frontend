@@ -6,8 +6,6 @@ import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
-export const UsersContext = React.createContext()
-
 const  User = ({user}) => {
     const {reload, setReload} = useContext(UsersReloadContext)
     const [ values, setValues ] = useState({...user, password: ""})
@@ -57,7 +55,6 @@ const  User = ({user}) => {
         }
 
     return (
-        <UsersContext.Provider>
             <form className="user-form" autoComplete="off" onSubmit={handleFormSubmit}>
                 <div className="container-credentials">
                     <div className="user-info-input">
@@ -82,19 +79,19 @@ const  User = ({user}) => {
                                 <input type="radio" name="role" value="basic" color="red" 
                                 checked={values.role === "basic"}
                                 onChange={handleInputChange}/>
-                                <label for="basic">Basic</label>
+                                <label htmlFor="basic">Basic</label>
                             </div>
                             <div className="radio-label">
                                 <input type="radio" name="role" value="admin" 
                                 checked={values.role === "admin"}
                                 onChange={handleInputChange}/>
-                                <label for="admin">Admin</label>
+                                <label htmlFor="admin">Admin</label>
                             </div>
                             <div className="radio-label">
                                 <input type="radio" name="role" value="super"
                                 checked={values.role === "super"} 
                                 onChange={handleInputChange}/>
-                                <label for="super">Super</label>
+                                <label htmlFor="super">Super</label>
                             </div>
                         </div>
                     </div>
@@ -108,7 +105,6 @@ const  User = ({user}) => {
                     </IconButton>
                 </div>
             </form> 
-        </UsersContext.Provider>
     )
 }
 

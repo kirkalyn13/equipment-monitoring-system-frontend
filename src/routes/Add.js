@@ -25,8 +25,8 @@ const statusOptions = [
 
 const Add = () => {
     const [submitState, setSubmitState] = useState(false)
-    const [certificate, setCertificate] = useState(null)
-    const [image, setImage] = useState(null)
+    const [certificate, setCertificate] = useState('')
+    const [image, setImage] = useState('')
     const initialFieldValues = {
         eqpName: '',
         eqpType: '',
@@ -46,8 +46,8 @@ const Add = () => {
         eqpIssuedTo: '',
         eqpRemarks: '',
         eqpStatus: 'Offline',
-        eqpCertificate: null,
-        eqpImage: null,
+        eqpCertificate: '',
+        eqpImage: '',
     }
     const [ values, setValues ] = useState(initialFieldValues)
     const [ newID, setNewID ] = useState(null)
@@ -297,8 +297,8 @@ const Add = () => {
                         <div className="details-column">
                             <label>Status: </label>
                                 <select name="eqpStatus" value={values.eqpStatus} onChange={e => setValues({...values, eqpStatus: e.target.value})}>
-                                {statusOptions.map((option) => (
-                                    <option value={option.value}>{option.label}</option>
+                                {statusOptions.map((option, key) => (
+                                    <option key={key} value={option.value}>{option.label}</option>
                                     ))}
                                 </select> 
                             <label>Remarks: </label>
