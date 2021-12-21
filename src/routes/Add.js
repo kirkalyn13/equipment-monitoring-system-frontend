@@ -6,21 +6,29 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 const statusOptions = [
     {
-      label: "Online",
-      value: "Online",
+      label: "Working",
+      value: "Working",
     },
     {
-      label: "Offline",
-      value: "Offline",
+      label: "Pulled Out",
+      value: "Pulled Out",
     },
     {
-      label: "Obsolete",
-      value: "Obsolete",
+      label: "Transferred",
+      value: "Transferred",
     },
     {
-      label: "Decommissioned",
-      value: "Decommissioned",
+      label: "Disposed",
+      value: "Disposed",
     },
+    {
+        label: "For Repair",
+        value: "For Repair",
+      },
+      {
+        label: "For Calibration",
+        value: "For Calibration",
+      },
   ]
 
 const Add = () => {

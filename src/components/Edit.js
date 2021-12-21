@@ -9,21 +9,29 @@ import EditIcon from '@mui/icons-material/Edit'
 
 const statusOptions = [
     {
-      label: "Online",
-      value: "Online",
-    },
-    {
-      label: "Offline",
-      value: "Offline",
-    },
-    {
-      label: "Obsolete",
-      value: "Obsolete",
-    },
-    {
-      label: "Decommissioned",
-      value: "Decommissioned",
-    },
+        label: "Working",
+        value: "Working",
+      },
+      {
+        label: "Pulled Out",
+        value: "Pulled Out",
+      },
+      {
+        label: "Transferred",
+        value: "Transferred",
+      },
+      {
+        label: "Disposed",
+        value: "Disposed",
+      },
+      {
+          label: "For Repair",
+          value: "For Repair",
+        },
+        {
+          label: "For Calibration",
+          value: "For Calibration",
+        },
   ]
 
 const Edit = ({info}) => {
