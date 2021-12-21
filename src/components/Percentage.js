@@ -6,7 +6,7 @@ const Percentage = ({done, pending}) => {
         chart: {
           type: 'donut',
         },
-        colors: ['#FFA000', '#607D8B'],
+        colors: ['#607D8B', '#F44336'],
         plotOptions:{
           pie:{
             donut:{
@@ -20,6 +20,7 @@ const Percentage = ({done, pending}) => {
                   color: '#000'
                 },
                 total:{
+                  label: "Total Equipment",
                   show: true,
                   color: '#000'
                 }

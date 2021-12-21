@@ -40,15 +40,15 @@ const Dashboard = ({dept}) => {
         <div className="container-dashboard">
             <h1 className="dashboard-title">{dept} Equipment Dashboard</h1>
             {showAlert === true ? <Alert
-                severity="warning"
+                severity="error"
                 variant="filled"
-                style={{ color:'#000',fontWeight:'bold', fontSize:"large", margin:"2px 20px"}}
+                style={{ color:'#FFF',fontWeight:'bold', fontSize:"large", margin:"2px 20px"}}
                     action={
                     <Button 
                     onClick={closeAlert}
                     style={{fontWeight:'bold'}}
                     color="inherit" size="large">
-                        OKAY
+                        CLOSE
                     </Button>
                     }
                 >You have {pending.length} Pending Calibrations.

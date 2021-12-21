@@ -61,7 +61,9 @@ const List = ({item}) => {
                         <SaveAltIcon />
                     </IconButton>) : null}
                 </td> : null}
-            </tr></tbody> : null}
+            </tr>
+            </tbody> 
+            : null}
         </>
     )
 }

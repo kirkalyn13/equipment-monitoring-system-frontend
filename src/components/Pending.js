@@ -4,7 +4,7 @@ const Pending = ({pending}) => {
     
     return (
         <div className="pending">
-                <h2>Pending Calibrations</h2>
+                <h2 style={{color:"#000"}}>Pending Calibrations</h2>
                 <table>
                     <thead>
                     <tr>
@@ -18,9 +18,9 @@ const Pending = ({pending}) => {
                     return(
                         
                         <tr key={key}>
-                            <td>{entry.name}</td>
-                            <td>{entry.type}</td>
-                            <td>{entry.nextCalibration}</td>
+                            <td className="td-critical">{entry.name}</td>
+                            <td className="td-critical">{entry.type}</td>
+                            <td className="td-critical">{entry.nextCalibration}</td>
                         </tr> 
                     )
                 })}
