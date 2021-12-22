@@ -28,16 +28,16 @@ const View = () => {
         showType: false,
         showModel: false,
         showSerial: false,
-        showDesc: false,
+        showDescription: false,
         showBrand: false,
         showPrice: false,
         showManufacturer: false,
-        showExp: false,
+        showExpiration: false,
         showPurchaseDate: false,
-        showCalibDate: false,
-        showNextCalib: false,
-        showCalibMethod: false,
-        showLoc : false,
+        showCalibrationDate: false,
+        showNextCalibration: false,
+        showCalibrationMethod: false,
+        showLocation : false,
         showIssuedBy: false,
         showIssuedTo: false,
         showRemarks: false,
@@ -51,7 +51,7 @@ const View = () => {
         })
     }
 
-    const extractEquip = () => {
+    /*const extractEquip = () => {
         axios.get(`http://${SERVER}/extract`).then((response) =>{
             var dtnow = new Date()
             var year = dtnow.getFullYear()
@@ -69,6 +69,26 @@ const View = () => {
             link.click()
         })
         .catch((error) => console.log(error))
+    }*/
+
+    const extractEquip = () => {
+        axios.post(`http://${SERVER}/extract`,
+            {shown}
+          ).then((response)=>{
+            var dtnow = new Date()
+            var year = dtnow.getFullYear()
+            var month = dtnow.getMonth() + 1
+            var day = dtnow.getDate()
+            var hour = dtnow.getHours()
+            var min = dtnow.getMinutes()
+            const dept = DEPT.replace(" ","")
+            const file = response.data
+            const filename = `${dept}Equipment_${year}${month}${day}${hour}${min}.csv`
+            const link = document.createElement("a")
+            link.href = file
+            link.download = `${filename}.csv`
+            link.click()
+        }).catch((error) => console.log(error))
     }
 
     const toggleShowFilter = () => {
@@ -92,16 +112,16 @@ const View = () => {
                 showType: true,
                 showModel: true,
                 showSerial: true,
-                showDesc: true,
+                showDescription: true,
                 showBrand: true,
                 showPrice: true,
                 showManufacturer: true,
-                showExp: true,
+                showExpiration: true,
                 showPurchaseDate: true,
-                showCalibDate: true,
-                showNextCalib: true,
-                showCalibMethod: true,
-                showLoc : true,
+                showCalibrationDate: true,
+                showNextCalibration: true,
+                showCalibrationMethod: true,
+                showLocation : true,
                 showIssuedBy: true,
                 showIssuedTo: true,
                 showRemarks: true,
@@ -115,16 +135,16 @@ const View = () => {
                 showType: false,
                 showModel: false,
                 showSerial: false,
-                showDesc: false,
+                showDescription: false,
                 showBrand: false,
                 showPrice: false,
                 showManufacturer: false,
-                showExp: false,
+                showExpiration: false,
                 showPurchaseDate: false,
-                showCalibDate: false,
-                showNextCalib: false,
-                showCalibMethod: false,
-                showLoc : false,
+                showCalibrationDate: false,
+                showNextCalibration: false,
+                showCalibrationMethod: false,
+                showLocation : false,
                 showIssuedBy: false,
                 showIssuedTo: false,
                 showRemarks: false,
@@ -208,16 +228,16 @@ const View = () => {
                         {shown.showType === true ? <th>TYPE</th> : null}
                         {shown.showModel === true ? <th>MODEL</th> : null}
                         {shown.showSerial === true ? <th>SERIAL</th> : null}
-                        {shown.showDesc === true ? <th>DESCRIPTION</th> : null}
+                        {shown.showDescription === true ? <th>DESCRIPTION</th> : null}
                         {shown.showBrand === true ? <th>BRAND</th> : null}
                         {shown.showPrice === true ? <th>PRICE</th> : null}
                         {shown.showManufacturer === true ? <th>MANUFACTURER</th> : null}
-                        {shown.showExp === true ? <th>EXPIRATION</th> : null}
+                        {shown.showExpiration === true ? <th>EXPIRATION</th> : null}
                         {shown.showPurchaseDate === true ? <th>PURCHASE DATE</th> : null}
-                        {shown.showCalibDate === true ? <th>LAST CALIBRATION</th> : null}
-                        {shown.showNextCalib === true ? <th>NEXT CALIBRATION</th> : null}
-                        {shown.showCalibMethod === true ? <th>CALIBRATION METHOD</th> : null}
-                        {shown.showLoc === true ? <th>LOCATION</th> : null}
+                        {shown.showCalibrationDate === true ? <th>LAST CALIBRATION</th> : null}
+                        {shown.showNextCalibration === true ? <th>NEXT CALIBRATION</th> : null}
+                        {shown.showCalibrationMethod === true ? <th>CALIBRATION METHOD</th> : null}
+                        {shown.showLocation === true ? <th>LOCATION</th> : null}
                         {shown.showIssuedBy === true ? <th>ISSUED BY</th> : null}
                         {shown.showIssuedTo === true ? <th>ISSUED TO</th> : null}
                         {shown.showRemarks === true ? <th>REMARKS</th> : null}

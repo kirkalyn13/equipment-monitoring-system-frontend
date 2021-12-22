@@ -25,8 +25,8 @@ const Filter = () => {
         setShown({...shown, showSerial: !shown.showSerial})
     }
 
-    const handleShowDesc = () => {
-        setShown({...shown, showDesc: !shown.showDesc})
+    const handleShowDescription = () => {
+        setShown({...shown, showDescription: !shown.showDescription})
     }
 
 
@@ -42,28 +42,28 @@ const Filter = () => {
         setShown({...shown, showManufacturer: !shown.showManufacturer})
     }
 
-    const handleShowExp = () => {
-        setShown({...shown, showExp: !shown.showExp})
+    const handleShowExpiration = () => {
+        setShown({...shown, showExpiration: !shown.showExpiration})
     }
 
     const handleShowPurchaseDate = () => {
         setShown({...shown, showPurchaseDate: !shown.showPurchaseDate})
     }
 
-    const handleShowCalibDate = () => {
-        setShown({...shown, showCalibDate: !shown.showCalibDate})
+    const handleShowCalibrationDate = () => {
+        setShown({...shown, showCalibrationDate: !shown.showCalibrationDate})
     }
 
-    const handleShowNextCalib = () => {
-        setShown({...shown, showNextCalib: !shown.showNextCalib})
+    const handleShowNextCalibration = () => {
+        setShown({...shown, showNextCalibration: !shown.showNextCalibration})
     }
 
-    const handleShowCalibMethod = () => {
-        setShown({...shown, showCalibMethod: !shown.showCalibMethod})
+    const handleShowCalibrationMethod = () => {
+        setShown({...shown, showCalibrationMethod: !shown.showCalibrationMethod})
     }
 
-    const handleShowLoc = () => {
-        setShown({...shown, showLoc: !shown.showLoc})
+    const handleShowLocation = () => {
+        setShown({...shown, showLocation: !shown.showLocation})
     }
 
     const handleShowIssuedBy = () => {
@@ -135,8 +135,8 @@ const Filter = () => {
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
-                        checked={shown.showDesc}
-                        onChange={handleShowDesc}
+                        checked={shown.showDescription}
+                        onChange={handleShowDescription}
                     />
                     Description
                     </label>
@@ -169,8 +169,8 @@ const Filter = () => {
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
-                        checked={shown.showExp}
-                        onChange={handleShowExp}
+                        checked={shown.showExpiration}
+                        onChange={handleShowExpiration}
                     />
                     Expiration
                     </label>
@@ -185,8 +185,8 @@ const Filter = () => {
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
-                        checked={shown.showCalibDate}
-                        onChange={handleShowCalibDate}
+                        checked={shown.showCalibrationDate}
+                        onChange={handleShowCalibrationDate}
                     />
                     Calibration Date
                     </label>
@@ -195,24 +195,24 @@ const Filter = () => {
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
-                        checked={shown.showNextCalib}
-                        onChange={handleShowNextCalib}
+                        checked={shown.showNextCalibration}
+                        onChange={handleShowNextCalibration}
                     />
                     Next Calibration
                     </label>
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
-                        checked={shown.showCalibMethod}
-                        onChange={handleShowCalibMethod}
+                        checked={shown.showCalibrationMethod}
+                        onChange={handleShowCalibrationMethod}
                     />
                     Calibration Method
                     </label>
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
-                        checked={shown.showLoc}
-                        onChange={handleShowLoc}
+                        checked={shown.showLocation}
+                        onChange={handleShowLocation}
                     />
                     Location
                     </label>

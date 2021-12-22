@@ -42,16 +42,16 @@ const List = ({item}) => {
                 {shown.showType === true ? <td>{item.type}</td> : null}
                 {shown.showModel === true ? <td>{item.model}</td> : null}
                 {shown.showSerial === true ? <td>{item.serial}</td> : null}
-                {shown.showDesc === true ? <td>{item.description}</td> : null}
+                {shown.showDescription === true ? <td>{item.description}</td> : null}
                 {shown.showBrand === true ? <td>{item.brand}</td> : null}
                 {shown.showPrice === true ? <td>{item.price}</td> : null}
                 {shown.showManufacturer === true ? <td>{item.manufacturer}</td> : null}
-                {shown.showExp === true ? <td>{item.expiration}</td> : null}
+                {shown.showExpiration === true ? <td>{item.expiration}</td> : null}
                 {shown.showPurchaseDate === true ? <td>{item.purchaseDate}</td> : null}
-                {shown.showCalibDate === true ? <td>{item.calibrationDate}</td> : null}
-                {shown.showNextCalib === true ? <td>{item.nextCalibration}</td> : null}
-                {shown.showCalibMethod === true ? <td>{item.calibrationMethod}</td> : null}
-                {shown.showLoc === true ? <td>{item.location}</td> : null}
+                {shown.showCalibrationDate === true ? <td>{item.calibrationDate}</td> : null}
+                {shown.showNextCalibration === true ? <td>{item.nextCalibration}</td> : null}
+                {shown.showCalibrationMethod === true ? <td>{item.calibrationMethod}</td> : null}
+                {shown.showLocation === true ? <td>{item.location}</td> : null}
                 {shown.showIssuedBy === true ? <td>{item.issuedBy}</td> : null}
                 {shown.showIssuedTo === true ? <td>{item.issuedTo}</td> : null}
                 {shown.showRemarks === true ? <td>{item.remarks}</td> : null}
