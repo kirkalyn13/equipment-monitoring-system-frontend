@@ -445,6 +445,10 @@ a:link, a:visited {
   padding-top: 20px;
   border-top: 1px solid #F5F5F5;
 }
+.container-sort{
+  display: flex;
+  width: 100%;
+}
 a:hover, a:active {
   background-color: #FFA000;
   color: #000;
@@ -580,7 +584,7 @@ input[type=checkbox]:after{
   background: #757575;
   border-radius: 8px;
 }
-@media(max-width: 770px){
+@media(max-width: 800px){
   .header{
     flex-direction: column;
   }
@@ -672,6 +676,9 @@ input[type=checkbox]:after{
   .container-item-header, .user-info-header{
     width: 100%;
     margin: 0px;
+  }
+  .container-sort{
+    flex-direction: column;
   }
   .section-title, th, td, .item-header{
     font-size: small;

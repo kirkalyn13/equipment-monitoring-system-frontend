@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import { SERVER } from '../App'
 import { DEPT } from '../App'
 import List from '../components/List'
@@ -11,6 +11,7 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import Filter from '../components/Filter'
 import Equipment from '../components/Equipment'
+import Sort from '../components/Sort'
 
 export const EquipmentContext = React.createContext()
 
@@ -18,11 +19,14 @@ const View = () => {
     const [equip, setEquip] = useState([])
     const [showFilter, setShowFilter] = useState(false)
     const [showAll, setShowAll] = useState(true)
-    const [ loading, setLoading ] = useState(true)
-    const [ showEquipment, setShowEquipment] = useState(false)
-    const [ eqpID, setEqpID ] = useState()
+    const [loading, setLoading ] = useState(true)
+    const [showEquipment, setShowEquipment] = useState(false)
+    const [eqpID, setEqpID ] = useState()
     const [search, setSearch] = useState('')
-    const [filtered, setFiltered] = useState([])
+    const [searched, setSearched] = useState([])
+    const [sortVal, setSortVal] = useState('')
+    const [selectedSort, setSelectedSort] = useState('All')
+    const [sorted, setSorted]  = useState([])
     const [shown, setShown] = useState({
         showName: false,
         showType: false,
@@ -51,26 +55,6 @@ const View = () => {
         })
     }
 
-    /*const extractEquip = () => {
-        axios.get(`http://${SERVER}/extract`).then((response) =>{
-            var dtnow = new Date()
-            var year = dtnow.getFullYear()
-            var month = dtnow.getMonth() + 1
-            var day = dtnow.getDate()
-            var hour = dtnow.getHours()
-            var min = dtnow.getMinutes()
-
-            const dept = DEPT.replace(" ","")
-            const file = response.data
-            const filename = `${dept}Equipment_${year}${month}${day}${hour}${min}.csv`
-            const link = document.createElement("a")
-            link.href = file
-            link.download = `${filename}.csv`
-            link.click()
-        })
-        .catch((error) => console.log(error))
-    }*/
-
     const extractEquip = () => {
         axios.post(`http://${SERVER}/extract`,
             {shown}
@@ -96,14 +80,85 @@ const View = () => {
     }
 
     useEffect(()=>{
-        const searchedVal = equip.filter(val => {
+        console.log(sortVal)
+        const sortedVal = equip.filter(val => {
+            if(sortVal === ''){
+                return val
+            }else{
+                if(selectedSort === 'All'){
+                    return val
+                }else{
+                    switch(sortVal){
+                        case "name":
+                            return val.name === selectedSort
+                            
+                        case "type":
+                            return val.type === selectedSort
+                            
+                        case "model":
+                            return val.model === selectedSort
+                            
+                        case "serial":
+                            return val.serial === selectedSort
+                            
+                        case "description":
+                            return val.description === selectedSort
+                            
+                        case "brand":
+                            return val.brand === selectedSort
+                            
+                        case "price":
+                            return val.price === selectedSort
+                            
+                        case "manufacturer":
+                            return val.manufacturerk
+                        case "expiration":
+                            return val.expiration === selectedSort
+                            
+                        case "purchaseDate":
+                            return val.purchaseDate === selectedSort
+                            
+                        case "calibrationDate":
+                            return val.calibrationDate === selectedSort
+                            
+                        case "calibrationMethod":
+                            return val.calibrationMethod === selectedSort
+                            
+                        case "nextCalibration":
+                            return val.nextCalibration === selectedSort
+                            
+                        case "location":
+                            return val.location === selectedSort
+                            
+                        case "issuedBy":
+                            return val.issuedBy === selectedSort
+                            
+                        case "issuedTo":
+                            return val.issuedTo === selectedSort
+                            
+                        case "remarks":
+                            return val.remarks === selectedSort
+                            
+                        case "status":
+                            return val.status === selectedSort
+                            
+                }
+            }}
+        })
+        const searchedVal = sortedVal.filter(val => {
             if(search === ''){
                 return val
             }else if(val.name.toLowerCase().includes(search.toLowerCase()) || val.serial.toLowerCase().includes(search.toLowerCase())){
                 return val
             }})
-        setFiltered(searchedVal)
-    },[search])
+        setSearched(searchedVal)
+        console.log(sortedVal)
+    },[search,sortVal,selectedSort])
+
+    useEffect(()=>{
+        console.log(sortVal)
+        console.log(selectedSort)
+    },[])
 
     useEffect(()=>{
         if(showAll === true){
@@ -164,11 +219,11 @@ const View = () => {
     },[])
 
     useEffect(()=>{
-        setFiltered(equip)
+        setSearched(equip)
     },[equip])
 
     return (
-        <EquipmentContext.Provider value={{equip, showAll, setShowAll, shown, setShown, showEquipment, setShowEquipment, setEqpID }}>
+        <EquipmentContext.Provider value={{equip, showAll, setShowAll, shown, setShown, showEquipment, setShowEquipment, setEqpID, sortVal, setSortVal, selectedSort, setSelectedSort }}>
             <div className="container-view">
             <div className="container-filter">
                 <div className="section-head">
@@ -213,6 +268,7 @@ const View = () => {
                     </div>
                 </div>
             {showFilter === true ? <Filter /> : null}
+            <Sort data={equip}/>
             </div>
                 <div className="container-equipment-list">
                     <table className="information">
@@ -246,7 +302,7 @@ const View = () => {
                     </tr>
                     </thead> : null}
                     {loading === true ? <CircularProgress color="inherit"/> : null}
-                    {filtered.map((item, key) => (<List key={key} item={item} />))}
+                    {searched.map((item, key) => (<List key={key} item={item} />))}
                     </table>
                     {showEquipment === true ? <Equipment id={eqpID}/> : null}
                 </div>
