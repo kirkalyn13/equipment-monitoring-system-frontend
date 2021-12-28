@@ -9,9 +9,9 @@ import FilterListIcon from '@mui/icons-material/FilterList'
 import CircularProgress from '@mui/material/CircularProgress'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
-import Filter from '../components/Filter'
+import ColumnFilter from '../components/ColumnFilter'
 import Equipment from '../components/Equipment'
-import Sort from '../components/Sort'
+import DataFilter from '../components/DataFilter'
 
 export const EquipmentContext = React.createContext()
 
@@ -26,7 +26,10 @@ const View = () => {
     const [searched, setSearched] = useState([])
     const [sortVal, setSortVal] = useState('')
     const [selectedSort, setSelectedSort] = useState('All')
-    const [sorted, setSorted]  = useState([])
+    const [dataFilter, setDataFilter] = useState({
+        column: '',
+        data: 'All'
+    })
     const [shown, setShown] = useState({
         showName: false,
         showType: false,
@@ -57,7 +60,7 @@ const View = () => {
 
     const extractEquip = () => {
         axios.post(`http://${SERVER}/extract`,
-            {shown}
+            {shown, dataFilter }
           ).then((response)=>{
             var dtnow = new Date()
             var year = dtnow.getFullYear()
@@ -80,7 +83,10 @@ const View = () => {
     }
 
     useEffect(()=>{
-        console.log(sortVal)
+        setDataFilter({
+            column: sortVal,
+            data: selectedSort,
+        })
         const sortedVal = equip.filter(val => {
             if(sortVal === ''){
                 return val
@@ -152,13 +158,7 @@ const View = () => {
                 return val
             }})
         setSearched(searchedVal)
-        console.log(sortedVal)
     },[search,sortVal,selectedSort])
-
-    useEffect(()=>{
-        console.log(sortVal)
-        console.log(selectedSort)
-    },[])
 
     useEffect(()=>{
         if(showAll === true){
@@ -222,6 +222,10 @@ const View = () => {
         setSearched(equip)
     },[equip])
 
+    useEffect(()=>{
+        setSelectedSort('All')
+    },[sortVal])
+
     return (
         <EquipmentContext.Provider value={{equip, showAll, setShowAll, shown, setShown, showEquipment, setShowEquipment, setEqpID, sortVal, setSortVal, selectedSort, setSelectedSort }}>
             <div className="container-view">
@@ -246,7 +250,7 @@ const View = () => {
                         style={{backgroundColor: '#FFA000', color: '#000', fontWeight:"bold", margin:"10px"}}
                         startIcon={<FilterListIcon />}
                         >
-                        FILTER
+                        COLUMNS
                         </Button>
                         <Button
                         onClick={extractEquip}
@@ -267,8 +271,8 @@ const View = () => {
                         </Button>}
                     </div>
                 </div>
-            {showFilter === true ? <Filter /> : null}
-            <Sort data={equip}/>
+            {showFilter === true ? <ColumnFilter /> : null}
+            <DataFilter data={equip}/>
             </div>
                 <div className="container-equipment-list">
                     <table className="information">

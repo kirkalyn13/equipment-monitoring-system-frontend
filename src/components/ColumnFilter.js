@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 import { EquipmentContext } from '../routes/View'
 
-const Filter = () => {
+const ColumnFilter = () => {
     const { showAll, setShowAll, shown, setShown } = useContext(EquipmentContext)
     
     const handleShowAll = () => {
@@ -263,4 +263,4 @@ const Filter = () => {
     )
 }
 
-export default Filter
+export default ColumnFilter

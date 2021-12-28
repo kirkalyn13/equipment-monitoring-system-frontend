@@ -17,7 +17,7 @@ const itemStyle = {
     fontWeight: 'bold',
 }
 
-const Sort = ({data}) => {
+const DataFilter = ({data}) => {
     const [sortList, setSortList] = useState([])
     const {sortVal, setSortVal, selectedSort, setSelectedSort} = useContext(EquipmentContext)
 
@@ -96,7 +96,7 @@ const Sort = ({data}) => {
     return (
         <div className="section-head">
         <div className="section-title">
-            <h3>Sort Data By:</h3>
+            <h3>Filter By:</h3>
             <div className="container-sort">
             <Select
                 value={sortVal}
@@ -105,7 +105,7 @@ const Sort = ({data}) => {
                 color="secondary"
                 
                 >
-                    <MenuItem style={itemStyle} value={""}>Default</MenuItem>
+                    <MenuItem style={itemStyle} value={""}>All</MenuItem>
                     <MenuItem style={itemStyle} value={"name"}>Name</MenuItem>
                     <MenuItem style={itemStyle} value={"type"}>Type</MenuItem>
                     <MenuItem style={itemStyle} value={"model"}>Model</MenuItem>
@@ -139,4 +139,4 @@ const Sort = ({data}) => {
     )
 }
 
-export default Sort
+export default DataFilter
