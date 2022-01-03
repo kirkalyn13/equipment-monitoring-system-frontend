@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { SERVER } from '../App'
 import axios from 'axios'
 import Button from '@mui/material/Button'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
+import { LoginContext } from '../App'
 
 const statusOptions = [
     {
@@ -32,6 +33,7 @@ const statusOptions = [
   ]
 
 const Add = () => {
+    const {user} = useContext(LoginContext)
     const [submitState, setSubmitState] = useState(false)
     const [certificate, setCertificate] = useState('')
     const [image, setImage] = useState('')
@@ -81,7 +83,7 @@ const Add = () => {
           eqpRemarks: values.eqpRemarks,
           eqpStatus: values.eqpStatus,
           eqpCertificate: values.eqpCertificate,
-          eqpImage: values.eqpImage
+          eqpImage: values.eqpImage,
         }).then((response)=>{
             setNewID(response.data[0].id)
             alert(`Added ${values.eqpName} (${values.eqpSerial}).`)
@@ -109,6 +111,7 @@ const Add = () => {
           eqpRemarks: values.eqpRemarks,
           eqpStatus: values.eqpStatus,
           eqpCertificate: values.eqpCertificate,
+          modifiedBy: user.username
         }).then(()=>{
           console.log("Logged New Equipment.")
         })

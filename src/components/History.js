@@ -55,6 +55,7 @@ const History = ({itemID}) => {
                 <th>STATUS</th>
                 <th>REMARKS</th>
                 <th>CERTIFICATE</th>
+                <th>MODIFIED BY</th>
             </tr>
             </thead>
             <tbody>
@@ -85,6 +86,7 @@ const History = ({itemID}) => {
                                 <SaveAltIcon onClick={() => downloadCertificate(entry.id, entry.timestamp)} />
                             </IconButton>) : null}
                         </td>
+                        <td>{entry.modifiedBy}</td>
                     </tr>
                 )
             })}

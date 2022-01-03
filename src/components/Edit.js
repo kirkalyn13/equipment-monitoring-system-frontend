@@ -5,6 +5,7 @@ import { ReloadContext } from '../routes/Manage'
 import { SERVER } from '../App'
 import Button from '@mui/material/Button'
 import EditIcon from '@mui/icons-material/Edit'
+import { LoginContext } from '../App'
 
 
 const statusOptions = [
@@ -36,6 +37,7 @@ const statusOptions = [
 
 const Edit = ({info}) => {
     const { setShowEdit } = useContext(EditContext)
+    const { user } = useContext(LoginContext)
     const {reload, setReload} = useContext(ReloadContext)
 
     const fieldValues = {
@@ -113,6 +115,7 @@ const Edit = ({info}) => {
           eqpRemarks: values.eqpRemarks,
           eqpStatus: values.eqpStatus,
           eqpCertificate: values.eqpCertificate,
+          modifiedBy: user.username
         }).then(()=>{
             console.log("Updated change logs.")
         })
