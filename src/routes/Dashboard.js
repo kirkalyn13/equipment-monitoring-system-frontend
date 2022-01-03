@@ -5,8 +5,6 @@ import Pending from '../components/Pending'
 import axios from 'axios'
 import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
-import moment from 'moment'
-
 
 const Dashboard = ({dept}) => {
     const [pending, setPending] = useState([])
@@ -17,11 +15,8 @@ const Dashboard = ({dept}) => {
     const getPending = () => {
         axios.get(`http://${SERVER}/allequipment`).then((response)=>{ 
             setTotal(response.data.length)
-            const filtered = response.data.filter(val => {
-                return -(moment().diff(val.nextCalibration, "days")) <= 30
-            }
-            )
-            setPending([...filtered])
+            const pendingFiltered = response.data.filter(val => val.status === "For Calibration")
+            setPending([...pendingFiltered])
             setAlertTrigger(!alertTrigger)
         })
     }
