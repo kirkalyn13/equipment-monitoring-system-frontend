@@ -4,14 +4,22 @@ import { SERVER } from '../App'
 import IconButton from '@mui/material/IconButton'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import SaveAltIcon from '@mui/icons-material/SaveAlt'
+import HistoryIcon from '@mui/icons-material/History'
 import axios from 'axios'
 
 
 const List = ({item}) => {
-    const { shown, showEquipment, setShowEquipment, setEqpID } = useContext(EquipmentContext)
+    const { shown, showEquipment, setShowEquipment, setEqpID, showHistory, setShowHistory, setShowFilterTab } = useContext(EquipmentContext)
     
     const toggleEquipment = (id) => {
-        setShowEquipment(!showEquipment)
+        setShowEquipment(true)
+        setShowFilterTab(false)
+        setEqpID(id)
+    }
+
+    const toggleHistory = (id) => {
+        setShowHistory(true)
+        setShowFilterTab(false)
         setEqpID(id)
     }
 
@@ -30,12 +38,17 @@ const List = ({item}) => {
 
     return (
         <>
-            {showEquipment === false ?
+            {showEquipment === false && showHistory === false ?
             <tbody>
             <tr>
                 <td>
                 <IconButton aria-label="edit" color="inherit" onClick={() => toggleEquipment(item.id)}>
                     <OpenInNewIcon  />
+                </IconButton>
+                </td>
+                <td>
+                <IconButton aria-label="edit" color="inherit" onClick={() => toggleHistory(item.id)}>
+                    <HistoryIcon  />
                 </IconButton>
                 </td>
                 {shown.showName === true ? <td>{item.name}</td> : null}

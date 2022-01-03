@@ -10,7 +10,6 @@ import Add from './routes/Add'
 import Manage from './routes/Manage'
 import Login from './routes/Login'
 import Users from './routes/Users'
-import HistoryTab from './routes/HistoryTab';
 import ProtectedRoute from './routes/ProtectedRoute'
 
 const SCHOOL = "School of Engineering and Architecture"
@@ -52,9 +51,6 @@ function App() {
             </Route>
             <Route path="/view">
               <View />
-            </Route>
-            <Route path="/history">
-              <HistoryTab />
             </Route>
             <ProtectedRoute path="/add" 
             allowedRoles={["admin","super"]} userRole={user.role}

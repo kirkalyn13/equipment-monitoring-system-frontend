@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { SERVER } from '../App'
 import { DEPT } from '../App'
 import List from '../components/List'
+import History from '../components/History'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import IconButton from '@mui/material/IconButton'
@@ -21,11 +22,13 @@ const View = () => {
     const [showAll, setShowAll] = useState(true)
     const [loading, setLoading ] = useState(true)
     const [showEquipment, setShowEquipment] = useState(false)
+    const [showHistory, setShowHistory] = useState(false)
     const [eqpID, setEqpID ] = useState()
     const [search, setSearch] = useState('')
     const [searched, setSearched] = useState([])
     const [sortVal, setSortVal] = useState('')
     const [selectedSort, setSelectedSort] = useState('All')
+    const [showFilterTab, setShowFilterTab] = useState(true)
     const [dataFilter, setDataFilter] = useState({
         column: '',
         data: 'All'
@@ -209,8 +212,10 @@ const View = () => {
         }
     },[showAll])
 
-    const toggleEquipment = () => {
-        setShowEquipment(!showEquipment)
+    const toggleViews = () => {
+        setShowEquipment(false)
+        setShowHistory(false)
+        setShowFilterTab(true)
     }
 
     useEffect(() => {
@@ -227,7 +232,7 @@ const View = () => {
     },[sortVal])
 
     return (
-        <EquipmentContext.Provider value={{equip, showAll, setShowAll, shown, setShown, showEquipment, setShowEquipment, setEqpID, sortVal, setSortVal, selectedSort, setSelectedSort }}>
+        <EquipmentContext.Provider value={{equip, showAll, setShowAll, shown, setShown, showEquipment, setShowEquipment, setEqpID, sortVal, setSortVal, selectedSort, setSelectedSort, showHistory, setShowHistory, setShowFilterTab }}>
             <div className="container-view">
             <div className="container-filter">
                 <div className="section-head">
@@ -242,7 +247,7 @@ const View = () => {
                         </div>       
                     </div>
                     <div className="buttons">
-                        {showEquipment === false ?
+                        {showEquipment === false  && showHistory === false ?
                         <>
                         <Button
                         onClick={toggleShowFilter} 
@@ -262,7 +267,7 @@ const View = () => {
                         </Button>
                         </> : 
                         <Button
-                        onClick={toggleEquipment}
+                        onClick={toggleViews}
                         variant="contained"
                         style={{backgroundColor: '#FFA000', color: '#000', fontWeight:"bold", margin:"10px"}}
                         startIcon={<KeyboardReturnIcon />}
@@ -272,11 +277,11 @@ const View = () => {
                     </div>
                 </div>
             {showFilter === true ? <ColumnFilter /> : null}
-            <DataFilter data={equip}/>
+            {showFilterTab === true ? <DataFilter data={equip}/> : null}
             </div>
                 <div className="container-equipment-list">
                     <table className="information">
-                    {showEquipment === false ?
+                    {showEquipment === false && showHistory === false ?
                     <thead>
                     <tr>
                         <th>
@@ -284,6 +289,7 @@ const View = () => {
                                 <FilterListIcon />
                             </IconButton>
                         </th>
+                        <th>HISTORY</th>
                         {shown.showName === true ? <th>NAME</th> : null}
                         {shown.showType === true ? <th>TYPE</th> : null}
                         {shown.showModel === true ? <th>MODEL</th> : null}
@@ -309,6 +315,16 @@ const View = () => {
                     {searched.map((item, key) => (<List key={key} item={item} />))}
                     </table>
                     {showEquipment === true ? <Equipment id={eqpID}/> : null}
+                    {showHistory === true ? 
+                    <>
+                    <div className="container-search">
+                        <div className="section-title">
+                            <img className="section-logo" src="/img/history.png" alt="" height="50px" width="50px" />
+                            <h2 color="#FFFFFF">Equipment History</h2>
+                        </div>
+                    </div>
+                    <History itemID={eqpID}/>
+                    </> : null}
                 </div>
             </div>
         </EquipmentContext.Provider>

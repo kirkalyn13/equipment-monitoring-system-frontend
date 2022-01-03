@@ -100,38 +100,37 @@ const DataFilter = ({data}) => {
             <div className="container-sort">
             <Select
                 value={sortVal}
-                style={selectStyle}
+                sx={selectStyle}
                 onChange={handleChangeSortVal}
-                color="secondary"
-                
+                color="secondary"      
                 >
-                    <MenuItem style={itemStyle} value={""}>All</MenuItem>
-                    <MenuItem style={itemStyle} value={"name"}>Name</MenuItem>
-                    <MenuItem style={itemStyle} value={"type"}>Type</MenuItem>
-                    <MenuItem style={itemStyle} value={"model"}>Model</MenuItem>
-                    <MenuItem style={itemStyle} value={"serial"}>Serial</MenuItem>
-                    <MenuItem style={itemStyle} value={"description"}>Description</MenuItem>
-                    <MenuItem style={itemStyle} value={"brand"}>Brand</MenuItem>
-                    <MenuItem style={itemStyle} value={"price"}>Value</MenuItem>
-                    <MenuItem style={itemStyle} value={"manufacturer"}>Manufacturer</MenuItem>
-                    <MenuItem style={itemStyle} value={"expiration"}>Expiration</MenuItem>
-                    <MenuItem style={itemStyle} value={"purchaseDate"}>Purchase Date</MenuItem>
-                    <MenuItem style={itemStyle} value={"calibrationDate"}>Calibration Date</MenuItem>
-                    <MenuItem style={itemStyle} value={"calibrationMethod"}>Calibration Method</MenuItem>
-                    <MenuItem style={itemStyle} value={"nextCalibration"}>Next Calibration</MenuItem>
-                    <MenuItem style={itemStyle} value={"location"}>Location</MenuItem>
-                    <MenuItem style={itemStyle} value={"issuedBy"}>Issued By</MenuItem>
-                    <MenuItem style={itemStyle} value={"issuedTo"}>Issued To</MenuItem>
-                    <MenuItem style={itemStyle} value={"remarks"}>Remarks</MenuItem>
-                    <MenuItem style={itemStyle} value={"status"}>Status</MenuItem>
+                    <MenuItem sx={itemStyle} value={""}>All</MenuItem>
+                    <MenuItem sx={itemStyle} value={"name"}>Name</MenuItem>
+                    <MenuItem sx={itemStyle} value={"type"}>Type</MenuItem>
+                    <MenuItem sx={itemStyle} value={"model"}>Model</MenuItem>
+                    <MenuItem sx={itemStyle} value={"serial"}>Serial</MenuItem>
+                    <MenuItem sx={itemStyle} value={"description"}>Description</MenuItem>
+                    <MenuItem sx={itemStyle} value={"brand"}>Brand</MenuItem>
+                    <MenuItem sx={itemStyle} value={"price"}>Value</MenuItem>
+                    <MenuItem sx={itemStyle} value={"manufacturer"}>Manufacturer</MenuItem>
+                    <MenuItem sx={itemStyle} value={"expiration"}>Expiration</MenuItem>
+                    <MenuItem sx={itemStyle} value={"purchaseDate"}>Purchase Date</MenuItem>
+                    <MenuItem sx={itemStyle} value={"calibrationDate"}>Calibration Date</MenuItem>
+                    <MenuItem sx={itemStyle} value={"calibrationMethod"}>Calibration Method</MenuItem>
+                    <MenuItem sx={itemStyle} value={"nextCalibration"}>Next Calibration</MenuItem>
+                    <MenuItem sx={itemStyle} value={"location"}>Location</MenuItem>
+                    <MenuItem sx={itemStyle} value={"issuedBy"}>Issued By</MenuItem>
+                    <MenuItem sx={itemStyle} value={"issuedTo"}>Issued To</MenuItem>
+                    <MenuItem sx={itemStyle} value={"remarks"}>Remarks</MenuItem>
+                    <MenuItem sx={itemStyle} value={"status"}>Status</MenuItem>
                 </Select>
                 <Select
                 value={selectedSort}
-                style={selectStyle}
+                sx={selectStyle}
                 onChange={handleChangeSelectedSort}
                 color="secondary"
                 >
-                    {sortList.map((val, key) => <MenuItem key={key} style={itemStyle} value={val}>{val}</MenuItem>)}
+                    {sortList.map((val, key) => <MenuItem key={key} sx={itemStyle} value={val}>{val}</MenuItem>)}
                 </Select>
             </div>
         </div>
