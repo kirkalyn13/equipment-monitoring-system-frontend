@@ -35,8 +35,6 @@ const statusOptions = [
 const Add = () => {
     const {user} = useContext(LoginContext)
     const [submitState, setSubmitState] = useState(false)
-    const [certificate, setCertificate] = useState('')
-    const [image, setImage] = useState('')
     const initialFieldValues = {
         eqpName: '',
         eqpType: '',
@@ -56,8 +54,8 @@ const Add = () => {
         eqpIssuedTo: '',
         eqpRemarks: '',
         eqpStatus: 'Offline',
-        eqpCertificate: '',
-        eqpImage: '',
+        eqpCertificate: null,
+        eqpImage: null,
     }
     const [ values, setValues ] = useState(initialFieldValues)
     const [ newID, setNewID ] = useState(null)
@@ -204,7 +202,7 @@ const Add = () => {
                             <label>Image: </label>
                             <input type="file"
                                 onChange={onChangeImageHandler}
-                                name="eqpImage" value={image}
+                                name="eqpImage" /*value={image}*/
                                 accept="image/*"
                                 placeholder="Equipment Image"
                                 style={{border:"inherit"}}/>
@@ -275,7 +273,7 @@ const Add = () => {
                         <label>Certificate: </label>
                         <input type="file"
                         onChange={onChangeFileHandler}
-                        name="eqpCertificate" value={certificate}
+                        name="eqpCertificate" /*value={certificate}*/
                         accept="application/pdf"
                         placeholder="Latest Calibration Certificate"
                         style={{border:"inherit"}}/>

@@ -24,7 +24,6 @@ const  User = ({user}) => {
       }
 
     const editUser = () => {
-        console.log(values.id)
         const r = window.confirm(`Are you sure you want to edit ${values.username}?`)
         if(r === true){
             axios.put(`http://${SERVER}/edituser/${values.id}`,{
