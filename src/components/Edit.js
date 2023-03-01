@@ -5,6 +5,7 @@ import { ReloadContext } from '../routes/Manage'
 import { SERVER } from '../App'
 import Button from '@mui/material/Button'
 import EditIcon from '@mui/icons-material/Edit'
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import Switch from '@mui/material/Switch'
 import { LoginContext } from '../App'
 
@@ -41,9 +42,9 @@ const statusOptions = [
   ]
 
 const Edit = ({info}) => {
-    const { setShowEdit } = useContext(EditContext)
+    const { setShowEdit, toggleEdit } = useContext(EditContext)
     const { user } = useContext(LoginContext)
-    const {reload, setReload} = useContext(ReloadContext)
+    const {reload, setReload } = useContext(ReloadContext)
 
     const fieldValues = {
         eqpName: info.name,
@@ -161,7 +162,7 @@ const Edit = ({info}) => {
         logChanges()
         editEquipment()
         setSubmitState(!submitState)
-        setShowEdit(false)
+        toggleEdit()
         setReload(!reload)
         }
 
@@ -176,6 +177,14 @@ const Edit = ({info}) => {
                     <img className="section-logo" src="/img/edit.png" alt="" height="50px" width="50px" />
                     <h2 color="#FFFFFF">Edit Equipment Information</h2>
                 </div>
+                <Button
+                        onClick={toggleEdit}
+                        variant="contained"
+                        style={{backgroundColor: '#FFA000', color: '#000', fontWeight:"bold", margin:"10px"}}
+                        startIcon={<KeyboardReturnIcon />}
+                        >
+                        RETURN
+                        </Button>
             </div>
             <form className="input-info" autoComplete="off" onSubmit={handleFormSubmit}>
                 <div className="container-details">

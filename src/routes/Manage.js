@@ -25,11 +25,12 @@ const itemStyle = {
 const Manage = () => {
     const [ items, setItems ] = useState([])
     const [ reload, setReload ] = useState(false)
-    const [search, setSearch] = useState('')
-    const [filtered, setFiltered] = useState([])
+    const [ search, setSearch ] = useState('')
+    const [ filtered, setFiltered ] = useState([])
     const [ loading, setLoading ] = useState(true)
-    const [statusList, setStatusList] = useState([])
-    const [sortedStatus, setSortedStatus] = useState("All")
+    const [ statusList, setStatusList ] = useState([])
+    const [ showItems, setShowItems ] = useState(true)
+    const [ sortedStatus, setSortedStatus ] = useState("All")
 
     const getItems = () => {
         axios.get(`http://${SERVER}/allequipment`).then((response)=>{
@@ -82,7 +83,7 @@ const Manage = () => {
     },[sortedStatus])
 
     return (
-        <ReloadContext.Provider value={{reload, setReload}}>
+        <ReloadContext.Provider value={{reload, setReload, showItems, setShowItems}}>
             <div className="container-manage">  
             <div className="container-search">
             <div className="section-title">

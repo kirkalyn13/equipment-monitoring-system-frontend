@@ -11,7 +11,7 @@ export const EditContext = React.createContext()
 
 const Item = ({item}) => {
     const [ showEdit, setShowEdit ] = useState(false)
-    const {reload, setReload} = useContext(ReloadContext)
+    const {reload, setReload, showItems, setShowItems } = useContext(ReloadContext)
 
     const deleteEquipment = () => {
         const r = window.confirm(`Are you sure you want to permanently delete ${item.name} (${item.serial}) from the records?`)
@@ -26,10 +26,14 @@ const Item = ({item}) => {
         
       }
 
-    const toggleEdit = () => setShowEdit(!showEdit)
+    const toggleEdit = () => {
+        setShowItems(!showItems)
+        setShowEdit(!showEdit)
+    }
 
     return (
-        <EditContext.Provider value={{setShowEdit}}>
+        <EditContext.Provider value={{setShowEdit, toggleEdit}}>
+            {showItems ?
             <div className="container-item">
                 <div className="item-details">
                     <p className="item-info">{item.name}</p>
@@ -46,6 +50,8 @@ const Item = ({item}) => {
                     </IconButton>
                 </div>
             </div>
+            :
+            null}
             {showEdit === true ? <Edit info={item}/> : null}
         </EditContext.Provider>
     )
