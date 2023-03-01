@@ -252,6 +252,11 @@ body{
 .search-bar{
   margin: 0px 10px;
 }
+.status-filter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 @keyframes critical{
   from{background-color: #D32F2F;

@@ -34,7 +34,7 @@ const Dashboard = ({dept}) => {
     return (
         <div className="container-dashboard">
             <h1 className="dashboard-title">{dept} Equipment Dashboard</h1>
-            {showAlert === true ? <Alert
+            {showAlert === true && pending.length > 0 ? <Alert
                 severity="error"
                 variant="filled"
                 style={{ color:'#FFF',fontWeight:'bold', fontSize:"large", margin:"2px 20px"}}
