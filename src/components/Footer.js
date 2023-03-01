@@ -1,10 +1,16 @@
 import React from 'react'
 
+const currentYear = () => {
+    const d = new Date();
+    let year = d.getFullYear();
+    return year
+  }
+
 const Footer = () => {
     return (
         <footer className="footer">
             <div>
-                Copyright © 2021 Equipment Monitoring System. Powered by Metro Eagle Solutions.
+                Copyright © {currentYear()}. Equipment Monitoring System.
             </div>
       </footer>
     )
