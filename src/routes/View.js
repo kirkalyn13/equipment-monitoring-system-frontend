@@ -47,6 +47,7 @@ const View = () => {
         showCalibrationDate: false,
         showNextCalibration: false,
         showCalibrationMethod: false,
+        showForMaintenance: false,
         showLocation : false,
         showIssuedBy: false,
         showIssuedTo: false,
@@ -120,7 +121,7 @@ const View = () => {
                             return val.price === selectedSort
                             
                         case "manufacturer":
-                            return val.manufacturerk
+                            return val.manufacturer === selectedSort
                         case "expiration":
                             return val.expiration === selectedSort
                             
@@ -135,6 +136,9 @@ const View = () => {
                             
                         case "nextCalibration":
                             return val.nextCalibration === selectedSort
+
+                        case "forMaintenance":
+                            return val.forMaintenance === selectedSort
                             
                         case "location":
                             return val.location === selectedSort
@@ -179,6 +183,7 @@ const View = () => {
                 showCalibrationDate: true,
                 showNextCalibration: true,
                 showCalibrationMethod: true,
+                showForMaintenance: true,
                 showLocation : true,
                 showIssuedBy: true,
                 showIssuedTo: true,
@@ -202,6 +207,7 @@ const View = () => {
                 showCalibrationDate: false,
                 showNextCalibration: false,
                 showCalibrationMethod: false,
+                showForMaintenance: false,
                 showLocation : false,
                 showIssuedBy: false,
                 showIssuedTo: false,
@@ -303,6 +309,7 @@ const View = () => {
                         {shown.showCalibrationDate === true ? <th>LAST CALIBRATION</th> : null}
                         {shown.showNextCalibration === true ? <th>NEXT CALIBRATION</th> : null}
                         {shown.showCalibrationMethod === true ? <th>CALIBRATION METHOD</th> : null}
+                        {shown.showForMaintenance === true ? <th>FOR MAINTENANCE</th> : null}
                         {shown.showLocation === true ? <th>LOCATION</th> : null}
                         {shown.showIssuedBy === true ? <th>ISSUED BY</th> : null}
                         {shown.showIssuedTo === true ? <th>ISSUED TO</th> : null}

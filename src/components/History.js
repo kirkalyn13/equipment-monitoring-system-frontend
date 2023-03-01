@@ -49,6 +49,7 @@ const History = ({itemID}) => {
                 <th>LAST CALIBRATION</th>
                 <th>NEXT CALIBRATION</th>
                 <th>CALIBRATION METHOD</th>
+                <th>FOR MAINTENANCE</th>
                 <th>LOCATION</th>
                 <th>ISSUED BY</th>
                 <th>ISSUED TO</th>
@@ -76,6 +77,7 @@ const History = ({itemID}) => {
                         <td>{entry.calibrationDate}</td>
                         <td>{entry.nextCalibration}</td>
                         <td>{entry.calibrationMethod}</td>
+                        <td>{entry.forMaintenance}</td>
                         <td>{entry.location}</td>
                         <td>{entry.issuedBy}</td>
                         <td>{entry.issuedTo}</td>

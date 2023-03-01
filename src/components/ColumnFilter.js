@@ -62,6 +62,10 @@ const ColumnFilter = () => {
         setShown({...shown, showCalibrationMethod: !shown.showCalibrationMethod})
     }
 
+    const handleShowForMaintenance = () => {
+        setShown({...shown, showForMaintenance: !shown.showForMaintenance})
+    }
+
     const handleShowLocation = () => {
         setShown({...shown, showLocation: !shown.showLocation})
     }
@@ -122,8 +126,6 @@ const ColumnFilter = () => {
                     />
                     Model
                     </label>
-            </div>
-            <div className="checkbox-column">
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
@@ -132,6 +134,8 @@ const ColumnFilter = () => {
                     />
                     Serial
                     </label>
+            </div>
+            <div className="checkbox-column">
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
@@ -156,8 +160,6 @@ const ColumnFilter = () => {
                     />
                     Price
                     </label>
-            </div>
-            <div className="checkbox-column">
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
@@ -174,6 +176,8 @@ const ColumnFilter = () => {
                     />
                     Expiration
                     </label>
+            </div>
+            <div className="checkbox-column">
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
@@ -190,8 +194,6 @@ const ColumnFilter = () => {
                     />
                     Calibration Date
                     </label>
-            </div>
-            <div className="checkbox-column">
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
@@ -211,6 +213,16 @@ const ColumnFilter = () => {
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
+                        checked={shown.showForMaintenance}
+                        onChange={handleShowForMaintenance}
+                    />
+                    For Maintenance
+                    </label>
+            </div>
+            <div className="checkbox-column">
+                <label className="checkbox-label">
+                    <input
+                        type="checkbox"
                         checked={shown.showLocation}
                         onChange={handleShowLocation}
                     />
@@ -224,8 +236,6 @@ const ColumnFilter = () => {
                 />
                     Issued By
                     </label>
-            </div>
-            <div className="checkbox-column">
                 <label className="checkbox-label">
                     <input
                         type="checkbox"
@@ -250,6 +260,8 @@ const ColumnFilter = () => {
                     />
                     Remarks
                     </label>
+            </div>
+            <div className="checkbox-column">
                 <label className="checkbox-label">
                     <input
                         type="checkbox"

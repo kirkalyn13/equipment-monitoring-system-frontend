@@ -5,6 +5,7 @@ import { ReloadContext } from '../routes/Manage'
 import { SERVER } from '../App'
 import Button from '@mui/material/Button'
 import EditIcon from '@mui/icons-material/Edit'
+import Switch from '@mui/material/Switch'
 import { LoginContext } from '../App'
 
 
@@ -58,6 +59,7 @@ const Edit = ({info}) => {
         eqpCalibDate: info.calibrationDate,
         eqpNextCalib: info.nextCalibration,
         eqpCalibMethod: info.calibrationMethod,
+        eqpForMaintenance: info.forMaintenance,
         eqpLoc : info.location,
         eqpIssuedBy: info.issuedBy,
         eqpIssuedTo: info.issuedTo,
@@ -70,8 +72,10 @@ const Edit = ({info}) => {
     const [submitState, setSubmitState] = useState(false)
     const [certificate, setCertificate] = useState(null)
     const [image, setImage] = useState(null)
+    const [forMaintenance, setForMaintenance] = useState(info.forMaintenance === "Yes" ? true : false)
 
     const editEquipment = () => {
+        console.log(forMaintenance ? "Yes" : "No")
         axios.put(`http://${SERVER}/edit/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
@@ -86,6 +90,7 @@ const Edit = ({info}) => {
           eqpCalibDate: values.eqpCalibDate,
           eqpNextCalib: values.eqpNextCalib,
           eqpCalibMethod: values.eqpCalibMethod,
+          eqpForMaintenance: forMaintenance ? "Yes" : "No",
           eqpLoc : values.eqpLoc,
           eqpIssuedBy: values.eqpIssuedBy,
           eqpIssuedTo: values.eqpIssuedTo,
@@ -113,6 +118,7 @@ const Edit = ({info}) => {
           eqpCalibDate: values.eqpCalibDate,
           eqpNextCalib: values.eqpNextCalib,
           eqpCalibMethod: values.eqpCalibMethod,
+          eqpForMaintenance: forMaintenance ? "Yes" : "No",
           eqpLoc : values.eqpLoc,
           eqpIssuedBy: values.eqpIssuedBy,
           eqpIssuedTo: values.eqpIssuedTo,
@@ -147,7 +153,9 @@ const Edit = ({info}) => {
             setValues({...values, eqpImage: reader.result})
         }
     }
-    
+
+    const onChangeMaintenance = (e) => setForMaintenance(e.target.checked)
+
     const handleFormSubmit = e => {
         e.preventDefault()
         logChanges()
@@ -277,6 +285,14 @@ const Edit = ({info}) => {
                             <div className="detail-title">
                                 <img className="section-logo" src="/img/others.png" alt="" height="50px" width="50px" />
                                 <h2 color="#FFFFFF">Other Details</h2>
+                            </div>
+                            <div>
+                                <label>For Maintenance: </label>
+                                <Switch 
+                                checked={forMaintenance}
+                                onChange={onChangeMaintenance} 
+                                color="warning"
+                                />
                             </div>
                             <label>Issued By: </label>
                             <input type="text"

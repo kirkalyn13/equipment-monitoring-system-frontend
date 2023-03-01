@@ -71,6 +71,9 @@ const DataFilter = ({data}) => {
             case "nextCalibration":
                 sortDataList = data.map(val => val.nextCalibration)
                 break
+            case "forMaintenance":
+                sortDataList = data.map(val => val.forMaintenance)
+                break
             case "location":
                 sortDataList = data.map(val => val.location)
                 break
@@ -96,7 +99,7 @@ const DataFilter = ({data}) => {
     return (
         <div className="section-head">
         <div className="section-title">
-            <h3>Filter By:</h3>
+            <h3>Filter:</h3>
             <div className="container-sort">
             <Select
                 value={sortVal}
@@ -118,6 +121,7 @@ const DataFilter = ({data}) => {
                     <MenuItem sx={itemStyle} value={"calibrationDate"}>Calibration Date</MenuItem>
                     <MenuItem sx={itemStyle} value={"calibrationMethod"}>Calibration Method</MenuItem>
                     <MenuItem sx={itemStyle} value={"nextCalibration"}>Next Calibration</MenuItem>
+                    <MenuItem sx={itemStyle} value={"forMaintenance"}>For Maintenance</MenuItem>
                     <MenuItem sx={itemStyle} value={"location"}>Location</MenuItem>
                     <MenuItem sx={itemStyle} value={"issuedBy"}>Issued By</MenuItem>
                     <MenuItem sx={itemStyle} value={"issuedTo"}>Issued To</MenuItem>

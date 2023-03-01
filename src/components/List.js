@@ -64,6 +64,7 @@ const List = ({item}) => {
                 {shown.showCalibrationDate === true ? <td>{item.calibrationDate}</td> : null}
                 {shown.showNextCalibration === true ? <td>{item.nextCalibration}</td> : null}
                 {shown.showCalibrationMethod === true ? <td>{item.calibrationMethod}</td> : null}
+                {shown.showForMaintenance === true ? <td>{item.forMaintenance}</td> : null}
                 {shown.showLocation === true ? <td>{item.location}</td> : null}
                 {shown.showIssuedBy === true ? <td>{item.issuedBy}</td> : null}
                 {shown.showIssuedTo === true ? <td>{item.issuedTo}</td> : null}

@@ -74,7 +74,6 @@ const Manage = () => {
 
     // Filter by status
     useEffect(()=>{
-        console.log(sortedStatus)
         if (sortedStatus === "All") setFiltered(items)
         else {
             const filteredByStatus = items.filter(item => item.status === sortedStatus)
@@ -117,8 +116,8 @@ const Manage = () => {
                 </div>
             </div>
             {loading === true ? <CircularProgress color="inherit"/> : null}
-            {filtered.map((item, key) =>{
-                    return  <Item key={key} item={item} />
+            {filtered.map((item) =>{
+                    return  <Item key={item.serialNumber} item={item} />
                 })}
             </div>
         </ReloadContext.Provider>
