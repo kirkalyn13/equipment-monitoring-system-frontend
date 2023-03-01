@@ -25,12 +25,16 @@ const statusOptions = [
     {
         label: "For Repair",
         value: "For Repair",
-      },
-      {
+    },
+    {
         label: "For Calibration",
         value: "For Calibration",
-      },
-  ]
+    },
+    {
+        label: "For Maintenance",
+        value: "For Maintenance",
+    },
+]
 
 const Add = () => {
     const {user} = useContext(LoginContext)
@@ -234,12 +238,12 @@ const Add = () => {
                     </div>
                     <div className="details-column">
                         <label>Expiration: </label>
-                        <input type="date"
+                        <input type="date" required
                         onChange={handleInputChange}
                         name="eqpExp" value={values.eqpExp}
                             placeholder="Expiration/Warranty"/>
                         <label>Purchase Date: </label>
-                        <input type="date"
+                        <input type="date" required
                         onChange={handleInputChange}
                         name="eqpPurchaseDate" value={values.eqpPurchaseDate}
                             placeholder="Purchase Date"/>
@@ -254,12 +258,12 @@ const Add = () => {
                 <div className="details">
                     <div className="details-column">
                         <label>Calibration Date: </label>
-                        <input type="date"
+                        <input type="date" required
                         onChange={handleInputChange}
                         name="eqpCalibDate" value={values.eqpCalibDate}
                             placeholder="Calibraton Date"/>
                         <label>Next Calibration Date: </label>
-                        <input type="date"
+                        <input type="date" required
                         onChange={handleInputChange}
                         name="eqpNextCalib" value={values.eqpNextCalib}
                             placeholder="Next Calibration Date"/>
