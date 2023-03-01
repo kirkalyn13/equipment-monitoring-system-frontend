@@ -57,7 +57,7 @@ const Percentage = ({done, pending}) => {
       }
     return (
         <div className="percent">
-            <h2>Equipment Maintenance Percentage</h2>
+            <h2>Equipment Calibration Percentage</h2>
             <ReactApexChart options={options} series={series} type="donut" height={350}/>
         </div>
     )

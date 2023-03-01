@@ -11,16 +11,18 @@ const Pending = ({pending}) => {
                         <th>Name</th>
                         <th>Type</th>
                         <th>Next Calibration</th>
+                        <th>Location</th>
                     </tr>
                     </thead>
                     <tbody>
                     {pending.map((entry, key) => {
                     return(
                         
-                        <tr key={key}>
+                        <tr key={entry.id}>
                             <td className="td-critical">{entry.name}</td>
                             <td className="td-critical">{entry.type}</td>
                             <td className="td-critical">{entry.nextCalibration}</td>
+                            <td className="td-critical">{entry.location}</td>
                         </tr> 
                     )
                 })}

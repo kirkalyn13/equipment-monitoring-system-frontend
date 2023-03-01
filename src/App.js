@@ -13,7 +13,7 @@ import Users from './routes/Users'
 import ProtectedRoute from './routes/ProtectedRoute'
 
 const SCHOOL = "School of Engineering and Architecture"
-export const DEPT = "Physics Lab"
+export const DEPT = "SEA Lab"
 export const SERVER = "localhost:3005"  //Edit for deployment
 export const LoginContext = React.createContext()
 
