@@ -1,7 +1,12 @@
-import React from 'react'
+import { useHistory } from "react-router-dom"
 
 const Pending = ({pending}) => {
-    
+    let history = useHistory()
+
+    const openPending = (id) => {
+        history.push(`/equipment/${id}`)
+    }
+
     return (
         <div className="pending">
                 <h2 style={{color:"#000"}}>Pending Calibrations</h2>
@@ -18,7 +23,7 @@ const Pending = ({pending}) => {
                     {pending.map((entry, key) => {
                     return(
                         
-                        <tr key={entry.id}>
+                        <tr key={entry.id} onClick={() => openPending(entry.id)}>
                             <td className="td-critical">{entry.name}</td>
                             <td className="td-critical">{entry.type}</td>
                             <td className="td-critical">{entry.nextCalibration}</td>

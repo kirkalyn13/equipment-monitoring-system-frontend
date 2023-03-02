@@ -12,6 +12,7 @@ const Dashboard = ({dept}) => {
     const [alertTrigger, setAlertTrigger] = useState(false)
     const [ showAlert, setShowAlert] = useState(true)
 
+    // Get Pending Calibrations
     const getPending = () => {
         axios.get(`http://${SERVER}/allequipment`).then((response)=>{ 
             setTotal(response.data.length)
@@ -21,10 +22,12 @@ const Dashboard = ({dept}) => {
         })
     }
     
+    // Close Alert Message
     const closeAlert = () => {
         setShowAlert(false)
     }
 
+    // Get Pending on mount
     useEffect(()=>{
         setTimeout(()=>{
           getPending()

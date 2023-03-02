@@ -11,12 +11,16 @@ import CircularProgress from '@mui/material/CircularProgress'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import ColumnFilter from '../components/ColumnFilter'
-import Equipment from '../components/Equipment'
+import Equipment from './Equipment'
 import DataFilter from '../components/DataFilter'
+import { useHistory, useParams } from "react-router-dom"
 
 export const EquipmentContext = React.createContext()
 
 const View = () => {
+    const { id } = useParams()
+    let history = useHistory()
+
     const [equip, setEquip] = useState([])
     const [showFilter, setShowFilter] = useState(false)
     const [showAll, setShowAll] = useState(true)
@@ -219,6 +223,7 @@ const View = () => {
     },[showAll])
 
     const toggleViews = () => {
+        history.push("/view")
         setShowEquipment(false)
         setShowHistory(false)
         setShowFilterTab(true)
@@ -321,7 +326,7 @@ const View = () => {
                     {loading === true ? <CircularProgress color="inherit"/> : null}
                     {searched.map((item, key) => (<List key={key} item={item} />))}
                     </table>
-                    {showEquipment === true ? <Equipment id={eqpID}/> : null}
+                    {showEquipment === true ? <Equipment/> : null}
                     {showHistory === true ? 
                     <>
                     <div className="container-search">

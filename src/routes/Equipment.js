@@ -1,14 +1,17 @@
-import { useState, useEffect,useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { SERVER } from '../App'
 import axios from 'axios'
 import Button from '@mui/material/Button'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import SaveAltIcon from '@mui/icons-material/SaveAlt'
-import { EquipmentContext } from '../routes/View'
-import Image from './Image'
+import Image from '../components/Image'
+import { useHistory, useParams } from "react-router-dom"
 
-const Equipment = ({id}) => {
-    const { setShowEquipment, setEqpID } = useContext(EquipmentContext)
+const Equipment = () => {
+    const { id } = useParams()
+    let history = useHistory()
+    console.log("EQP ID: ", id)
+
     const [ equipment, setEquipment ] = useState({})
 
     const getEquipData = () => {
@@ -31,9 +34,9 @@ const Equipment = ({id}) => {
     }
 
     const returnToView = () => {
-        setShowEquipment(false)
-        setEqpID()
+        history.push("/view")
     }
+
     useEffect(()=>{
         getEquipData()
     },[])
@@ -45,6 +48,14 @@ const Equipment = ({id}) => {
                 <img className="section-logo" src="/img/information.png" alt="" height="50px" width="50px" />
                 <h2 color="#FFFFFF">Equipment Information</h2>
             </div>
+            <Button
+                onClick={returnToView}
+                variant="contained"
+                style={{backgroundColor: '#FFA000', color: '#000', fontWeight:"bold", margin:"10px"}}
+                startIcon={<KeyboardReturnIcon />}
+                >
+                RETURN
+            </Button>
         </div>
             <div className="container-details">
                 <Image name={equipment.name} image={equipment.image}/>

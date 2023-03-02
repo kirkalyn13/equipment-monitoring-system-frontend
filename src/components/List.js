@@ -5,13 +5,16 @@ import IconButton from '@mui/material/IconButton'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import SaveAltIcon from '@mui/icons-material/SaveAlt'
 import HistoryIcon from '@mui/icons-material/History'
+import { useHistory } from "react-router-dom"
 import axios from 'axios'
 
 
 const List = ({item}) => {
+    let history = useHistory()
     const { shown, showEquipment, setShowEquipment, setEqpID, showHistory, setShowHistory, setShowFilterTab } = useContext(EquipmentContext)
     
     const toggleEquipment = (id) => {
+        history.push(`equipment/${id}`)
         setShowEquipment(true)
         setShowFilterTab(false)
         setEqpID(id)

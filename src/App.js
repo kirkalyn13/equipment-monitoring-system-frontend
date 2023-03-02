@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Sidebar from './components/Sidebar'
+import Equipment  from './routes/Equipment'
 import Dashboard  from './routes/Dashboard'
 import View from './routes/View'
 import Add from './routes/Add'
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route path="/view">
               <View />
+            </Route>
+            <Route path="/equipment/:id">
+              <Equipment />
             </Route>
             <ProtectedRoute path="/add" 
             allowedRoles={["admin","super"]} userRole={user.role}
