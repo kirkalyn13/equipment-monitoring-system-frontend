@@ -19,9 +19,8 @@ const Image = ({name, image}) => {
                 }}
                 >
                 <Paper variant="outlined">
-                    {image !== "" && image !== null ? 
-                    (<img src={image} style={{width:"inherit", height:"inherit"}} alt="No Image Available." />)
-                    : (<img src="/img/placeholder.png" style={{width:"400", height:"400"}} alt="equipment-image" />)}
+                    {image === "null"  ? (<img src="/img/placeholder.png" style={{width:"inherit", height:"inherit"}} alt="equipment-image" />)
+                    : (<img src={image} style={{width:"inherit", height:"inherit"}} alt="No Image Available." />)}
                 </Paper>
             </Box>
             <h2>{name}</h2>

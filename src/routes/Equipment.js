@@ -10,7 +10,6 @@ import { useHistory, useParams } from "react-router-dom"
 const Equipment = () => {
     const { id } = useParams()
     let history = useHistory()
-    console.log("EQP ID: ", id)
 
     const [ equipment, setEquipment ] = useState({})
 
