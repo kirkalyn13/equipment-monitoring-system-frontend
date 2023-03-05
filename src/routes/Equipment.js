@@ -13,15 +13,11 @@ const Equipment = () => {
     let history = useHistory()
 
     const [ equipment, setEquipment ] = useState({})
-    const [forMaintenance, setForMaintenance] = useState(false)
 
     const getEquipData = () => {
         axios.get(`https://${SERVER}/equipment/${id}`).then((response)=>{
         setEquipment(response.data[0])
         })
-        setTimeout(()=> {
-            setForMaintenance(equipment.forMaintenance === "Yes" ? true : false)
-        },1000)
     }
 
     const downloadCertificate = (id) => {
@@ -37,8 +33,6 @@ const Equipment = () => {
         .catch((error) => console.log(error))
     }
 
-    const onChangeMaintenance = (e) => setForMaintenance(e.target.checked)
-
     const returnToView = () => {
         history.push("/view")
     }
@@ -46,6 +40,19 @@ const Equipment = () => {
     useEffect(()=>{
         getEquipData()
     },[])
+
+    const renderNeedMaintenance = () => {
+        return (
+            <div>
+                <label>Need Maintenance : </label>
+                <Switch 
+                checked={equipment.forMaintenance === "Yes" ? true : false}
+                color="warning"
+                disabled
+                />
+            </div>
+        )
+    }
 
     return (
         <div className="container-equipment-info">
@@ -119,15 +126,7 @@ const Equipment = () => {
                             <img className="section-logo" src="/img/others.png" alt="" height="50px" width="50px" />
                             <h2 color="#FFFFFF">Other Details</h2>
                         </div>
-                            <div>
-                                <label>Need Maintenance : </label>
-                                <Switch 
-                                checked={forMaintenance}
-                                onChange={onChangeMaintenance} 
-                                color="warning"
-                                disabled
-                                />
-                            </div>
+                            {renderNeedMaintenance()}
                         <div className="view-info-label"><p>Issued By: </p><p>{equipment.issuedBy}</p></div>
                         <div className="view-info-label"><p>Issued To: </p><p>{equipment.issuedTo}</p></div>
                         <div className="view-info-label"><p>Location: </p><p>{equipment.location}</p></div>
