@@ -77,7 +77,7 @@ const Edit = ({info}) => {
 
     const editEquipment = () => {
         console.log(forMaintenance ? "Yes" : "No")
-        axios.put(`http://${SERVER}/edit/${info.id}`,{
+        axios.put(`https://${SERVER}/edit/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,
@@ -105,7 +105,7 @@ const Edit = ({info}) => {
         })
       }
     const logChanges = () =>{
-        axios.post(`http://${SERVER}/changelog/${info.id}`,{
+        axios.post(`https://${SERVER}/changelog/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,

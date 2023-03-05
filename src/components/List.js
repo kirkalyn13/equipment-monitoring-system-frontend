@@ -27,7 +27,7 @@ const List = ({item}) => {
     }
 
     const downloadCertificate = (id) => {
-        axios.get(`http://${SERVER}/certificate/${id}`)
+        axios.get(`https://${SERVER}/certificate/${id}`)
         .then((response) => {   
             const file = response.data[0].certificate
             const filename = `calibration_certificate_${id}`

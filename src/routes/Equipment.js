@@ -14,13 +14,13 @@ const Equipment = () => {
     const [ equipment, setEquipment ] = useState({})
 
     const getEquipData = () => {
-        axios.get(`http://${SERVER}/equipment/${id}`).then((response)=>{
+        axios.get(`https://${SERVER}/equipment/${id}`).then((response)=>{
         setEquipment(response.data[0])
         })
     }
 
     const downloadCertificate = (id) => {
-        axios.get(`http://${SERVER}/certificate/${id}`)
+        axios.get(`https://${SERVER}/certificate/${id}`)
         .then((response) => {   
             const file = response.data[0].certificate
             const filename = `calibration_certificate_${id}`

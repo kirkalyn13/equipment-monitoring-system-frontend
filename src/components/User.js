@@ -14,7 +14,7 @@ const  User = ({user}) => {
     const deleteUser = () => {
         const r = window.confirm(`Are you sure you want to delete ${values.username}?`)
         if(r === true){
-            axios.delete(`http://${SERVER}/deleteuser/${values.id}`).then(()=>{
+            axios.delete(`https://${SERVER}/deleteuser/${values.id}`).then(()=>{
             alert(`${values.username} successfully deleted.`)
             setReload(!reload)
         })
@@ -26,7 +26,7 @@ const  User = ({user}) => {
     const editUser = () => {
         const r = window.confirm(`Are you sure you want to edit ${values.username}?`)
         if(r === true){
-            axios.put(`http://${SERVER}/edituser/${values.id}`,{
+            axios.put(`https://${SERVER}/edituser/${values.id}`,{
             username: values.username,
             password: values.password,
             role: values.role,

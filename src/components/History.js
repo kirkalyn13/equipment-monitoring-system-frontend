@@ -7,14 +7,14 @@ import SaveAltIcon from '@mui/icons-material/SaveAlt'
 const History = ({itemID}) => {
     const [logs, setLogs ] = useState([])
     const fetchLogs = () => {
-        axios.get(`http://${SERVER}/logs/${itemID}`).then((response)=>{
+        axios.get(`https://${SERVER}/logs/${itemID}`).then((response)=>{
             setLogs(response.data)
         }
         )}
     
     
     const downloadCertificate = (id, timestamp) => {
-            axios.get(`http://${SERVER}/changelog/certificate/${id}/${timestamp}`)
+            axios.get(`https://${SERVER}/changelog/certificate/${id}/${timestamp}`)
             .then((response) => {   
                 const file = response.data[0].certificate
                 const filename = `calibration_certificate_${id}`
