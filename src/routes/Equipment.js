@@ -6,17 +6,22 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import SaveAltIcon from '@mui/icons-material/SaveAlt'
 import Image from '../components/Image'
 import { useHistory, useParams } from "react-router-dom"
+import Switch from '@mui/material/Switch'
 
 const Equipment = () => {
     const { id } = useParams()
     let history = useHistory()
 
     const [ equipment, setEquipment ] = useState({})
+    const [forMaintenance, setForMaintenance] = useState(false)
 
     const getEquipData = () => {
         axios.get(`https://${SERVER}/equipment/${id}`).then((response)=>{
         setEquipment(response.data[0])
         })
+        setTimeout(()=> {
+            setForMaintenance(equipment.forMaintenance === "Yes" ? true : false)
+        },1000)
     }
 
     const downloadCertificate = (id) => {
@@ -31,6 +36,8 @@ const Equipment = () => {
         })
         .catch((error) => console.log(error))
     }
+
+    const onChangeMaintenance = (e) => setForMaintenance(e.target.checked)
 
     const returnToView = () => {
         history.push("/view")
@@ -112,6 +119,15 @@ const Equipment = () => {
                             <img className="section-logo" src="/img/others.png" alt="" height="50px" width="50px" />
                             <h2 color="#FFFFFF">Other Details</h2>
                         </div>
+                            <div>
+                                <label>Need Maintenance : </label>
+                                <Switch 
+                                checked={forMaintenance}
+                                onChange={onChangeMaintenance} 
+                                color="warning"
+                                disabled
+                                />
+                            </div>
                         <div className="view-info-label"><p>Issued By: </p><p>{equipment.issuedBy}</p></div>
                         <div className="view-info-label"><p>Issued To: </p><p>{equipment.issuedTo}</p></div>
                         <div className="view-info-label"><p>Location: </p><p>{equipment.location}</p></div>

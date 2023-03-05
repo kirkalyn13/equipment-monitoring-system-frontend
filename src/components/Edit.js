@@ -296,7 +296,7 @@ const Edit = ({info}) => {
                                 <h2 color="#FFFFFF">Other Details</h2>
                             </div>
                             <div>
-                                <label>For Maintenance: </label>
+                                <label>Need Maintenance: </label>
                                 <Switch 
                                 checked={forMaintenance}
                                 onChange={onChangeMaintenance} 

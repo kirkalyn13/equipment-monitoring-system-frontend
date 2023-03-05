@@ -253,7 +253,7 @@ const Add = () => {
                 <div className="container-details">
                 <div className="detail-title">
                     <img className="section-logo" src="/img/calibration.png" alt="" height="50px" width="50px" />
-                    <h2 color="#FFFFFF">Calibration Details</h2>
+                    <h2 color="#FFFFFF">Calibration/Maintenance Details</h2>
                 </div>
                 <div className="details">
                     <div className="details-column">
