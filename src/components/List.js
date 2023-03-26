@@ -3,9 +3,10 @@ import { EquipmentContext } from '../routes/View'
 import { SERVER } from '../App'
 import IconButton from '@mui/material/IconButton'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
-import SaveAltIcon from '@mui/icons-material/SaveAlt'
+import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser'
 import HistoryIcon from '@mui/icons-material/History'
 import { useHistory } from "react-router-dom"
+import { b64toBlob } from '../util/util'
 import axios from 'axios'
 
 
@@ -26,15 +27,13 @@ const List = ({item}) => {
         setEqpID(id)
     }
 
-    const downloadCertificate = (id) => {
+    const viewCertificate = (id) => {
         axios.get(`https://${SERVER}/certificate/${id}`)
         .then((response) => {   
-            const file = response.data[0].certificate
-            const filename = `calibration_certificate_${id}`
-            const link = document.createElement("a")
-            link.href = file
-            link.download = `${filename}.pdf`
-            link.click()
+            let pdfData = response.data[0].certificate.substring("data:application/pdf;base64,".length)
+            let pdfBlob = b64toBlob(pdfData.replace('data:application/pdf;base64,', ''), 'application/pdf')
+            let pdfUrl = URL.createObjectURL(pdfBlob)
+            window.open(pdfUrl)
         })
         .catch((error) => console.log(error))
     }
@@ -73,11 +72,17 @@ const List = ({item}) => {
                 {shown.showIssuedTo === true ? <td>{item.issuedTo}</td> : null}
                 {shown.showRemarks === true ? <td>{item.remarks}</td> : null}
                 {shown.showStatus === true ? <td>{item.status}</td> : null}
-                {shown.showCertificate === true ? <td>
-                    {item.certificate !== null ? (<IconButton aria-label="edit" color="inherit" onClick={() => downloadCertificate(item.id)}>
-                        <SaveAltIcon />
-                    </IconButton>) : null}
-                </td> : null}
+                {shown.showCertificate === true ? 
+                    <td>
+                        <IconButton 
+                            disabled={item.certificate === null || item.certificate === "null"}
+                            aria-label="edit" 
+                            color="inherit" 
+                            onClick={() => viewCertificate(item.id)}>
+                            <OpenInBrowserIcon />
+                        </IconButton>
+                    </td> 
+                : null}
             </tr>
             </tbody> 
             : null}

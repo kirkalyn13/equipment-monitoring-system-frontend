@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { SERVER } from '../App'
+import { b64toBlob } from '../util/util'
 import axios from 'axios'
 import IconButton from '@mui/material/IconButton'
-import SaveAltIcon from '@mui/icons-material/SaveAlt'
+import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser'
 
 const History = ({itemID}) => {
     const [logs, setLogs ] = useState([])
@@ -13,18 +14,17 @@ const History = ({itemID}) => {
         )}
     
     
-    const downloadCertificate = (id, timestamp) => {
+    const viewCertificate = (id, timestamp) => {
             axios.get(`https://${SERVER}/changelog/certificate/${id}/${timestamp}`)
             .then((response) => {   
-                const file = response.data[0].certificate
-                const filename = `calibration_certificate_${id}`
-                const link = document.createElement("a")
-                link.href = file
-                link.download = `${filename}.pdf`
-                link.click()
+                let pdfData = response.data[0].certificate.substring("data:application/pdf;base64,".length)
+                let pdfBlob = b64toBlob(pdfData.replace('data:application/pdf;base64,', ''), 'application/pdf')
+                let pdfUrl = URL.createObjectURL(pdfBlob)
+                window.open(pdfUrl)
             })
             .catch((error) => console.log(error))
         }
+
 
     useEffect(()=>{
         fetchLogs()
@@ -84,9 +84,12 @@ const History = ({itemID}) => {
                         <td>{entry.status}</td>
                         <td>{entry.remarks}</td>
                         <td>
-                            {entry.certificate !== null ?(<IconButton aria-label="edit" color="inherit">
-                                <SaveAltIcon onClick={() => downloadCertificate(entry.id, entry.timestamp)} />
-                            </IconButton>) : null}
+                            <IconButton
+                                disabled={entry.certificate === null || entry.certificate === "null"}
+                                aria-label="edit" 
+                                color="inherit">
+                                <OpenInBrowserIcon onClick={() => viewCertificate(entry.id, entry.timestamp)} />
+                            </IconButton>
                         </td>
                         <td>{entry.modifiedBy}</td>
                     </tr>

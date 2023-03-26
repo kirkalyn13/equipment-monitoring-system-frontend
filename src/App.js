@@ -15,8 +15,8 @@ import ProtectedRoute from './routes/ProtectedRoute'
 
 const SCHOOL = "School of Engineering and Architecture"
 export const DEPT = "SEA Laboratory"
-// export const SERVER = "localhost:3005"  //Edit for deployment
-export const SERVER = "c505-120-29-79-81.ngrok.io" // For deployment
+export const SERVER = "localhost:3005"  //Edit for deployment
+// export const SERVER = "c505-120-29-79-81.ngrok.io" // For deployment
 export const LoginContext = React.createContext()
 
 
