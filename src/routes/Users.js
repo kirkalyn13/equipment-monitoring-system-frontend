@@ -14,7 +14,7 @@ const Users = () => {
     const [ loading, setLoading ] = useState(true)
 
     const getUsers = () => {
-        axios.get(`https://${SERVER}/allusers`).then((response)=>{
+        axios.get(`${SERVER}/allusers`).then((response)=>{
             setUsers(response.data)
         })
     } 

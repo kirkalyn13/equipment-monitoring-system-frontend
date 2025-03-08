@@ -16,7 +16,7 @@ const Login = ({school}) => {
     const [submitState, setSubmitState] = useState(false)
     
     const submitCredentials = async() => {
-        axios.post(`https://${SERVER}/login`,{
+        axios.post(`${SERVER}/login`,{
           username: values.username,
           password: values.password,
         }).then(response =>{

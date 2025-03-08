@@ -16,7 +16,7 @@ const Item = ({item}) => {
     const deleteEquipment = () => {
         const r = window.confirm(`Are you sure you want to permanently delete ${item.name} (${item.serial}) from the records?`)
         if(r === true){
-            axios.delete(`https://${SERVER}/delete/${item.id}`).then(()=>{
+            axios.delete(`${SERVER}/delete/${item.id}`).then(()=>{
             alert(`${item.name} (${item.serial}) successfully deleted.`)
             setReload(!reload)
         })

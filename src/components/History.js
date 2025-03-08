@@ -8,14 +8,14 @@ import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser'
 const History = ({itemID}) => {
     const [logs, setLogs ] = useState([])
     const fetchLogs = () => {
-        axios.get(`https://${SERVER}/logs/${itemID}`).then((response)=>{
+        axios.get(`${SERVER}/logs/${itemID}`).then((response)=>{
             setLogs(response.data)
         }
         )}
     
     
     const viewCertificate = (id, timestamp) => {
-            axios.get(`https://${SERVER}/changelog/certificate/${id}/${timestamp}`)
+            axios.get(`${SERVER}/changelog/certificate/${id}/${timestamp}`)
             .then((response) => {   
                 let pdfData = response.data[0].certificate.substring("data:application/pdf;base64,".length)
                 let pdfBlob = b64toBlob(pdfData.replace('data:application/pdf;base64,', ''), 'application/pdf')

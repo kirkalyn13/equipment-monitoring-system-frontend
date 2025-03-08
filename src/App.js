@@ -12,10 +12,11 @@ import Manage from './routes/Manage'
 import Login from './routes/Login'
 import Users from './routes/Users'
 import ProtectedRoute from './routes/ProtectedRoute'
+import { URL } from './config/config';
 
 const SCHOOL = "School of Engineering and Architecture"
 export const DEPT = "SEA Laboratory"
-export const SERVER = process.env.REACT_APP_SERVER_URL
+export const SERVER = URL
 export const LoginContext = React.createContext()
 
 function App() {

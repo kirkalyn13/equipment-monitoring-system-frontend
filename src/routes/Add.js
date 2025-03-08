@@ -65,7 +65,7 @@ const Add = () => {
     const [ newID, setNewID ] = useState(null)
 
     const addEquipment = () => {
-        axios.post(`https://${SERVER}/create`,{
+        axios.post(`${SERVER}/create`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,
@@ -93,7 +93,7 @@ const Add = () => {
       }
 
       const logChanges = () => {
-        axios.post(`https://${SERVER}/changelog/${newID}`,{
+        axios.post(`${SERVER}/changelog/${newID}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,

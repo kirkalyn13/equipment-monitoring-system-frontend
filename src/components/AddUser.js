@@ -18,7 +18,7 @@ const AddUser = ({users}) => {
     const [submitState, setSubmitState] = useState(false)
 
     const addUser = () => {
-        axios.post( `https://${SERVER}/createuser`,{
+        axios.post( `${SERVER}/createuser`,{
           username: values.username,
           password: values.password,
           role: values.role

@@ -28,7 +28,7 @@ const List = ({item}) => {
     }
 
     const viewCertificate = (id) => {
-        axios.get(`https://${SERVER}/certificate/${id}`)
+        axios.get(`${SERVER}/certificate/${id}`)
         .then((response) => {   
             let pdfData = response.data[0].certificate.substring("data:application/pdf;base64,".length)
             let pdfBlob = b64toBlob(pdfData.replace('data:application/pdf;base64,', ''), 'application/pdf')

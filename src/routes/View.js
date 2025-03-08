@@ -61,13 +61,13 @@ const View = () => {
     })
 
     const getEquip = () => {
-        axios.get(`https://${SERVER}/allequipment`).then((response)=>{
+        axios.get(`${SERVER}/allequipment`).then((response)=>{
             setEquip(response.data)
         })
     }
 
     const extractEquip = () => {
-        axios.post(`https://${SERVER}/extract`,
+        axios.post(`${SERVER}/extract`,
             {shown, dataFilter }
           ).then((response)=>{
             var dtnow = new Date()
