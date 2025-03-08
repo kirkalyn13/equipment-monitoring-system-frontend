@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react'
-import Edit from './Edit';
+import Edit from './Edit'
 import axios from 'axios'
 import { ReloadContext } from '../routes/Manage'
-import { SERVER } from '../App';
+import { SERVER } from '../App'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
+import { fireAlert } from '../util/alert'
+import { confirmDialog } from '../util/confirm'
 
 export const EditContext = React.createContext()
 
@@ -13,15 +15,15 @@ const Item = ({item}) => {
     const [ showEdit, setShowEdit ] = useState(false)
     const {reload, setReload, showItems, setShowItems } = useContext(ReloadContext)
 
-    const deleteEquipment = () => {
-        const r = window.confirm(`Are you sure you want to permanently delete ${item.name} (${item.serial}) from the records?`)
+    const deleteEquipment = async () => {
+        const r = await confirmDialog("Delete Equipment?", `Are you sure you want to permanently delete ${item.name} (${item.serial}) from the records?`)
         if(r === true){
             axios.delete(`${SERVER}/delete/${item.id}`).then(()=>{
-            alert(`${item.name} (${item.serial}) successfully deleted.`)
+            fireAlert("Equipment Deleted", `${item.name} (${item.serial}) successfully deleted.`)
             setReload(!reload)
         })
         }else{
-            alert("Cancelled Delete.")
+            fireAlert("Delete Cancelled", "Deletion did not proceed.")
         }
         
       }
@@ -45,7 +47,7 @@ const Item = ({item}) => {
                     <IconButton aria-label="edit" color="inherit" onClick={toggleEdit}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" color="inherit" onClick={deleteEquipment} >
+                    <IconButton aria-label="delete" color="inherit" onClick={() => deleteEquipment()} >
                         <DeleteIcon/>
                     </IconButton>
                 </div>

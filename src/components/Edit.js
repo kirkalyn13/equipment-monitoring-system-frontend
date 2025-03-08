@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import Switch from '@mui/material/Switch'
 import { LoginContext } from '../App'
-
+import { fireAlert } from '../util/alert'
 
 const statusOptions = [
     {
@@ -76,7 +76,6 @@ const Edit = ({info}) => {
     const [forMaintenance, setForMaintenance] = useState(info.forMaintenance === "Yes" ? true : false)
 
     const editEquipment = () => {
-        console.log(forMaintenance ? "Yes" : "No")
         axios.put(`${SERVER}/edit/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
@@ -100,7 +99,7 @@ const Edit = ({info}) => {
           eqpCertificate: values.eqpCertificate,
           eqpImage: values.eqpImage
         }).then(()=>{
-          alert(`Updated ${values.eqpName} (${values.eqpSerial}).`)
+          fireAlert("Equipment Updated", `Updated ${values.eqpName} (${values.eqpSerial}).`)
           //setSubmitState(!submitState)
         })
       }

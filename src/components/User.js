@@ -5,6 +5,8 @@ import { SERVER } from '../App'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
+import { fireAlert } from '../util/alert'
+import { confirmDialog } from '../util/confirm'
 
 const  User = ({user}) => {
     const {reload, setReload} = useContext(UsersReloadContext)
@@ -12,19 +14,19 @@ const  User = ({user}) => {
     const [submitState, setSubmitState] = useState(false)
 
     const deleteUser = () => {
-        const r = window.confirm(`Are you sure you want to delete ${values.username}?`)
+        const r = confirmDialog("Delete User?", `Are you sure you want to delete ${values.username}?`)
         if(r === true){
             axios.delete(`${SERVER}/deleteuser/${values.id}`).then(()=>{
-            alert(`${values.username} successfully deleted.`)
+            fireAlert("User Deleted", `${values.username} successfully deleted.`)
             setReload(!reload)
         })
         }else{
-            alert("Cancelled Delete.")
+            fireAlert("Delete Cancelled", "Deletion did not proceed.")
         }
       }
 
     const editUser = () => {
-        const r = window.confirm(`Are you sure you want to edit ${values.username}?`)
+        const r = confirmDialog("Update User?", `Are you sure you want to update ${values.username}?`)
         if(r === true){
             axios.put(`${SERVER}/edituser/${values.id}`,{
             username: values.username,
@@ -32,11 +34,11 @@ const  User = ({user}) => {
             role: values.role,
         }).then(()=>{
           setSubmitState(!submitState)
-          alert(`Updated User: ${values.username}.`)
+          fireAlert("User Updated", `Updated User: ${values.username}.`)
         })
         }else{
             setSubmitState(!submitState)
-            alert("No changes applied.")
+            fireAlert("Edit", "No changes applied.")
         }
       }
 

@@ -4,6 +4,7 @@ import { SERVER } from '../App'
 import axios from 'axios'
 import Button from '@mui/material/Button'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
+import { fireAlert } from '../util/alert'
 
 const AddUser = ({users}) => {
     const {reload, setReload} = useContext(UsersReloadContext)
@@ -23,7 +24,7 @@ const AddUser = ({users}) => {
           password: values.password,
           role: values.role
         }).then(()=>{
-          alert(`Added New User: ${values.username}, with ${values.role} privileges.`)
+          fireAlert("New User Added", `Added New User: ${values.username}, with ${values.role} privileges.`)
           setSubmitState(!submitState)
         })
       }
@@ -39,7 +40,7 @@ const AddUser = ({users}) => {
     const handleFormSubmit = e => {
         e.preventDefault()
         if(existingUsers.includes(values.username)){
-            alert(`Username ${values.username} is already taken.`)
+            fireAlert("Username Taken", `Username ${values.username} is already taken.`)
             setSubmitState(!submitState)
         setReload(!reload)
         }else{

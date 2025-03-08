@@ -4,6 +4,7 @@ import axios from 'axios'
 import Button from '@mui/material/Button'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { LoginContext } from '../App'
+import { fireAlert } from '../util/alert'
 
 const statusOptions = [
     {
@@ -88,7 +89,7 @@ const Add = () => {
           eqpImage: values.eqpImage,
         }).then((response)=>{
             setNewID(response.data[0].id)
-            alert(`Added ${values.eqpName} (${values.eqpSerial}).`)
+            fireAlert("Equipment Added", `Added ${values.eqpName} (${values.eqpSerial}).`)
         })
       }
 
