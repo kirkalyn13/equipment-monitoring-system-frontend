@@ -32,7 +32,7 @@ const Login = ({school}) => {
                 invalidUser()
             }
         }).catch(err =>{
-            console.log(err);
+            console.error(err);
         })
       }
 

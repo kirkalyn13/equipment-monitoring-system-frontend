@@ -35,7 +35,7 @@ const List = ({item}) => {
             let pdfUrl = URL.createObjectURL(pdfBlob)
             window.open(pdfUrl)
         })
-        .catch((error) => console.log(error))
+        .catch((error) => console.error(error))
     }
 
     return (

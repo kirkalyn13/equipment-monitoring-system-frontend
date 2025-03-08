@@ -83,7 +83,7 @@ const View = () => {
             link.href = file
             link.download = `${filename}.csv`
             link.click()
-        }).catch((error) => console.log(error))
+        }).catch((error) => console.error(error))
     }
 
     const toggleShowFilter = () => {
