@@ -389,7 +389,14 @@ input:hover, input:active, select:hover{
   border-radius : 10px;
   border: none;
 }
-.btn:hover, .btn:active, .btn-login:active{
+
+.btn-login:hover {
+  background-color: #FFA000;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover, .btn:active, .btn-login:active {
   background-color: #FFA000;
   font-weight: bold;
   cursor: pointer;
