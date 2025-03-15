@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { SERVER } from '../App'
 import Item from '../components/Item'
 import axios from 'axios'
-import CircularProgress from '@mui/material/CircularProgress'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
+import Loading from '../components/Loading'
 
 export const ReloadContext = React.createContext()
 
@@ -116,7 +116,7 @@ const Manage = () => {
                     <p className="item-header">STATUS</p>
                 </div>
             </div>
-            {loading === true ? <CircularProgress color="inherit"/> : null}
+            {loading === true ? <Loading /> : null}
             {filtered.map((item) =>{
                     return  <Item key={item.serialNumber} item={item} />
                 })}

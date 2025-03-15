@@ -170,6 +170,7 @@ body{
   font-size: large;
   font-weight: bold;
   justify-content: space-between;
+  align-content: center;
   margin: 10px;
   background-color: #757575;
   border-radius: 10px;
@@ -589,6 +590,14 @@ input[type=checkbox]:after{
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/* Loading container takes the parent’s dimensions */
+.loading-container {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* width */

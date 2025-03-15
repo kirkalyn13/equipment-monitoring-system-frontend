@@ -4,7 +4,7 @@ import { SERVER } from '../App'
 import User from '../components/User'
 import AddUser from '../components/AddUser'
 import axios from 'axios'
-import CircularProgress from '@mui/material/CircularProgress'
+import Loading from '../components/Loading'
 
 export const UsersReloadContext = React.createContext()
 
@@ -43,7 +43,7 @@ const Users = () => {
                 </div>
             </div>
             <AddUser users={users}/>
-            {loading === true ? <CircularProgress color="inherit"/> : null}
+            {loading === true ? <Loading /> : null}
             {users.map((user) =>{
                     return  <User key={user.id} user={user} />
                 })}
