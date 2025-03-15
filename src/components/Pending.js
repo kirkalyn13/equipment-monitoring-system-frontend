@@ -10,7 +10,7 @@ const Pending = ({pending}) => {
     return (
         <div className="pending">
                 <h2 style={{color:"#000"}}>Pending Calibrations</h2>
-                <table>
+                <table style={{width: "98%"}}>
                     <thead>
                     <tr>
                         <th>Name</th>

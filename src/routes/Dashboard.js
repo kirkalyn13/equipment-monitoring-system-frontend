@@ -40,7 +40,7 @@ const Dashboard = ({dept}) => {
             {showAlert === true && pending.length > 0 ? <Alert
                 severity="error"
                 variant="filled"
-                style={{ color:'#FFF',fontWeight:'bold', fontSize:"large", margin:"2px 20px"}}
+                style={{ color:'#FFF', fontWeight:'bold', fontSize:"large", margin:"2px 20px", alignContent:'center'}}
                     action={
                     <Button 
                     onClick={closeAlert}
