@@ -28,9 +28,9 @@
     "sweetalert2": "11.17.2"
   },
   "scripts": {
-    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && npm run start",
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider npm run start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
