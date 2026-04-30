@@ -40,9 +40,9 @@ const AddUser = ({users}) => {
     const handleFormSubmit = e => {
         e.preventDefault()
         if(existingUsers.includes(values.username)){
-            fireAlert("Username Taken", `Username ${values.username} is already taken.`)
+            fireAlert("Username Taken", `Email ${values.username} is already taken.`)
             setSubmitState(!submitState)
-        setReload(!reload)
+            setReload(!reload)
         }else{
             addUser()
             setSubmitState(!submitState)
@@ -60,10 +60,10 @@ const AddUser = ({users}) => {
                     <div className="user-info-input">
                         <input 
                             className="user-credentials"
-                            type="text"
+                            type="email"
                             onChange={handleInputChange}
                             name="username" value={values.username}
-                            required placeholder="Username"/>
+                            required placeholder="Email Address"/>
                     </div>
                     <div className="user-info-input">
                         <input 

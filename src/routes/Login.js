@@ -1,110 +1,96 @@
-import { useState, useContext, useEffect } from 'react'
-import { SERVER } from '../App'
+// src/routes/Login.js
+import { useState, useContext } from 'react'
+import { auth } from '../config/firebase'
 import { LoginContext } from '../App'
 import Alert from '@mui/material/Alert'
-import axios from 'axios'
 
-const Login = ({school}) => {
-    const [ invalid, setInvalid ] = useState(false)
-    const { setUser, setIsAuth} = useContext(LoginContext)
-    const initialFieldValues = {
-        username: '',
-        password: '',
-    }
-    
-    const [ values, setValues ] = useState(initialFieldValues)
-    const [submitState, setSubmitState] = useState(false)
-    
-    const submitCredentials = async() => {
-        axios.post(`${SERVER}/login`,{
-          username: values.username,
-          password: values.password,
-        }).then(response =>{
-            if(response.data.login === true){
-                setUser(response.data)
-                login()
-            }else{
-                setUser({
-                    username: "",
-                    role:"basic",
-                    login: false
-                })
-                invalidUser()
-            }
-        }).catch(err =>{
-            console.error(err);
-        })
+const Login = ({ school }) => {
+  const [invalid, setInvalid] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('Invalid user credentials.')
+  const { setIsAuth } = useContext(LoginContext)
+
+  const [values, setValues] = useState({
+    username: '',
+    password: '',
+  })
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setValues((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    setInvalid(false)
+
+    try {
+      await auth.signInWithEmailAndPassword(values.username, values.password)
+      // onAuthStateChanged in App.js takes over from here
+    } catch (err) {
+      console.error(err)
+      setIsAuth(false)
+
+      if (
+        err.code === 'auth/user-not-found' ||
+        err.code === 'auth/wrong-password' ||
+        err.code === 'auth/invalid-credential'
+      ) {
+        setErrorMessage('Invalid user credentials.')
+      } else if (err.code === 'auth/too-many-requests') {
+        setErrorMessage('Too many attempts. Please try again later.')
+      } else {
+        setErrorMessage('Something went wrong. Please try again.')
       }
 
-    const login = () =>{
-        setInvalid(false)
-        setIsAuth(true)
+      setInvalid(true)
     }
 
-    const invalidUser = () => {
-        setIsAuth(false)
-        setInvalid(true)
-        localStorage.removeItem("ems-user")
-    }
+    setValues((prev) => ({ ...prev, password: '' }))
+  }
 
-    const handleFormSubmit = e => {
-        e.preventDefault()
-        submitCredentials()
-        setSubmitState(!submitState)
-        }
-
-    useEffect(()=>{
-        setValues(initialFieldValues)
-    },[submitState])
-
-    //Clean Up
-    useEffect(()=>{
-        return () =>{
-            setInvalid(false)
-            setSubmitState(false)
-            setValues(initialFieldValues)
-        }
-    },[])
-
-    const handleInputChange = e => {
-        var { name, value } = e.target
-        setValues({
-            ...values,
-            [name]: value,
-        })
-    }
-
-    return (
-        <div className="login-page">
-            <img className="logo" src="logo.png" width="300" height="300" alt="logo" margin="20px"/>
-            {/*<h1 className="login-title">Equipment Monitoring System </h1>*/}
-            <div className="title">
-                <h1 className="title-text-head">{school}</h1>
-                <h2 className="title-text">Equipment Monitoring System</h2>
-            </div>
-            <div className="login">
-                <form className="input-info-login" autoComplete="off" onSubmit={handleFormSubmit}>
-                {invalid === true ? 
-                <Alert 
-                    severity="error" width="200px" variant="outlined"
-                    style={{color:'#F44336',fontWeight:'bold', fontSize:'medium'}}>
-                        Invalid User Credentials.
-                </Alert> : null}
-                    <label className="label-info">User Name: </label>
-                    <input className="input-login" type="text" 
-                    onChange={handleInputChange}
-                    name="username" value={values.username}
-                    required placeholder="Enter User Name"/>
-                    <label className="label-info">Password: </label>
-                    <input  className="input-login" type="password" 
-                    onChange={handleInputChange}
-                    name="password" value={values.password}
-                    required placeholder="Enter Password"/>
-                    <input className="btn-login" type="submit" value="LOG IN"/>
-                </form>
-            </div>
-        </div>
-    )
+  return (
+    <div className="login-page">
+      <img className="logo" src="logo.png" width="300" height="300" alt="logo" />
+      <div className="title">
+        <h1 className="title-text-head">{school}</h1>
+        <h2 className="title-text">Equipment Monitoring System</h2>
+      </div>
+      <div className="login">
+        <form className="input-info-login" autoComplete="off" onSubmit={handleFormSubmit}>
+          {invalid && (
+            <Alert
+              severity="error"
+              variant="outlined"
+              style={{ color: '#F44336', fontWeight: 'bold', fontSize: 'medium' }}
+            >
+              {errorMessage}
+            </Alert>
+          )}
+          <label className="label-info">User Name:</label>
+          <input
+            className="input-login"
+            type="text"
+            onChange={handleInputChange}
+            name="username"
+            value={values.username}
+            required
+            placeholder="Enter Email Address"
+          />
+          <label className="label-info">Password:</label>
+          <input
+            className="input-login"
+            type="password"
+            onChange={handleInputChange}
+            name="password"
+            value={values.password}
+            required
+            placeholder="Enter Password"
+          />
+          <input className="btn-login" type="submit" value="LOG IN" />
+        </form>
+      </div>
+    </div>
+  )
 }
 
 export default Login
