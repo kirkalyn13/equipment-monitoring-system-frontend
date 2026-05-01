@@ -10,12 +10,12 @@ const History = ({itemID}) => {
     const fetchLogs = () => {
         axios.get(`${SERVER}/changelogs/${itemID}`).then((response)=>{
             setLogs(response.data)
-        }
+            }
         )}
     
     
-    const viewCertificate = (id, timestamp) => {
-            axios.get(`${SERVER}/changelogs/${id}/${timestamp}/certificate`)
+    const viewCertificate = (id, logId) => {
+            axios.get(`${SERVER}/changelogs/${id}/${logId}/certificate`)
             .then((response) => {   
                 let pdfData = response.data[0].certificate.substring("data:application/pdf;base64,".length)
                 let pdfBlob = b64toBlob(pdfData.replace('data:application/pdf;base64,', ''), 'application/pdf')
@@ -88,7 +88,7 @@ const History = ({itemID}) => {
                                 disabled={entry.certificate === null || entry.certificate === "null"}
                                 aria-label="edit" 
                                 color="inherit">
-                                <OpenInBrowserIcon onClick={() => viewCertificate(entry.id, entry.timestamp)} />
+                                <OpenInBrowserIcon onClick={() => viewCertificate(entry.id, entry.indexnum)} />
                             </IconButton>
                         </td>
                         <td>{entry.modifiedBy}</td>
