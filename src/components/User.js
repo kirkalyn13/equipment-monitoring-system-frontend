@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { UsersReloadContext } from '../routes/Users'
-import { db, auth } from '../config/firebase'
+import { db } from '../config/firebase'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
@@ -15,7 +15,6 @@ const User = ({ user }) => {
     const r = await confirmDialog('Delete User?', `Are you sure you want to delete ${values.email}?`)
     if (r === true) {
       try {
-        // Remove from Firestore — Auth account stays but loses access
         await db.collection('users').doc(values.id).delete()
         fireAlert('User Deleted', `${values.email} successfully deleted.`)
         setReload(!reload)
@@ -29,11 +28,9 @@ const User = ({ user }) => {
   }
 
   const editUser = async () => {
-    const r = confirmDialog('Update User?', `Are you sure you want to update ${values.email}?`)
+    const r = await confirmDialog('Update User?', `Are you sure you want to update ${values.email}?`)
     if (r === true) {
       try {
-        // Only role is editable — email and password are managed
-        // in Firebase Console or via Admin SDK
         await db.collection('users').doc(values.id).update({
           role: values.role,
         })
@@ -62,7 +59,6 @@ const User = ({ user }) => {
     <form className="user-form" autoComplete="off" onSubmit={handleFormSubmit}>
       <div className="container-credentials">
         <div className="user-info-input">
-          {/* Email is read-only — change via Firebase Console */}
           <input
             className="user-credentials"
             type="text"
@@ -73,11 +69,11 @@ const User = ({ user }) => {
           />
         </div>
         <div className="user-info-input">
-          {/* UID is read-only — for reference only */}
           <input
             className="user-credentials"
             type="password"
             value={values.id}
+            readOnly
             placeholder="UID"
             style={{ opacity: 0.6, cursor: 'not-allowed', fontSize: '11px' }}
           />
