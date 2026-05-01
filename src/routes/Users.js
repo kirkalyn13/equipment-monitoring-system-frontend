@@ -1,10 +1,8 @@
-// src/routes/Users.js
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
-import { SERVER } from '../App'
+import { db } from '../config/firebase'
 import User from '../components/User'
 import AddUser from '../components/AddUser'
-import axios from 'axios'
 import Loading from '../components/Loading'
 
 export const UsersReloadContext = React.createContext()
@@ -14,18 +12,23 @@ const Users = () => {
   const [reload, setReload] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  const getUsers = () => {
-    axios.get(`${SERVER}/allusers`).then((response) => {
-      setUsers(response.data)
-    })
+  const getUsers = async () => {
+    try {
+      const snapshot = await db.collection('users').get()
+      const userList = snapshot.docs.map((doc) => ({
+        id: doc.id,   // Firebase UID
+        ...doc.data(),
+      }))
+      setUsers(userList)
+    } catch (err) {
+      console.error('Failed to fetch users:', err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      getUsers()
-      setLoading(false)
-    }, 500)
-    return () => clearTimeout(timer)
+    getUsers()
   }, [reload])
 
   return (
@@ -39,8 +42,8 @@ const Users = () => {
         </div>
         <div className="container-item-header">
           <div className="user-info-header">
-            <p className="item-user-header">USERNAME</p>
-            <p className="item-user-header">PASSWORD</p>
+            <p className="item-user-header">EMAIL</p>
+            <p className="item-user-header">UID</p>
             <p className="item-user-header">PRIVILEGES</p>
           </div>
         </div>

@@ -11,7 +11,17 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 }
 
-const app = firebase.initializeApp(firebaseConfig)
+// Prevent re-initializing on hot reload
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig)
+}
+
+// Secondary app instance used exclusively for creating new users
+// without affecting the current admin session
+if (!firebase.apps.find(app => app.name === 'secondary')) {
+  firebase.initializeApp(firebaseConfig, 'secondary')
+}
 
 export const auth = firebase.auth()
 export const db = firebase.firestore()
+export const secondaryAuth = firebase.app('secondary').auth()
