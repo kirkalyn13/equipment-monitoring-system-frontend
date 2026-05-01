@@ -1,4 +1,3 @@
-// src/routes/Login.js
 import { useState, useContext } from 'react'
 import { auth } from '../config/firebase'
 import { LoginContext } from '../App'
