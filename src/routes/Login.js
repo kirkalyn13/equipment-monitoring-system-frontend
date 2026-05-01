@@ -2,10 +2,12 @@ import { useState, useContext } from 'react'
 import { auth } from '../config/firebase'
 import { LoginContext } from '../App'
 import Alert from '@mui/material/Alert'
+import Loading from '../components/Loading'
 
 const Login = ({ school }) => {
   const [invalid, setInvalid] = useState(false)
   const [errorMessage, setErrorMessage] = useState('Invalid user credentials.')
+  const [isLoading, setIsLoading] = useState(false)
   const { setIsAuth } = useContext(LoginContext)
 
   const [values, setValues] = useState({
@@ -21,13 +23,14 @@ const Login = ({ school }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     setInvalid(false)
+    setIsLoading(true)
 
     try {
       await auth.signInWithEmailAndPassword(values.username, values.password)
-      // onAuthStateChanged in App.js takes over from here
     } catch (err) {
       console.error(err)
       setIsAuth(false)
+      setIsLoading(false)
 
       if (
         err.code === 'auth/user-not-found' ||
@@ -46,6 +49,12 @@ const Login = ({ school }) => {
 
     setValues((prev) => ({ ...prev, password: '' }))
   }
+
+ if (isLoading) return (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <Loading />
+  </div>
+)
 
   return (
     <div className="login-page">
