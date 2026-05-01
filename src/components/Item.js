@@ -18,7 +18,7 @@ const Item = ({item}) => {
     const deleteEquipment = async () => {
         const r = await confirmDialog("Delete Equipment?", `Are you sure you want to permanently delete ${item.name} (${item.serial}) from the records?`)
         if(r === true){
-            axios.delete(`${SERVER}/delete/${item.id}`).then(()=>{
+            axios.delete(`${SERVER}/equipment/${item.id}`).then(()=>{
             fireAlert("Equipment Deleted", `${item.name} (${item.serial}) successfully deleted.`)
             setReload(!reload)
         })

@@ -21,7 +21,7 @@ const Equipment = () => {
     }
 
     const downloadCertificate = (id) => {
-        axios.get(`${SERVER}/certificate/${id}`)
+        axios.get(`${SERVER}/${id}/certificate`)
         .then((response) => {   
             const file = response.data[0].certificate
             const filename = `calibration_certificate_${id}`

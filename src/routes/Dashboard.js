@@ -14,7 +14,7 @@ const Dashboard = ({dept}) => {
 
     // Get Pending Calibrations
     const getPending = () => {
-        axios.get(`${SERVER}/allequipment`).then((response)=>{ 
+        axios.get(`${SERVER}/equipment`).then((response)=>{ 
             setTotal(response.data.length)
             const pendingFiltered = response.data.filter(val => val.status === "For Calibration")
             setPending([...pendingFiltered])

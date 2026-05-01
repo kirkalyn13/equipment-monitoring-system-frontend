@@ -76,7 +76,7 @@ const Edit = ({info}) => {
     const [forMaintenance, setForMaintenance] = useState(info.forMaintenance === "Yes" ? true : false)
 
     const editEquipment = () => {
-        axios.put(`${SERVER}/edit/${info.id}`,{
+        axios.put(`${SERVER}/equipment/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,
@@ -104,7 +104,7 @@ const Edit = ({info}) => {
         })
       }
     const logChanges = () =>{
-        axios.post(`${SERVER}/changelog/${info.id}`,{
+        axios.post(`${SERVER}/changelogs/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,

@@ -33,7 +33,7 @@ const Manage = () => {
     const [ sortedStatus, setSortedStatus ] = useState("All")
 
     const getItems = () => {
-        axios.get(`${SERVER}/allequipment`).then((response)=>{
+        axios.get(`${SERVER}/equipment`).then((response)=>{
             setItems(response.data)
             setFiltered(items)
             getStatusList(response.data)
