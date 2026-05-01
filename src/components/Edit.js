@@ -9,6 +9,7 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import Switch from '@mui/material/Switch'
 import { LoginContext } from '../App'
 import { fireAlert } from '../util/alert'
+import { getDateFromTimestamp } from '../util/util'
 
 const statusOptions = [
     {
@@ -55,15 +56,15 @@ const Edit = ({info}) => {
         eqpBrand: info.brand,
         eqpPrice: info.price,
         eqpManufacturer: info.manufacturer,
-        eqpExp: info.expiration,
-        eqpPurchaseDate: info.purchaseDate,
-        eqpCalibDate: info.calibrationDate,
-        eqpNextCalib: info.nextCalibration,
-        eqpCalibMethod: info.calibrationMethod,
-        eqpForMaintenance: info.forMaintenance,
+        eqpExp: getDateFromTimestamp(info.expiration),
+        eqpPurchaseDate: getDateFromTimestamp(info.purchasedate),
+        eqpCalibDate: getDateFromTimestamp(info.calibrationdate),
+        eqpNextCalib: getDateFromTimestamp(info.nextcalibration),
+        eqpCalibMethod: info.calibrationmethod,
+        eqpForMaintenance: info.formaintenance,
         eqpLoc : info.location,
-        eqpIssuedBy: info.issuedBy,
-        eqpIssuedTo: info.issuedTo,
+        eqpIssuedBy: info.issuedby,
+        eqpIssuedTo: info.issuedto,
         eqpRemarks: info.remarks,
         eqpStatus: info.status, 
         eqpCertificate: info.certificate,
@@ -73,10 +74,10 @@ const Edit = ({info}) => {
     const [submitState, setSubmitState] = useState(false)
     const [certificate, setCertificate] = useState(null)
     const [image, setImage] = useState(null)
-    const [forMaintenance, setForMaintenance] = useState(info.forMaintenance === "Yes" ? true : false)
+    const [forMaintenance, setForMaintenance] = useState(info.formaintenance === "Yes" ? true : false)
 
     const editEquipment = () => {
-        axios.put(`${SERVER}/edit/${info.id}`,{
+        axios.put(`${SERVER}/equipment/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,
@@ -104,7 +105,7 @@ const Edit = ({info}) => {
         })
       }
     const logChanges = () =>{
-        axios.post(`${SERVER}/changelog/${info.id}`,{
+        axios.post(`${SERVER}/changelogs/${info.id}`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
           eqpModel: values.eqpModel,

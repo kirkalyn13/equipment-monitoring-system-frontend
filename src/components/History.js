@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { SERVER } from '../App'
-import { b64toBlob } from '../util/util'
+import { b64toBlob, getDateFromTimestamp } from '../util/util'
 import axios from 'axios'
 import IconButton from '@mui/material/IconButton'
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser'
@@ -8,14 +8,14 @@ import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser'
 const History = ({itemID}) => {
     const [logs, setLogs ] = useState([])
     const fetchLogs = () => {
-        axios.get(`${SERVER}/logs/${itemID}`).then((response)=>{
+        axios.get(`${SERVER}/changelogs/${itemID}`).then((response)=>{
             setLogs(response.data)
-        }
+            }
         )}
     
     
-    const viewCertificate = (id, timestamp) => {
-            axios.get(`${SERVER}/changelog/certificate/${id}/${timestamp}`)
+    const viewCertificate = (id, logId) => {
+            axios.get(`${SERVER}/changelogs/${id}/${logId}/certificate`)
             .then((response) => {   
                 let pdfData = response.data[0].certificate.substring("data:application/pdf;base64,".length)
                 let pdfBlob = b64toBlob(pdfData.replace('data:application/pdf;base64,', ''), 'application/pdf')
@@ -72,15 +72,15 @@ const History = ({itemID}) => {
                         <td>{entry.brand}</td>
                         <td>{entry.price}</td>
                         <td>{entry.manufacturer}</td>
-                        <td>{entry.expiration}</td>
-                        <td>{entry.purchaseDate}</td>
-                        <td>{entry.calibrationDate}</td>
-                        <td>{entry.nextCalibration}</td>
-                        <td>{entry.calibrationMethod}</td>
-                        <td>{entry.forMaintenance}</td>
+                        <td>{getDateFromTimestamp(entry.expiration)}</td>
+                        <td>{getDateFromTimestamp(entry.purchasedate)}</td>
+                        <td>{getDateFromTimestamp(entry.calibrationdate)}</td>
+                        <td>{getDateFromTimestamp(entry.nextcalibration)}</td>
+                        <td>{entry.calibrationmethod}</td>
+                        <td>{entry.formaintenance}</td>
                         <td>{entry.location}</td>
-                        <td>{entry.issuedBy}</td>
-                        <td>{entry.issuedTo}</td>
+                        <td>{entry.issuedby}</td>
+                        <td>{entry.issuedto}</td>
                         <td>{entry.status}</td>
                         <td>{entry.remarks}</td>
                         <td>
@@ -88,7 +88,7 @@ const History = ({itemID}) => {
                                 disabled={entry.certificate === null || entry.certificate === "null"}
                                 aria-label="edit" 
                                 color="inherit">
-                                <OpenInBrowserIcon onClick={() => viewCertificate(entry.id, entry.timestamp)} />
+                                <OpenInBrowserIcon onClick={() => viewCertificate(entry.id, entry.indexnum)} />
                             </IconButton>
                         </td>
                         <td>{entry.modifiedBy}</td>

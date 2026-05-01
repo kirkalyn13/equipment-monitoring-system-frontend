@@ -6,7 +6,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser'
 import HistoryIcon from '@mui/icons-material/History'
 import { useHistory } from "react-router-dom"
-import { b64toBlob } from '../util/util'
+import { b64toBlob, getDateFromTimestamp } from '../util/util'
 import axios from 'axios'
 
 
@@ -28,7 +28,7 @@ const List = ({item}) => {
     }
 
     const viewCertificate = (id) => {
-        axios.get(`${SERVER}/certificate/${id}`)
+        axios.get(`${SERVER}/equipment/${id}/certificate`)
         .then((response) => {   
             let pdfData = response.data[0].certificate.substring("data:application/pdf;base64,".length)
             let pdfBlob = b64toBlob(pdfData.replace('data:application/pdf;base64,', ''), 'application/pdf')
@@ -61,15 +61,15 @@ const List = ({item}) => {
                 {shown.showBrand === true ? <td>{item.brand}</td> : null}
                 {shown.showPrice === true ? <td>{item.price}</td> : null}
                 {shown.showManufacturer === true ? <td>{item.manufacturer}</td> : null}
-                {shown.showExpiration === true ? <td>{item.expiration}</td> : null}
-                {shown.showPurchaseDate === true ? <td>{item.purchaseDate}</td> : null}
-                {shown.showCalibrationDate === true ? <td>{item.calibrationDate}</td> : null}
-                {shown.showNextCalibration === true ? <td>{item.nextCalibration}</td> : null}
-                {shown.showCalibrationMethod === true ? <td>{item.calibrationMethod}</td> : null}
-                {shown.showForMaintenance === true ? <td>{item.forMaintenance}</td> : null}
+                {shown.showExpiration === true ? <td>{getDateFromTimestamp(item.expiration)}</td> : null}
+                {shown.showPurchaseDate === true ? <td>{getDateFromTimestamp(item.purchasedate)}</td> : null}
+                {shown.showCalibrationDate === true ? <td>{getDateFromTimestamp(item.calibrationdate)}</td> : null}
+                {shown.showNextCalibration === true ? <td>{getDateFromTimestamp(item.nextcalibration)}</td> : null}
+                {shown.showCalibrationMethod === true ? <td>{item.calibrationmethod}</td> : null}
+                {shown.showForMaintenance === true ? <td>{item.formaintenance}</td> : null}
                 {shown.showLocation === true ? <td>{item.location}</td> : null}
-                {shown.showIssuedBy === true ? <td>{item.issuedBy}</td> : null}
-                {shown.showIssuedTo === true ? <td>{item.issuedTo}</td> : null}
+                {shown.showIssuedBy === true ? <td>{item.issuedby}</td> : null}
+                {shown.showIssuedTo === true ? <td>{item.issuedto}</td> : null}
                 {shown.showRemarks === true ? <td>{item.remarks}</td> : null}
                 {shown.showStatus === true ? <td>{item.status}</td> : null}
                 {shown.showCertificate === true ? 

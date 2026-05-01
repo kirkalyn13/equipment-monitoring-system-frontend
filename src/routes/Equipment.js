@@ -7,6 +7,7 @@ import SaveAltIcon from '@mui/icons-material/SaveAlt'
 import Image from '../components/Image'
 import { useHistory, useParams } from "react-router-dom"
 import Switch from '@mui/material/Switch'
+import { b64toBlob, getDateFromTimestamp } from '../util/util'
 
 const Equipment = () => {
     const { id } = useParams()
@@ -21,14 +22,12 @@ const Equipment = () => {
     }
 
     const downloadCertificate = (id) => {
-        axios.get(`${SERVER}/certificate/${id}`)
+        axios.get(`${SERVER}/equipment/${id}/certificate`)
         .then((response) => {   
-            const file = response.data[0].certificate
-            const filename = `calibration_certificate_${id}`
-            const link = document.createElement("a")
-            link.href = file
-            link.download = `${filename}.pdf`
-            link.click()
+            let pdfData = response.data[0].certificate.substring("data:application/pdf;base64,".length)
+            let pdfBlob = b64toBlob(pdfData.replace('data:application/pdf;base64,', ''), 'application/pdf')
+            let pdfUrl = URL.createObjectURL(pdfBlob)
+            window.open(pdfUrl)
         })
         .catch((error) => console.error(error))
     }
@@ -42,14 +41,15 @@ const Equipment = () => {
     },[])
 
     const renderNeedMaintenance = () => {
+        console.log(equipment.formaintenance)
         return (
             <div>
                 <label>Need Maintenance : </label>
                 <Switch 
-                checked={equipment.forMaintenance === "Yes" ? true : false}
-                color="warning"
-                disabled
-                />
+                    checked={equipment.formaintenance === "Yes" ? true : false}
+                    color="warning"
+                    disabled
+                    />
             </div>
         )
     }
@@ -94,8 +94,8 @@ const Equipment = () => {
                         <div className="view-info-label"><p>Brand: </p><p>{equipment.brand}</p></div>
                         <div className="view-info-label"><p>Manufacturer: </p><p>{equipment.manufacturer}</p></div>
                         <div className="view-info-label"><p>Price: </p><p>{equipment.price}</p></div>
-                        <div className="view-info-label"><p>Expiration: </p><p>{equipment.expiration}</p></div>
-                        <div className="view-info-label"><p>Purchase Date: </p><p>{equipment.purchaseDate}</p></div>
+                        <div className="view-info-label"><p>Expiration: </p><p>{getDateFromTimestamp(equipment.expiration)}</p></div>
+                        <div className="view-info-label"><p>Purchase Date: </p><p>{getDateFromTimestamp(equipment.purchasedate)}</p></div>
                     </div>
                 </div>
             </div>
@@ -106,9 +106,9 @@ const Equipment = () => {
                             <img className="section-logo" src="/img/calibration.png" alt="" height="50px" width="50px" />
                             <h2 color="#FFFFFF">Calibration Details</h2>
                         </div>
-                        <div className="view-info-label"><p>Calibration Date: </p><p>{equipment.calibrationDate}</p></div>
-                        <div className="view-info-label"><p>Next Calibration Date: </p><p>{equipment.nextCalibration}</p></div>
-                        <div className="view-info-label"><p>Calibration Method: </p><p>{equipment.calibrationMethod}</p></div>
+                        <div className="view-info-label"><p>Calibration Date: </p><p>{getDateFromTimestamp(equipment.calibrationdate)}</p></div>
+                        <div className="view-info-label"><p>Next Calibration Date: </p><p>{getDateFromTimestamp(equipment.nextcalibration)}</p></div>
+                        <div className="view-info-label"><p>Calibration Method: </p><p>{equipment.calibrationmethod}</p></div>
                         <div className="view-info-label">
                             <p>Certificate: </p>
                             {equipment.certificate !== null ? 
@@ -127,8 +127,8 @@ const Equipment = () => {
                             <h2 color="#FFFFFF">Other Details</h2>
                         </div>
                             {renderNeedMaintenance()}
-                        <div className="view-info-label"><p>Issued By: </p><p>{equipment.issuedBy}</p></div>
-                        <div className="view-info-label"><p>Issued To: </p><p>{equipment.issuedTo}</p></div>
+                        <div className="view-info-label"><p>Issued By: </p><p>{equipment.issuedby}</p></div>
+                        <div className="view-info-label"><p>Issued To: </p><p>{equipment.issuedto}</p></div>
                         <div className="view-info-label"><p>Location: </p><p>{equipment.location}</p></div>
                         <div className="view-info-label"><p>Status: </p><p>{equipment.status}</p></div>
                         <div className="view-info-label"><p>Remarks: </p><p>{equipment.remarks}</p></div>
