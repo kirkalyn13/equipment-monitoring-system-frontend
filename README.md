@@ -14,7 +14,7 @@ Functionality and feature completeness take priority over code quality. **Many a
 |-------|------------|
 | Frontend | React |
 | Backend | Node.js, Express |
-| Database | MySQL |
+| Database | PostgreSQL |
 | Authentication & Authorization | Firebase, Firestore |
 
 
