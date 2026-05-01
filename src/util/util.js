@@ -14,3 +14,12 @@ export const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
     const blob = new Blob(byteArrays, {type: contentType});
     return blob;
   }
+
+// Get Date from timestamp
+export const getDateFromTimestamp = (timestamp) => {
+    if (!timestamp) return null
+    const date = new Date(timestamp)
+    if (isNaN(date.getTime())) return null
+
+    return date.toISOString().split("T")[0]
+}

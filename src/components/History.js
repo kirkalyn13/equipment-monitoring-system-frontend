@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { SERVER } from '../App'
-import { b64toBlob } from '../util/util'
+import { b64toBlob, getDateFromTimestamp } from '../util/util'
 import axios from 'axios'
 import IconButton from '@mui/material/IconButton'
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser'
@@ -72,15 +72,15 @@ const History = ({itemID}) => {
                         <td>{entry.brand}</td>
                         <td>{entry.price}</td>
                         <td>{entry.manufacturer}</td>
-                        <td>{entry.expiration}</td>
-                        <td>{entry.purchaseDate}</td>
-                        <td>{entry.calibrationDate}</td>
-                        <td>{entry.nextCalibration}</td>
-                        <td>{entry.calibrationMethod}</td>
-                        <td>{entry.forMaintenance}</td>
+                        <td>{getDateFromTimestamp(entry.expiration)}</td>
+                        <td>{getDateFromTimestamp(entry.purchasedate)}</td>
+                        <td>{getDateFromTimestamp(entry.calibrationdate)}</td>
+                        <td>{getDateFromTimestamp(entry.nextcalibration)}</td>
+                        <td>{entry.calibrationmethod}</td>
+                        <td>{entry.formaintenance}</td>
                         <td>{entry.location}</td>
-                        <td>{entry.issuedBy}</td>
-                        <td>{entry.issuedTo}</td>
+                        <td>{entry.issuedby}</td>
+                        <td>{entry.issuedto}</td>
                         <td>{entry.status}</td>
                         <td>{entry.remarks}</td>
                         <td>
