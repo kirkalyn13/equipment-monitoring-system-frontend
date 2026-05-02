@@ -729,10 +729,12 @@ input[type=checkbox]:after{
   .details-column{
     align-items: center;
   }
-  .container-add, .container-edit, .container-item{
+  .container-add, .container-edit, .container-item {
     width: 100%;
-    margin: 20px 0px;
-    padding-bottom: 50px;
+    max-width: 100%;
+    margin: 10px 0;
+    padding: 0 0 50px !important;
+    box-sizing: border-box;
   }
   .container-details{
     margin: 20px 0px;
