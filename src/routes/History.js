@@ -42,14 +42,8 @@ const History = () => {
 
     return (
         <>
-            {/* <div className="container-search">
-                <div className="section-title">
-                    <img className="section-logo" src="/img/history.png" alt="" height="50px" width="50px" />
-                    <h2 color="#FFFFFF">Equipment History</h2>
-                </div>
-            </div> */}
             <div className="container-history">
-            <div className="section-head">
+            <div className="section-head container-filter">
                 <div className="section-title">
                     <img className="section-logo" src="/img/history.png" alt="" height="50px" width="50px" />
                     <h2 color="#FFFFFF">Equipment History</h2>
@@ -63,6 +57,7 @@ const History = () => {
                     RETURN
                 </Button>
             </div>
+            <div className='history-wrapper'>
             <table className="history">
                 <thead>
                 <tr>
@@ -128,6 +123,7 @@ const History = () => {
                 })}
                 </tbody>
             </table>
+            </div>
             </div>
         </>
     )

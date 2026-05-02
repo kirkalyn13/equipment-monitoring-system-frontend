@@ -194,7 +194,8 @@ body{
   border-top: solid 1px #F5F5F5;
 }
 .container-history{
-  width: 100%;
+  width: 90%;
+  margin: 10px;
   overflow-x: scroll;
   white-space: nowrap;
 }
@@ -558,13 +559,23 @@ td{
   border-bottom: solid 1px #757575;
   overflow: hidden;
 }
-.history{
+.history {
   width: 95%;
-  margin: 2px 20px;
+  margin: 10px 20px;
   font-size: medium;
-  overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 80vh;
 }
+
+.history-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
 .information{
   width: 95%;
   margin: 2px 20px;
@@ -777,6 +788,9 @@ input[type=checkbox]:after{
   .history{
     width: 100%;
     margin: 2px 0px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    white-space: nowrap;
   }
   .container-history{
     width: 100%;
