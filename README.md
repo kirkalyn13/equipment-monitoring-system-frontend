@@ -4,7 +4,7 @@ A research project prototype designed for managing and monitoring laboratory equ
 
 ## ⚠️ Disclaimer
 
-This project is intended to be a **prototype** developed strictly for graduate research purposes. It is not intended for production use.
+This project is intended to be a **prototype** developed strictly for graduate research purposes. It is **not intended for production use**, and could only cater small local systems and datasets at most.
 
 Functionality and feature completeness take priority over code quality. **Many approaches and implementations throughout this codebase do not follow best practices — some are outright bad practices.** This is acknowledged and accepted as this is a legacy project created by the author/developer. Use or reference this code at your own discretion.
 
@@ -16,6 +16,21 @@ Functionality and feature completeness take priority over code quality. **Many a
 | Backend | Node.js, Express |
 | Database | PostgreSQL |
 | Authentication & Authorization | Firebase, Firestore |
+
+
+## Architecture
+
+```mermaid
+flowchart LR
+    User --> sub
+    sub <--REST APIs--> NodeJS["Express Server"]
+    NodeJS <--> Postgres["PostgreSQL DB"]
+
+    subgraph sub[ ]
+        direction TB
+        React["React JS Frontend"] <--> FirebaseAuth["Firebase Auth"]
+    end
+```
 
 
 ## Features
