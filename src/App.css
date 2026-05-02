@@ -306,7 +306,7 @@ body{
 .buttons-manage{
   display: flex;
   margin: 0px 20px;
-  width:5%;
+  width: 10%;
   justify-content: space-around;
 }
 .section-head{
