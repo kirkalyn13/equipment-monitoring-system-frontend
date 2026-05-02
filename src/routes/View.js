@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { SERVER } from '../App'
 import { DEPT } from '../App'
 import List from '../components/List'
-import History from '../components/History'
+import History from './History'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import IconButton from '@mui/material/IconButton'
@@ -292,7 +292,6 @@ const View = () => {
             </div>
                 <div className="container-equipment-list">
                     <table className="information">
-                    {showEquipment === false && showHistory === false ?
                     <thead>
                     <tr>
                         <th>
@@ -322,12 +321,11 @@ const View = () => {
                         {shown.showStatus === true ? <th>STATUS</th> : null}
                         {shown.showCertificate === true ? <th>CERTIFICATE</th> : null}
                     </tr>
-                    </thead> : null}
+                    </thead>
                     {loading === true ? <CircularProgress color="inherit"/> : null}
                     {searched.map((item, key) => (<List key={key} item={item} />))}
                     </table>
-                    {showEquipment === true ? <Equipment/> : null}
-                    {showHistory === true ? 
+                     {showHistory === true ? 
                     <>
                     <div className="container-search">
                         <div className="section-title">
@@ -335,7 +333,6 @@ const View = () => {
                             <h2 color="#FFFFFF">Equipment History</h2>
                         </div>
                     </div>
-                    <History itemID={eqpID}/>
                     </> : null}
                 </div>
             </div>

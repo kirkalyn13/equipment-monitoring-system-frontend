@@ -15,6 +15,7 @@ const Equipment = () => {
 
     const [ equipment, setEquipment ] = useState({})
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const getEquipData = () => {
         axios.get(`${SERVER}/equipment/${id}`).then((response)=>{
         setEquipment(response.data[0])
@@ -41,7 +42,6 @@ const Equipment = () => {
     },[])
 
     const renderNeedMaintenance = () => {
-        console.log(equipment.formaintenance)
         return (
             <div>
                 <label>Need Maintenance : </label>
