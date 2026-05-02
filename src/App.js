@@ -13,6 +13,7 @@ import Add from './routes/Add'
 import Manage from './routes/Manage'
 import Login from './routes/Login'
 import Users from './routes/Users'
+import History from './routes/History'
 import ProtectedRoute from './routes/ProtectedRoute'
 import { URL } from './config/config'
 
@@ -20,6 +21,8 @@ const SCHOOL = "School of Engineering and Architecture"
 export const DEPT = "SEA Laboratory"
 export const SERVER = URL
 export const LoginContext = React.createContext()
+export const WRITE_ACCESS = ["admin", "super"]
+export const SUPER_ACCESS = ["super"]
 
 function App() {
   const [isAuth, setIsAuth] = useState(false)
@@ -76,14 +79,17 @@ function App() {
                   <Route path="/equipment/:id">
                     <Equipment />
                   </Route>
+                  <Route path="/changelog/:id">
+                    <History />
+                  </Route>
                   <ProtectedRoute path="/add"
-                    allowedRoles={["admin", "super"]} userRole={user.role}
+                    allowedRoles={WRITE_ACCESS} userRole={user.role}
                     component={Add} isAuth={isAuth} />
                   <ProtectedRoute path="/manage"
-                    allowedRoles={["admin", "super"]} userRole={user.role}
+                    allowedRoles={WRITE_ACCESS} userRole={user.role}
                     component={Manage} isAuth={isAuth} />
                   <ProtectedRoute path="/users"
-                    allowedRoles={["super"]} userRole={user.role}
+                    allowedRoles={SUPER_ACCESS} userRole={user.role}
                     component={Users} isAuth={isAuth} />
                 </Switch>
               </div>

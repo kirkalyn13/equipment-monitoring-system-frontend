@@ -25,6 +25,7 @@ const List = ({item}) => {
         setShowHistory(true)
         setShowFilterTab(false)
         setEqpID(id)
+        history.push(`/changelog/${id}`)
     }
 
     const viewCertificate = (id) => {
