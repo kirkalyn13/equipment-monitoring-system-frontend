@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom"
+import { getDateFromTimestamp } from "../util/util"
 
 const Pending = ({pending}) => {
     let history = useHistory()
@@ -10,7 +11,7 @@ const Pending = ({pending}) => {
     return (
         <div className="pending">
                 <h2 style={{color:"#000"}}>Pending Calibrations</h2>
-                <table style={{width: "98%"}}>
+                <table style={{width: "95%"}}>
                     <thead>
                     <tr>
                         <th>Name</th>
@@ -26,7 +27,7 @@ const Pending = ({pending}) => {
                         <tr key={entry.id} onClick={() => openPending(entry.id)}>
                             <td className="td-critical">{entry.name}</td>
                             <td className="td-critical">{entry.type}</td>
-                            <td className="td-critical">{entry.nextCalibration}</td>
+                            <td className="td-critical">{getDateFromTimestamp(entry.nextcalibration)}</td>
                             <td className="td-critical">{entry.location}</td>
                         </tr> 
                     )

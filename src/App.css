@@ -286,15 +286,17 @@ body{
   background-color: #F5F5F5;
   align-items: center;
 }
-.pending{
+.pending {
   width: 50%;
-  margin: 20px;
   height: 95%;
   color: #000;
   border-radius: 10px;
   background-color: #F5F5F5;
   overflow-y: scroll;
-  align-items: center;
+  margin: 20px auto; /* centers the container */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers children horizontally */
 }
 .td-critical{
   animation: critical 2.5s infinite;
