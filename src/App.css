@@ -180,11 +180,22 @@ body{
   width: 100%;
   display: flex;
 }
-.container-logout{
+.container-logout {
   display: flex;
   width: auto;
   margin: 20px 5px;
   justify-content: space-around;
+  align-items: center;
+}
+.username {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.username h3 {
+  margin: 0;
+  line-height: 1;
 }
 .container-checkbox{
   font-size: medium;
@@ -602,6 +613,18 @@ input[type=checkbox]:after{
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.username {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* add this */
+  height: 100%; /* add this */
+}
+
+.username h3 {
+  margin: 0;
+  line-height: 1;
 }
 
 /* Loading container takes the parent’s dimensions */
