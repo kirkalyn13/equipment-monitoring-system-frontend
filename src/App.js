@@ -15,6 +15,8 @@ import Login from './routes/Login'
 import Users from './routes/Users'
 import History from './routes/History'
 import ProtectedRoute from './routes/ProtectedRoute'
+import NotFound from './routes/NotFound'
+import Unauthorized from './routes/Unauthorized'
 import { URL } from './config/config'
 
 const SCHOOL = "School of Engineering and Architecture"
@@ -91,6 +93,12 @@ function App() {
                   <ProtectedRoute path="/users"
                     allowedRoles={SUPER_ACCESS} userRole={user.role}
                     component={Users} isAuth={isAuth} />
+                  <Route path="/unauthorized">
+                    <Unauthorized />
+                  </Route>
+                  <Route>
+                    <NotFound />
+                  </Route>
                 </Switch>
               </div>
               <Footer />

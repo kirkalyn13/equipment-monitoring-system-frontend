@@ -42,6 +42,9 @@ flowchart LR
 - Certificate storage and download
 - CSV data export
 
+## Sanity Testing
+
+- [Sanity Tests](SANITY.md)
 
 ## Authors
 
