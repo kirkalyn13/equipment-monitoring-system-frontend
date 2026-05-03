@@ -54,7 +54,7 @@ const Login = ({ school }) => {
   const checkHealth = () => axios.get('/health').then(({ data }) => console.log('Server health:', data)).catch((err) => console.error('Health check failed:', err))
 
   useEffect(() => {
-    checkHealth()
+    checkHealth().catch((err) => console.warn("EMS Server might be asleep, health check done to cold start."))
   },[])
 
   if (isLoading) return (
