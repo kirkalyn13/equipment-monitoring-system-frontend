@@ -38,6 +38,7 @@ body{
   background-color: #800000;
   color: white;
   text-align: center;
+  font-weight: bold;
 }
 .title-text, .title-text-head{
   margin: 2px;
