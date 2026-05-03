@@ -1,6 +1,7 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { auth } from '../config/firebase'
 import { LoginContext } from '../App'
+import axios from 'axios'
 import Alert from '@mui/material/Alert'
 import Loading from '../components/Loading'
 
@@ -50,11 +51,17 @@ const Login = ({ school }) => {
     setValues((prev) => ({ ...prev, password: '' }))
   }
 
- if (isLoading) return (
-  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-    <Loading />
-  </div>
-)
+  const checkHealth = () => axios.get('/health').then(({ data }) => console.log('Server health:', data)).catch((err) => console.error('Health check failed:', err))
+
+  useEffect(() => {
+    checkHealth()
+  },[])
+
+  if (isLoading) return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Loading />
+    </div>
+  )
 
   return (
     <div className="login-page">
