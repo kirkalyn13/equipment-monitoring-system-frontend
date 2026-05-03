@@ -81,7 +81,7 @@ const View = () => {
             const filename = `${dept}Equipment_${year}${month}${day}${hour}${min}.csv`
             const link = document.createElement("a")
             link.href = file
-            link.download = `${filename}.csv`
+            link.download = `${filename}`
             link.click()
         }).catch((error) => console.error(error))
     }

@@ -25,8 +25,6 @@ export const WRITE_ACCESS = ["admin", "super"]
 export const SUPER_ACCESS = ["super"]
 
 function App() {
-  console.log("Node env", process.env.REACT_APP_NODE_ENV)
-  console.log("Server URL", process.env.REACT_APP_BACKEND_SERVER_URL)
   const [isAuth, setIsAuth] = useState(false)
   const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true)
