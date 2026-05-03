@@ -14,6 +14,7 @@ import ColumnFilter from '../components/ColumnFilter'
 import Equipment from './Equipment'
 import DataFilter from '../components/DataFilter'
 import { useHistory, useParams } from "react-router-dom"
+import Loading from '../components/Loading'
 
 export const EquipmentContext = React.createContext()
 
@@ -63,6 +64,7 @@ const View = () => {
     const getEquip = () => {
         axios.get(`${SERVER}/equipment`).then((response)=>{
             setEquip(response.data)
+            setLoading(false)
         })
     }
 
@@ -231,7 +233,7 @@ const View = () => {
 
     useEffect(() => {
         getEquip()
-        setLoading(false)
+        setLoading(true)
     },[])
 
     useEffect(()=>{
@@ -291,6 +293,7 @@ const View = () => {
             {showFilterTab === true ? <DataFilter data={equip}/> : null}
             </div>
                 <div className="container-equipment-list">
+                    {loading === true ?  <Loading offset={true}/> :
                     <table className="information">
                     <thead>
                     <tr>
@@ -322,9 +325,9 @@ const View = () => {
                         {shown.showCertificate === true ? <th>CERTIFICATE</th> : null}
                     </tr>
                     </thead>
-                    {loading === true ? <CircularProgress color="inherit"/> : null}
                     {searched.map((item, key) => (<List key={key} item={item} />))}
                     </table>
+                    }
                      {showHistory === true ? 
                     <>
                     <div className="container-search">

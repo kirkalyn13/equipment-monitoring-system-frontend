@@ -630,11 +630,12 @@ input[type=checkbox]:after{
 }
 
 /* Loading container takes the parent’s dimensions */
-.loading-container {
-  height: 70%;
+.container-loading {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 /* width */

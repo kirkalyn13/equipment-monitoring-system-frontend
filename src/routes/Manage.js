@@ -37,6 +37,7 @@ const Manage = () => {
             setItems(response.data)
             setFiltered(items)
             getStatusList(response.data)
+            setLoading(false)
         })
     } 
 
@@ -64,7 +65,7 @@ const Manage = () => {
     useEffect(()=>{
         setTimeout(()=>{
             getItems()
-            setLoading(false)
+            setLoading(true)
           },500)
     },[reload])
 
@@ -116,7 +117,7 @@ const Manage = () => {
                     <p className="item-header">STATUS</p>
                 </div>
             </div>
-            {loading === true ? <Loading /> : null}
+            {loading === true ? <Loading  offset={true}/> : null}
             {filtered.map((item) =>{
                     return  <Item key={item.serialNumber} item={item} />
                 })}

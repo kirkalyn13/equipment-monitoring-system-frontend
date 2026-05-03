@@ -5,12 +5,14 @@ import Pending from '../components/Pending'
 import axios from 'axios'
 import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
+import Loading from '../components/Loading'
 
 const Dashboard = ({dept}) => {
     const [pending, setPending] = useState([])
     const [total, setTotal] = useState([])
     const [alertTrigger, setAlertTrigger] = useState(false)
-    const [ showAlert, setShowAlert] = useState(true)
+    const [showAlert, setShowAlert] = useState(true)
+    const [loading, setLoading] = useState(true)
 
     // Get Pending Calibrations
     const getPending = () => {
@@ -19,6 +21,7 @@ const Dashboard = ({dept}) => {
             const pendingFiltered = response.data.filter(val => val.status === "For Calibration")
             setPending([...pendingFiltered])
             setAlertTrigger(!alertTrigger)
+            setLoading(false)
         })
     }
     
@@ -51,10 +54,11 @@ const Dashboard = ({dept}) => {
                     }
                 >You have {pending.length} Pending Calibrations.
                 </Alert> : null}
+            {loading !== true ?
             <div className="container-metrics">
                 <Percentage done={total-pending.length} pending={pending.length}/>
                 <Pending pending={pending} />
-            </div>
+            </div> : <Loading />}
         </div>
     )
 }

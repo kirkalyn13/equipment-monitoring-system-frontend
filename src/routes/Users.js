@@ -48,7 +48,7 @@ const Users = () => {
           </div>
         </div>
         <AddUser users={users} />
-        {loading && <Loading />}
+        {loading && <Loading  offset={true}/>}
         {users.map((user) => (
           <User key={user.id} user={user} />
         ))}
