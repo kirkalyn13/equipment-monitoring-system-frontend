@@ -7,10 +7,13 @@ export const NotFound = () => {
 
   return (
     <div className="error-page">
-      <SentimentDissatisfied sx={{ fontSize: 80, color: '#FFA000' }} />
+      <SentimentDissatisfied sx={{ fontSize: 80, color: '#FFC107'}} />
       <h1 className="error-code">404</h1>
       <p className="error-message">Looks like this page doesn't exist.</p>
-      <Button variant="contained" sx={{ fontWeight: 'bold', backgroundColor: '#FFAA00' }} onClick={() => history.push('/')}>
+      <Button
+        variant="contained"
+        onClick={() => history.push('/')}
+        sx={{ fontWeight: 'bold', backgroundColor: '#FFC107', '&:hover': { backgroundColor: '#FFAA00' }}}>
         Back to Dashboard
       </Button>
     </div>
