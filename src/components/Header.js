@@ -1,4 +1,3 @@
-// src/components/Header.js
 import { useContext } from 'react'
 import { LoginContext } from '../App'
 import { auth } from '../config/firebase'

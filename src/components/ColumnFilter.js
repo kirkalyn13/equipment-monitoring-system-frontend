@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-
 import { EquipmentContext } from '../routes/View'
 
 const ColumnFilter = () => {
