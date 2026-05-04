@@ -72,6 +72,9 @@ const Edit = ({info}) => {
         }).then(()=>{
           fireAlert("Equipment Updated", `Updated ${values.eqpName} (${values.eqpSerial}).`)
           setReload(!reload)
+        }).catch((err) => {
+            fireAlert("Edit Equipment Failed", err)
+            console.error(err)
         })
       }
     const logChanges = () =>{
