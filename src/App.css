@@ -661,6 +661,11 @@ input[type=checkbox]:after{
   font-weight: bolder;
 }
 
+.required-tag {
+  font-weight: bold;
+  color: #D32F2F;
+}
+
 /* width */
 ::-webkit-scrollbar {
   height: 6px;

@@ -151,24 +151,24 @@ const Add = () => {
                 </div>
                     <div className="details">
                         <div className="details-column">
-                            <label>Name: </label>
+                            <label>Name <span className="required-tag">*</span> </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpName" value={values.eqpName}
                             required placeholder="Equipment Name"/>
-                            <label>Type: </label>
+                            <label>Type <span className="required-tag">*</span> </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpType" value={values.eqpType}
                             required placeholder="Equipment Type"/>
-                            <label>Model: </label>
+                            <label>Model <span className="required-tag">*</span> </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpModel" value={values.eqpModel}
                             required placeholder="Equipment Model"/>
                         </div>
                         <div className="details-column">
-                            <label>Serial: </label>
+                            <label>Serial <span className="required-tag">*</span> </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpSerial" value={values.eqpSerial}
@@ -205,19 +205,20 @@ const Add = () => {
                         onChange={handleInputChange}
                         name="eqpManufacturer" value={values.eqpManufacturer}
                             placeholder="Equipment Manuacturer"/>
-                        <label>Price: </label>
+                        <label>Price <span className="required-tag">*</span> </label>
                         <input type="number"
                         onChange={handleInputChange}
                         name="eqpPrice" value={values.eqpPrice}
-                            placeholder="Equipment Price"/>
+                            placeholder="Equipment Price"
+                            required/>
                     </div>
                     <div className="details-column">
-                        <label>Expiration: </label>
+                        <label>Expiration <span className="required-tag">*</span> </label>
                         <input type="date" required
                         onChange={handleInputChange}
                         name="eqpExp" value={values.eqpExp}
                             placeholder="Expiration/Warranty"/>
-                        <label>Purchase Date: </label>
+                        <label>Purchase Date <span className="required-tag">*</span> </label>
                         <input type="date" required
                         onChange={handleInputChange}
                         name="eqpPurchaseDate" value={values.eqpPurchaseDate}
@@ -232,12 +233,12 @@ const Add = () => {
                 </div>
                 <div className="details">
                     <div className="details-column">
-                        <label>Calibration Date: </label>
+                        <label>Calibration Date <span className="required-tag">*</span> </label>
                         <input type="date" required
                         onChange={handleInputChange}
                         name="eqpCalibDate" value={values.eqpCalibDate}
                             placeholder="Calibraton Date"/>
-                        <label>Next Calibration Date: </label>
+                        <label>Next Calibration Date <span className="required-tag">*</span> </label>
                         <input type="date" required
                         onChange={handleInputChange}
                         name="eqpNextCalib" value={values.eqpNextCalib}

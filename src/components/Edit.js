@@ -163,32 +163,32 @@ const Edit = ({info}) => {
                                 <img className="section-logo" src="/img/info.png" alt="" height="50px" width="50px" />
                                 <h2 color="#FFFFFF">General Information</h2>
                             </div>
-                            <label>Name: </label>
+                            <label>Name <span className="required-tag">*</span> </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpName" value={values.eqpName}
                             required placeholder="Equipment Name"/>
-                            <label>Type: </label>
+                            <label>Type <span className="required-tag">*</span> </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpType" value={values.eqpType}
                             required placeholder="Equipment Type"/>
-                            <label>Model: </label>
+                            <label>Model <span className="required-tag">*</span> </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpModel" value={values.eqpModel}
                             required placeholder="Equipment Model"/>
-                            <label>Serial: </label>
+                            <label>Serial <span className="required-tag">*</span> </label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpSerial" value={values.eqpSerial}
                             required placeholder="Equipment Serial"/>
-                            <label>Description: </label>
+                            <label>Description</label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpDesc" value={values.eqpDesc}
                                 placeholder="Equipment Description"/>
-                            <label>Image: </label>
+                            <label>Image</label>
                             <input type="file"
                                 onChange={onChangeImageHandler}
                                 name="eqpImage" value={image}
@@ -201,31 +201,34 @@ const Edit = ({info}) => {
                                 <img className="section-logo" src="/img/purchase.png" alt="" height="50px" width="50px" />
                                 <h2 color="#FFFFFF">Purchase Details</h2>
                             </div>
-                            <label>Brand: </label>
+                            <label>Brand</label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpBrand" value={values.eqpBrand}
                                 placeholder="Equipment Brand"/>
-                            <label>Manufacturer: </label>
+                            <label>Manufacturer</label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpManufacturer" value={values.eqpManufacturer}
                                 placeholder="Equipment Manuacturer"/>
-                            <label>Price: </label>
+                            <label>Price <span className="required-tag">*</span> </label>
                             <input type="number"
                             onChange={handleInputChange}
                             name="eqpPrice" value={values.eqpPrice}
-                                placeholder="Equipment Price"/>
-                                <label>Expiration: </label>
+                                placeholder="Equipment Price"
+                                required/>
+                            <label>Expiration <span className="required-tag">*</span> </label>
                             <input type="date"
                             onChange={handleInputChange}
                             name="eqpExp" value={values.eqpExp}
-                                placeholder="Expiration/Warranty"/>
-                            <label>Purchase Date: </label>
+                                placeholder="Expiration/Warranty"
+                                required/>
+                            <label>Purchase Date <span className="required-tag">*</span> </label>
                             <input type="date"
                             onChange={handleInputChange}
                             name="eqpPurchaseDate" value={values.eqpPurchaseDate}
-                                placeholder="Purchase Date"/>
+                                placeholder="Purchase Date"
+                                required/>
                         </div>
                     </div>
                 </div>
@@ -236,22 +239,24 @@ const Edit = ({info}) => {
                                 <img className="section-logo" src="/img/calibration.png" alt="" height="50px" width="50px" />
                                 <h2 color="#FFFFFF">Calibration Details</h2>
                             </div>
-                            <label>Calibration Date: </label>
+                            <label>Calibration Date <span className="required-tag">*</span> </label>
                             <input type="date"
                             onChange={handleInputChange}
                             name="eqpCalibDate" value={values.eqpCalibDate}
-                                placeholder="Calibraton Date"/>
-                            <label>Next Calibration Date: </label>
+                                placeholder="Calibraton Date"
+                                required/>
+                            <label>Next Calibration Date <span className="required-tag">*</span> </label>
                             <input type="date"
                             onChange={handleInputChange}
                             name="eqpNextCalib" value={values.eqpNextCalib}
-                                placeholder="Next Calibration Date"/>
-                            <label>Calibration Method: </label>
+                                placeholder="Next Calibration Date"
+                                required/>
+                            <label>Calibration Method</label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpCalibMethod" value={values.eqpCalibMethod}
                                 placeholder="Method of Calibration"/>
-                            <label>Certificate: </label>
+                            <label>Certificate</label>
                             <input type="file"
                             onChange={onChangeFileHandler}
                             name="eqpCertificate" value={certificate}
@@ -265,35 +270,35 @@ const Edit = ({info}) => {
                                 <h2 color="#FFFFFF">Other Details</h2>
                             </div>
                             <div>
-                                <label>Need Maintenance: </label>
+                                <label>Need Maintenance</label>
                                 <Switch 
                                 checked={forMaintenance}
                                 onChange={onChangeMaintenance} 
                                 color="warning"
                                 />
                             </div>
-                            <label>Issued By: </label>
+                            <label>Issued By</label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpIssuedBy" value={values.eqpIssuedBy}
                                 placeholder="Issued By"/>
-                            <label>Issued To: </label>
+                            <label>Issued To</label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpIssuedTo" value={values.eqpIssuedTo}
                                 placeholder="Issued To"/>
-                                <label>Location: </label>
+                                <label>Location</label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpLoc" value={values.eqpLoc}
                                 placeholder="Equipment Location"/>
-                            <label>Status: </label>
+                            <label>Status</label>
                                 <select name="eqpStatus" value={values.eqpStatus} onChange={e => setValues({...values, eqpStatus: e.target.value})}>
                                 {STATUS_OPTIONS.map((option) => (
                                     <option value={option.value}>{option.label}</option>
                                     ))}
                                 </select>   
-                            <label>Remarks: </label>
+                            <label>Remarks</label>
                             <input type="text"
                             onChange={handleInputChange}
                             name="eqpRemarks" value={values.eqpRemarks}
