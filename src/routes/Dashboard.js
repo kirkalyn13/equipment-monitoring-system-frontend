@@ -7,7 +7,7 @@ import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Loading from '../components/Loading'
 
-const RELOAD_TIME = 5 * 60 * 1000
+const RELOAD_TIME = 1 // In minutes
 
 const Dashboard = ({dept}) => {
     const [pending, setPending] = useState([])
@@ -42,7 +42,7 @@ const Dashboard = ({dept}) => {
     useEffect(() => {
         const interval = setInterval(() => {
             getPending()
-        }, RELOAD_TIME)
+        }, RELOAD_TIME * 60 * 1000)
 
         return () => clearInterval(interval) // cleanup on unmount
     }, [])
