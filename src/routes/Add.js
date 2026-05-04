@@ -5,37 +5,7 @@ import Button from '@mui/material/Button'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { LoginContext } from '../App'
 import { fireAlert } from '../util/alert'
-
-const statusOptions = [
-    {
-      label: "Working",
-      value: "Working",
-    },
-    {
-      label: "Pulled Out",
-      value: "Pulled Out",
-    },
-    {
-      label: "Transferred",
-      value: "Transferred",
-    },
-    {
-      label: "Disposed",
-      value: "Disposed",
-    },
-    {
-        label: "For Repair",
-        value: "For Repair",
-    },
-    {
-        label: "For Calibration",
-        value: "For Calibration",
-    },
-    {
-        label: "For Maintenance",
-        value: "For Maintenance",
-    },
-]
+import { STATUS_OPTIONS } from '../util/constants'
 
 const Add = () => {
     const {user} = useContext(LoginContext)
@@ -58,7 +28,7 @@ const Add = () => {
         eqpIssuedBy: '',
         eqpIssuedTo: '',
         eqpRemarks: '',
-        eqpStatus: 'Offline',
+        eqpStatus: 'Working',
         eqpCertificate: null,
         eqpImage: null,
     }
@@ -66,6 +36,7 @@ const Add = () => {
     const [ newID, setNewID ] = useState(null)
 
     const addEquipment = () => {
+        console.log("ADD")
         axios.post(`${SERVER}/equipment`,{
           eqpName: values.eqpName,
           eqpType: values.eqpType,
@@ -90,6 +61,9 @@ const Add = () => {
         }).then((response)=>{
             setNewID(response.data[0].id)
             fireAlert("Equipment Added", `Added ${values.eqpName} (${values.eqpSerial}).`)
+        }).catch((err) => {
+            fireAlert("Add Equipment Failed", err)
+            console.error(err)
         })
       }
 
@@ -311,7 +285,7 @@ const Add = () => {
                         <div className="details-column">
                             <label>Status: </label>
                                 <select name="eqpStatus" value={values.eqpStatus} onChange={e => setValues({...values, eqpStatus: e.target.value})}>
-                                {statusOptions.map((option, key) => (
+                                {STATUS_OPTIONS.map((option, key) => (
                                     <option key={key} value={option.value}>{option.label}</option>
                                     ))}
                                 </select> 

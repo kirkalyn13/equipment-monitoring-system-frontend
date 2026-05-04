@@ -10,42 +10,12 @@ import Switch from '@mui/material/Switch'
 import { LoginContext } from '../App'
 import { fireAlert } from '../util/alert'
 import { getDateFromTimestamp } from '../util/util'
-
-const statusOptions = [
-    {
-    label: "Working",
-    value: "Working",
-    },
-    {
-    label: "Pulled Out",
-    value: "Pulled Out",
-    },
-    {
-    label: "Transferred",
-    value: "Transferred",
-    },
-    {
-    label: "Disposed",
-    value: "Disposed",
-    },
-    {
-    label: "For Repair",
-    value: "For Repair",
-    },
-    {
-    label: "For Calibration",
-    value: "For Calibration",
-    },
-    {
-    label: "For Maintenance",
-    value: "For Maintenance",
-    },
-  ]
+import { STATUS_OPTIONS } from '../util/constants'
 
 const Edit = ({info}) => {
     const { setShowEdit, toggleEdit } = useContext(EditContext)
     const { user } = useContext(LoginContext)
-    const {reload, setReload } = useContext(ReloadContext)
+    const { reload, setReload } = useContext(ReloadContext)
 
     const fieldValues = {
         eqpName: info.name,
@@ -101,7 +71,7 @@ const Edit = ({info}) => {
           eqpImage: values.eqpImage
         }).then(()=>{
           fireAlert("Equipment Updated", `Updated ${values.eqpName} (${values.eqpSerial}).`)
-          //setSubmitState(!submitState)
+          setReload(!reload)
         })
       }
     const logChanges = () =>{
@@ -163,7 +133,6 @@ const Edit = ({info}) => {
         editEquipment()
         setSubmitState(!submitState)
         toggleEdit()
-        setReload(!reload)
         }
 
     useEffect(()=>{
@@ -320,7 +289,7 @@ const Edit = ({info}) => {
                                 placeholder="Equipment Location"/>
                             <label>Status: </label>
                                 <select name="eqpStatus" value={values.eqpStatus} onChange={e => setValues({...values, eqpStatus: e.target.value})}>
-                                {statusOptions.map((option) => (
+                                {STATUS_OPTIONS.map((option) => (
                                     <option value={option.value}>{option.label}</option>
                                     ))}
                                 </select>   

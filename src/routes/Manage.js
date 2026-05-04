@@ -117,8 +117,7 @@ const Manage = () => {
                     <p className="item-header">STATUS</p>
                 </div>
             </div>
-            {loading === true ? <Loading  offset={true}/> : null}
-            {filtered.map((item) =>{
+            {loading === true ? <Loading  offset={true}/> : filtered.map((item) =>{
                     return  <Item key={item.serialNumber} item={item} />
                 })}
             </div>
