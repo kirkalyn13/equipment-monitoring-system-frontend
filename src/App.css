@@ -17,13 +17,18 @@ body{
   color: #FFFFFF;
   box-shadow: 2px 5px 5px #888888;
 }
-.title{
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: small;
+  margin-left: 2px;
+  padding: 2px;
+}
+.header-title{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: small;
-  margin-left: 2px;
-  padding:2px;
 }
 .logo{
   margin: 10px;
@@ -247,12 +252,14 @@ body{
   width: 200px;
 }
 
-.login-page{
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: black;
   margin: 50px 20px;
-  align-items: center;
-  flex-direction: column;
 }
+
 .login-title{
   width: 100%;
   align-items: center;

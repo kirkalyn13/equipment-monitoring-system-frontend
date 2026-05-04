@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { auth, db } from './config/firebase'
 import Header from './components/Header'
@@ -21,9 +21,16 @@ import { URL } from './config/config'
 const SCHOOL = "School of Engineering and Architecture"
 export const DEPT = "SEA Laboratory"
 export const SERVER = URL
-export const LoginContext = React.createContext()
 export const WRITE_ACCESS = ["admin", "super"]
 export const SUPER_ACCESS = ["super"]
+export const LoginContext = React.createContext()
+
+
+// Redirects to /login if not authenticated
+function RequireAuth({ isAuth, children }) {
+  if (!isAuth) return <Redirect to="/login" />
+  return children
+}
 
 function App() {
   const [isAuth, setIsAuth] = useState(false)
@@ -36,13 +43,7 @@ function App() {
         try {
           const userDoc = await db.collection('users').doc(firebaseUser.uid).get()
           const role = userDoc.exists ? userDoc.data().role : 'basic'
-
-          setUser({
-            uid: firebaseUser.uid,
-            username: firebaseUser.email,
-            role,
-            login: true,
-          })
+          setUser({ uid: firebaseUser.uid, username: firebaseUser.email, role, login: true })
           setIsAuth(true)
         } catch (err) {
           console.error('Failed to fetch user role:', err)
@@ -55,7 +56,6 @@ function App() {
       }
       setLoading(false)
     })
-
     return () => unsubscribe()
   }, [])
 
@@ -64,48 +64,56 @@ function App() {
   return (
     <LoginContext.Provider value={{ user, setUser, setIsAuth, isAuth }}>
       <Router>
-        <div className="App">
-          {isAuth && user.login ? (
-            <>
-              <Header school={SCHOOL} />
-              <div className="container-body">
-                <Sidebar role={user.role} />
-                <Switch>
-                  <Route exact path="/">
-                    <Dashboard dept={DEPT} />
-                  </Route>
-                  <Route path="/view">
-                    <View />
-                  </Route>
-                  <Route path="/equipment/:id">
-                    <Equipment />
-                  </Route>
-                  <Route path="/changelog/:id">
-                    <History />
-                  </Route>
-                  <ProtectedRoute path="/add"
-                    allowedRoles={WRITE_ACCESS} userRole={user.role}
-                    component={Add} isAuth={isAuth} />
-                  <ProtectedRoute path="/manage"
-                    allowedRoles={WRITE_ACCESS} userRole={user.role}
-                    component={Manage} isAuth={isAuth} />
-                  <ProtectedRoute path="/users"
-                    allowedRoles={SUPER_ACCESS} userRole={user.role}
-                    component={Users} isAuth={isAuth} />
-                  <Route path="/unauthorized">
-                    <Unauthorized />
-                  </Route>
-                  <Route>
-                    <NotFound />
-                  </Route>
-                </Switch>
+        <Switch>
+
+          {/* Public route — redirect away if already logged in */}
+          <Route path="/login">
+            {isAuth ? <Redirect to="/" /> : <Login school={SCHOOL} />}
+          </Route>
+
+          {/* All authenticated routes */}
+          <Route>
+            <RequireAuth isAuth={isAuth}>
+              <div className="App">
+                <Header school={SCHOOL} />
+                <div className="container-body">
+                  <Sidebar role={user.role} />
+                  <Switch>
+                    <Route exact path="/">
+                      <Dashboard dept={DEPT} />
+                    </Route>
+                    <Route path="/view">
+                      <View />
+                    </Route>
+                    <Route path="/equipment/:id">
+                      <Equipment />
+                    </Route>
+                    <Route path="/changelog/:id">
+                      <History />
+                    </Route>
+                    <ProtectedRoute path="/add"
+                      allowedRoles={WRITE_ACCESS} userRole={user.role}
+                      component={Add} isAuth={isAuth} />
+                    <ProtectedRoute path="/manage"
+                      allowedRoles={WRITE_ACCESS} userRole={user.role}
+                      component={Manage} isAuth={isAuth} />
+                    <ProtectedRoute path="/users"
+                      allowedRoles={SUPER_ACCESS} userRole={user.role}
+                      component={Users} isAuth={isAuth} />
+                    <Route path="/unauthorized">
+                      <Unauthorized />
+                    </Route>
+                    <Route>
+                      <NotFound />
+                    </Route>
+                  </Switch>
+                </div>
+                <Footer />
               </div>
-              <Footer />
-            </>
-          ) : (
-            <Login school={SCHOOL} />
-          )}
-        </div>
+            </RequireAuth>
+          </Route>
+
+        </Switch>
       </Router>
     </LoginContext.Provider>
   )

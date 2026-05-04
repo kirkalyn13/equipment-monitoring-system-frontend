@@ -3,8 +3,10 @@ import { LoginContext } from '../App'
 import { auth } from '../config/firebase'
 import Button from '@mui/material/Button'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 const Header = ({ school }) => {
+  const { history } = useHistory()
   const { user, setUser, setIsAuth } = useContext(LoginContext)
 
   const logout = async () => {
@@ -12,6 +14,7 @@ const Header = ({ school }) => {
       await auth.signOut()
       setUser({})
       setIsAuth(false)
+      history.push("/login")
     } catch (err) {
       console.error('Logout failed:', err)
     }
@@ -23,7 +26,7 @@ const Header = ({ school }) => {
         <div className="img">
           <img className="logo" src="logo.png" width="80" height="80" alt="logo" margin="10px" />
         </div>
-        <div className="title">
+        <div className="header-title">
           <h3 className="title-text-head">{school}</h3>
           <h4 className="title-text">Equipment Monitoring System</h4>
         </div>
