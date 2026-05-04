@@ -11,6 +11,7 @@
 | Change Password | Updates the user's password |
 | Old Password Login | Login with old password — expected to fail |
 | New Password Login | Login with new password — expected to succeed |
+| Delete User | Successfully delete user |
 
 ### Dashboard
 | Test | Description |
