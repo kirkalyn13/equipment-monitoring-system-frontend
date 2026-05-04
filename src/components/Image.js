@@ -6,7 +6,30 @@ import Loading from './Loading'
 const Image = ({ name, image }) => {
   const [loading, setLoading] = useState(true)
 
-  const hasImage = image && image !== "null"
+  const renderPlaceholder = () => {
+    // eslint-disable-next-line jsx-a11y/img-redundant-alt
+    return <img
+              src="/img/placeholder.png"
+              alt="no-image"
+              style={{ width: 'inherit', height: 'inherit', objectFit: 'contain' }}
+              onLoad={() => setLoading(false)}
+            />
+  }
+
+  const renderImage = () => {
+    // eslint-disable-next-line jsx-a11y/img-redundant-alt
+    return <img
+              src={image}
+              alt="equipment-image"
+              onLoad={() => setLoading(false)}
+              style={{
+                width: 'inherit',
+                height: 'inherit',
+                objectFit: 'contain',
+                display: loading ? 'none' : 'block'
+              }}
+            />
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -25,25 +48,7 @@ const Image = ({ name, image }) => {
       >
         <Paper variant="outlined" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {loading && <Loading />}
-          {!hasImage && !loading ? (
-            <img
-              src="/img/placeholder.png"
-              alt="no-image"
-              style={{ width: 'inherit', height: 'inherit', objectFit: 'contain' }}
-            />
-          ) : (
-            <img
-              src={image}
-              alt="equipment-image"
-              onLoad={() => setLoading(false)}
-              style={{
-                width: 'inherit',
-                height: 'inherit',
-                objectFit: 'contain',
-                display: loading ? 'none' : 'block'
-              }}
-            />
-          )}
+          {image === null ? renderPlaceholder() : renderImage()}
         </Paper>
       </Box>
       <h2>{name}</h2>
